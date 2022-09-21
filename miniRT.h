@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/20 17:27:53 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:21:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,29 @@
 # include "libft.h"
 # include <stdio.h>
 
-typedef struct s_camara
+typedef struct s_coord
 {
 	float	x;
 	float	y;
 	float	z;
-	float	vx;
-	float	vy;
-	float	vz;
+}t_coord;
+
+typedef struct s_pixel
+{
+	t_coord	*ray;
+	int		color; //Es un int??
+}t_pixel;
+
+typedef struct s_camara
+{
+	t_coord	*center;
+	t_coord	*orientation;
 	float	fov;
 }t_camara;
 
 typedef struct s_light
 {
-	float	x;
-	float	y;
-	float	z;
+	t_coord	*point;
 	float	ratio;
 }t_light;
 
@@ -44,10 +51,9 @@ typedef struct s_ambient
 
 typedef struct s_sphere
 {
-	float	x;
-	float	y;
-	float	z;
+	t_coord	*center;
 	float	diameter;
+	float	radius;
 	int		r;
 	int		g;
 	int		b;
@@ -55,12 +61,8 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	float	x;
-	float	y;
-	float	z;
-	float	vx;
-	float	vy;
-	float	vz;
+	t_coord	*point;
+	t_coord	*normal;
 	int		r;
 	int		g;
 	int		b;
@@ -68,13 +70,10 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	float	x;
-	float	y;
-	float	z;
-	float	vx;
-	float	vy;
-	float	vz;
+	t_coord	*center;
+	t_coord	*vector;
 	float	diameter;
+	float	radius;
 	float	height;
 	int		r;
 	int		g;
@@ -86,6 +85,9 @@ typedef struct s_program
 	t_camara	*camara;
 	t_light		*light;
 	t_ambient	*ambient;
+	t_sphere	*sphere_lst;
+	t_plane		*plane_lst;
+	t_cylinder	*cylinder_lst;
 }t_program;
 
 #endif
