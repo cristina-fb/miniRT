@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/19 17:13:53 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:26:07 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdio.h>
+#include <limits.h>
 # ifndef BUFFER_SIZE
 #	define BUFFER_SIZE 42
 # endif

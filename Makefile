@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2022/09/20 16:55:19 by jalvarad         ###   ########.fr        #
+#    Updated: 2022/09/22 17:23:47 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = miniRT
 
 # Source files #
-SRC_FILES = main.c parser.c
+SRC_FILES = main.c parser.c utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #

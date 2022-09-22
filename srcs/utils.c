@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 17:51:43 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/22 17:26:01 by jalvarad         ###   ########.fr       */
+/*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
+/*   Updated: 2022/09/22 17:28:11 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-int	ft_atoi(const char *str)
+
+bool out_of_range(long int num, short int sg)
 {
-	int			sg;
-	long long	num;
+	if ((num * sg) > INT_MAX || (num * sg) < INT_MAX)
+		return (true);
+	return (false);
+}
+
+int	mod_atoi(const char *str, bool *error)
+{
+	int				sg;
+	unsigned int	num;
 
 	sg = 1;
 	num = 0;
@@ -32,10 +40,11 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit((int)*str))
 	{
 		num = num * 10 + *str++ - '0';
-		if ((num * sg) > INT_MAX)
-			return (-1);
-		if ((num * sg) < INT_MIN)
+		if (out_of_range(num, sg))
+		{
+			*error = 1;
 			return (0);
+		}
 	}
 	return (num * sg);
 }
