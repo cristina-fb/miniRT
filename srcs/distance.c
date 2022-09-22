@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/19 18:05:49 by jalvarad         ###   ########.fr       */
+/*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
+/*   Updated: 2022/09/21 17:21:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int main (void)
+float distance_sphere(t_coord *point, t_sphere *sphere)
 {
-    t_coord a;
-    a.x = 0.0;
-    a.y = 0.0;
-    a.z = 0.0;
-    t_sphere b;
-    b.center->x = 1.0;
-    b.center->y = 1.0;
-    b.center->z = 1.0;
-    b.radius = 1.0;
-    printf("Resultado: %f\n", distance_sphere(&a, &b));
-    return (0);
+    return (vector_module(point, sphere->center) - sphere->radius);
 }
+
+/*float distance_plane(t_coord *point, t_plane *plane)
+{
+    
+}
+
+float distance_cylinder(t_coord *point, t_cylinder *cylinder)
+{
+    
+}*/

@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/19 18:05:49 by jalvarad         ###   ########.fr       */
+/*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
+/*   Updated: 2022/09/21 17:21:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int main (void)
+float vector_module(t_coord *a, t_coord *b)
 {
-    t_coord a;
-    a.x = 0.0;
-    a.y = 0.0;
-    a.z = 0.0;
-    t_sphere b;
-    b.center->x = 1.0;
-    b.center->y = 1.0;
-    b.center->z = 1.0;
-    b.radius = 1.0;
-    printf("Resultado: %f\n", distance_sphere(&a, &b));
-    return (0);
+    return (sqrt(pow(a->x - b->x, 2.0) + pow(a->y - b->y, 2.0) + pow(a->z - b->z, 2.0)));
 }

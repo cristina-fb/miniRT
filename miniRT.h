@@ -12,8 +12,8 @@
 
 #ifndef MINIRT_H
 # define MINIRT_H
-# include "libft.h"
 # include <stdio.h>
+# include <math.h>
 
 typedef struct s_coord
 {
@@ -90,4 +90,9 @@ typedef struct s_program
 	t_cylinder	*cylinder_lst;
 }t_program;
 
+//DISTANCE
+float distance_sphere(t_coord *point, t_sphere *sphere);
+
+//VECTOR_OPERATIONS
+float vector_module(t_coord *a, t_coord *b);
 #endif

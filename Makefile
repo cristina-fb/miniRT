@@ -15,7 +15,7 @@
 NAME = miniRT
 
 # Source files #
-SRC_FILES = main.c
+SRC_FILES = main.c distance.c vector_operations.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
