@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/22 17:26:07 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/25 11:40:01 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 #include <stdio.h>
 #include <limits.h>
+#include <stdbool.h>
 # ifndef BUFFER_SIZE
 #	define BUFFER_SIZE 42
 # endif
@@ -27,6 +28,8 @@ typedef struct s_list
 }					t_list;
 
 int		ft_atoi(const char *str);
+bool	ft_isspace(int c);
+bool	ft_issign(int c);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);

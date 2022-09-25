@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/22 18:32:06 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/25 13:47:22 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,44 +42,3 @@ bool file_format(char *file_name)
 	free(line);
 	return (all_file);
 }*/
-
-double absolute_float(const char *str)
-{
-	bool	after_dot;
-	float	scale;
-	double	num;
-
-	after_dot = 0;
-	while (*str)
-	{
-		if (after_dot)
-		{
-			scale = scale/10;
-			num += (*str - '0') * scale;
-		}
-		else
-		{
-			if (*str == '.')
-				after_dot++;
-			else
-				num *= 10.0 + (*str - '0');
-		}
-		str++;
-	}
-	return (num);
-}
-
-double mod_atof(const char *str)
-{
-	double	num;
-	bool	sg;
-
-	sg = 0;
-	if (*str == '-')
-		sg = 1;
-	str++;
-	num = absolute_float(str);
-	if (sg)
-		return (-num);
-	return num;
-}
