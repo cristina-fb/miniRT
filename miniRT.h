@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/21 17:21:13 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:26:59 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct s_program
 }t_program;
 
 //DISTANCE
-float distance_sphere(t_coord *point, t_sphere *sphere);
+float	distance_sphere(t_coord *point, t_sphere *sphere);
 
 //VECTOR_OPERATIONS
-float vector_module(t_coord *a, t_coord *b);
+float	vector_module(t_coord *a, t_coord *b);
 #endif
