@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/25 11:40:01 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:12:52 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <limits.h>
 #include <stdbool.h>
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 42
+#	define BUFFER_SIZE 100
 # endif
 
 typedef struct s_list
@@ -73,5 +73,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
-
+int	get_next_line(int fd, char **line);
+size_t  ft_matrix_len(char **matrix);
+void    ft_free_matrix(char **matrix);
 #endif

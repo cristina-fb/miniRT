@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/25 12:37:20 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:19:37 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,14 @@ int main ()
     printf ("%f   %d\n", ft_mod_atof("+-12345.12341234", &out_of_range), out_of_range);
     printf ("%f   %d\n", ft_mod_atof("      -12345.12341234    ", &out_of_range), out_of_range);
     printf ("%f   %d\n", ft_mod_atof("      -1234512345678.12341234    ", &out_of_range), out_of_range);
+
+
+    printf ("-------------- PRUEBAS READER  -------------------\n");
+    int i = open("srcs/test.rt", O_RDONLY);
+    printf("%d --- fd\n", i);
+    char **all_file  = read_file(i);
+    if (!all_file)
+        return (1);
+    for (int i = 0; all_file[i]; i++ )
+        printf("|%s|\n", all_file[i]);
 }

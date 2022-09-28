@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/28 18:22:15 by jalvarad         ###   ########.fr       */
+/*   Created: 2022/09/26 19:08:34 by jalvarad          #+#    #+#             */
+/*   Updated: 2022/09/26 19:12:11 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "libft.h"
 
-bool file_format(char *file_name)
+void    ft_free_matrix(char **matrix)
 {
-	short int start_sufix;
-	short int str_len;
+    int i;
 
-	str_len = ft_strlen(file_name);
-	start_sufix = str_len - 3;
-	if (start_sufix >= 0 && str_len > 3)
-		return (!ft_strncmp(file_name + start_sufix, ".rt", 3));
-	return false;
+    i = 0;
+    if (!matrix)
+        return ;
+    while (matrix[i])
+        i++;
+    free(matrix);
 }

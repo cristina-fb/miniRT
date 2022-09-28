@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:15:24 by jalvarad          #+#    #+#              #
-#    Updated: 2022/09/25 11:41:33 by jalvarad         ###   ########.fr        #
+#    Updated: 2022/09/26 19:13:05 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,9 @@ SRC_NAMES 	=  ft_atoi.c \
 				ft_putstr_fd.c \
 				ft_strmapi.c \
 				ft_isspace.c \
-				ft_issign.c
+				ft_issign.c \
+				ft_matrix_len.c \
+				ft_free_matrix.c
 
 SRCS 		= $(addprefix $(SRC_DIR), $(SRC_NAMES))
 OBJ_DIR 	= objs/
