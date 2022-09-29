@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance.c                                         :+:      :+:    :+:   */
+/*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/27 16:23:52 by crisfern         ###   ########.fr       */
+/*   Created: 2022/09/29 19:27:14 by crisfern          #+#    #+#             */
+/*   Updated: 2022/09/29 19:33:53 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	distance_sphere(t_coord *point, t_sphere *sphere)
+float	vector_module(t_coord *a)
 {
-	return (vector_module(vector_sub(sphere->center, point)) - sphere->radius);
+	return (sqrt(pow(a->x, 2.0) + pow(a->y, 2.0) + pow(a->z, 2.0)));
 }
 
-float	distance_plane(t_coord *point, t_plane *plane)
+float	dot_product(t_coord *a, t_coord *b)
 {
-	return (abs(dot_product(plane->normal, vector_sub(point, plane->point))) / vector_mod(plane->normal));
+	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }
 
-/*float distance_cylinder(t_coord *point, t_cylinder *cylinder)
+t_coord	unit_vector(t_coord *v)
 {
-    
-}*/
+	float	denominator;
+
+	denominator = vector_module(v);
+	return(vector_div(v, denominator));
+}

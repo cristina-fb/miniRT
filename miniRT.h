@@ -88,11 +88,25 @@ typedef struct s_program
 	t_sphere	*sphere_lst;
 	t_plane		*plane_lst;
 	t_cylinder	*cylinder_lst;
+	int			screen_width;
+	int			screen_height;
 }t_program;
 
 //DISTANCE
 float	distance_sphere(t_coord *point, t_sphere *sphere);
+float	distance_plane(t_coord *point, t_plane *plane);
 
 //VECTOR_OPERATIONS
-float	vector_module(t_coord *a, t_coord *b);
+t_coord	vector_add(t_coord *a, t_coord *b);
+t_coord	vector_sub(t_coord *a, t_coord *b);
+t_coord	vector_mul(t_coord *a, float b);
+t_coord	vector_div(t_coord *a, float b);
+
+//VECTOR_OPERATIONS1
+float	vector_module(t_coord *a);
+float	dot_product(t_coord *a, t_coord *b);
+
+//SCREEN
+float   distance_screen(t_camara *camara, int width);
+t_coord center_point_screen(t_camara *camara, int width);
 #endif

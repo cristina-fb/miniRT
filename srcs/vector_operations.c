@@ -12,9 +12,14 @@
 
 #include "miniRT.h"
 
-float	vector_module(t_coord *a, t_coord *b)
+t_coord	vector_add(t_coord *a, t_coord *b)
 {
-	return (sqrt(pow(a->x - b->x, 2.0) + pow(a->y - b->y, 2.0) + pow(a->z - b->z, 2.0)));
+	t_coord	result;
+
+	result.x = a->x + b->x;
+	result.y = a->y + b->y;
+	result.z = a->z + b->z;
+	return (result);
 }
 
 t_coord	vector_sub(t_coord *a, t_coord *b)
@@ -27,7 +32,22 @@ t_coord	vector_sub(t_coord *a, t_coord *b)
 	return (result);
 }
 
-float	dot_product(t_coord *a, t_coord *b)
+t_coord	vector_mul(t_coord *a, float b)
 {
-	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
+	t_coord	result;
+
+	result.x = a->x * b;
+	result.y = a->y * b;
+	result.z = a->z * b;
+	return (result);
+}
+
+t_coord	vector_div(t_coord *a, float b)
+{
+	t_coord	result;
+
+	result.x = a->x / b;
+	result.y = a->y / b;
+	result.z = a->z / b;
+	return (result);
 }

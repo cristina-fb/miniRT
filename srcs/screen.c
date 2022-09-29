@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance.c                                         :+:      :+:    :+:   */
+/*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/27 16:23:52 by crisfern         ###   ########.fr       */
+/*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
+/*   Updated: 2022/09/29 18:45:50 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	distance_sphere(t_coord *point, t_sphere *sphere)
+float   distance_screen(t_camara *camara, int width)
 {
-	return (vector_module(vector_sub(sphere->center, point)) - sphere->radius);
+    return((width / 2) / tanf(camara->fov / 2));
 }
 
-float	distance_plane(t_coord *point, t_plane *plane)
+t_coord center_point_screen(t_camara *camara, int width)
 {
-	return (abs(dot_product(plane->normal, vector_sub(point, plane->point))) / vector_mod(plane->normal));
-}
+    float   d;
+    t_coord uvector;
 
-/*float distance_cylinder(t_coord *point, t_cylinder *cylinder)
-{
-    
-}*/
+    d = distance_screen(camara, width);
+    uvector = unit_vector(camara->orientation);
+    return(vector_add(camara->center, vector_mul(uvector, d)));
+}
