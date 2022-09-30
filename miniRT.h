@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/27 16:26:59 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:44:37 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-<<<<<<< HEAD
 #define MINIRT_H
 #include "libft.h"
 #include <stdio.h>
@@ -23,9 +22,6 @@ double ft_mod_atof(const char *str, bool *out_of_range);
 bool	str_is_float(const char * str);
 bool	str_is_int(const char *str);
 char** read_file(unsigned short int fd);
-#endif
-=======
-# define MINIRT_H
 # include <stdio.h>
 # include <math.h>
 
@@ -124,4 +120,3 @@ float	dot_product(t_coord *a, t_coord *b);
 float   distance_screen(t_camara *camara, int width);
 t_coord center_point_screen(t_camara *camara, int width);
 #endif
->>>>>>> master
