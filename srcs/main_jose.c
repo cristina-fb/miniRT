@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/28 18:19:37 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:13:20 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int main ()
     char **all_file  = read_file(i);
     if (!all_file)
         return (1);
-    for (int i = 0; all_file[i]; i++ )
-        printf("|%s|\n", all_file[i]);
+    for (int a = 0; all_file[a]; a++ )
+        printf("|%s|\n", all_file[a]);
+    close(i);
+    
 }

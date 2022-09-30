@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/28 18:22:15 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:51:13 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ bool file_format(char *file_name)
 	start_sufix = str_len - 3;
 	if (start_sufix >= 0 && str_len > 3)
 		return (!ft_strncmp(file_name + start_sufix, ".rt", 3));
-	return false;
+	return (false);
 }
