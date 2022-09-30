@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2022/09/30 16:13:34 by jalvarad         ###   ########.fr        #
+#    Updated: 2022/09/30 16:38:32 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME = miniRT
 
 # Source files #
 SRC_FILES = main_jose.c parser.c ft_mod_atof.c num_str_format.c reader.c
+SRC_FILES = main.c distance.c vector_operations.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
