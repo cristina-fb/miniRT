@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/26 19:12:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:41:58 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_list
 {
 	void			*content;
+	short int		type;
 	struct s_list	*next;
 }					t_list;
 

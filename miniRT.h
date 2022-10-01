@@ -6,15 +6,30 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/30 16:44:37 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:37:20 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 #define MINIRT_H
 #include "libft.h"
-#include <stdio.h>
 #include <fcntl.h>
+# include <math.h>
+# define AMBIENT_LIGTH 0
+# define CAMERA 1
+# define LIGHT 2
+# define CYLINDER 3
+# define PLANE 4
+# define SPHERE 5
+# define N_TYPES 6
+# define SCREEN_WIDHT
+# define SCREEN_HEIGHT
+# define P_A parse_ambient_ligth
+# define P_CA parse_camera
+# define P_L parse_light
+# define P_CY parse_cylinder
+# define P_P parse_plane
+# define P_S parse_sphere
 bool file_format(char *file_name);
 
 /*		UTILS */
@@ -22,9 +37,8 @@ double ft_mod_atof(const char *str, bool *out_of_range);
 bool	str_is_float(const char * str);
 bool	str_is_int(const char *str);
 char** read_file(unsigned short int fd);
-# include <stdio.h>
-# include <math.h>
 
+/*		STRUCTS */
 typedef struct s_coord
 {
 	float	x;
@@ -38,12 +52,12 @@ typedef struct s_pixel
 	int		color; //Es un int??
 }t_pixel;
 
-typedef struct s_camara
+typedef struct s_camera
 {
 	t_coord	*center;
 	t_coord	*orientation;
 	float	fov;
-}t_camara;
+}t_camera;
 
 typedef struct s_light
 {
@@ -81,7 +95,7 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_coord	*center;
-	t_coord	*vector;
+	t_coord	*vector; //// ni idea de que punto en el plano se refiere
 	float	diameter;
 	float	radius;
 	float	height;
@@ -92,12 +106,11 @@ typedef struct s_cylinder
 
 typedef struct s_program
 {
-	t_camara	*camara;
+	t_camera	*camera;
 	t_light		*light;
 	t_ambient	*ambient;
-	t_sphere	*sphere_lst;
-	t_plane		*plane_lst;
-	t_cylinder	*cylinder_lst;
+	t_list		*geometries;
+	size_t		*n_gemetries;
 	int			screen_width;
 	int			screen_height;
 }t_program;
@@ -117,6 +130,6 @@ float	vector_module(t_coord *a);
 float	dot_product(t_coord *a, t_coord *b);
 
 //SCREEN
-float   distance_screen(t_camara *camara, int width);
-t_coord center_point_screen(t_camara *camara, int width);
+float   distance_screen(t_camera *camara, int width);
+t_coord center_point_screen(t_camera *camara, int width);
 #endif
