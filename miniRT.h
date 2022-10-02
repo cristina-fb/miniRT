@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/01 16:37:20 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/02 13:46:48 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@
 # define N_TYPES 6
 # define SCREEN_WIDHT
 # define SCREEN_HEIGHT
-# define P_A parse_ambient_ligth
-# define P_CA parse_camera
-# define P_L parse_light
-# define P_CY parse_cylinder
-# define P_P parse_plane
-# define P_S parse_sphere
+# define N_DATA_A 3
+# define N_DATA_CA 4
+# define N_DATA_L 4
+# define N_DATA_SP 4
+# define N_DATA_P 4
+# define N_DATA_CY 6
+
 bool file_format(char *file_name);
 
 /*		UTILS */

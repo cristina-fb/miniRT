@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/01 12:41:58 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:10:18 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
 int	get_next_line(int fd, char **line);
 size_t  ft_matrix_len(char **matrix);
 void    ft_free_matrix(char **matrix);
+int	ft_word_count(char const *str, char c);
 #endif

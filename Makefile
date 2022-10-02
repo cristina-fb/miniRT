@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2022/10/01 10:34:51 by jalvarad         ###   ########.fr        #
+#    Updated: 2022/10/02 16:34:03 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,8 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 make-libft:
 	@make -C $(LIBFT_DIR)
 
-bonus: all
-
+bonus :
+	make WITH_BONUS=1
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@rm -rf $(OBJ)
