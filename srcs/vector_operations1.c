@@ -12,17 +12,17 @@
 
 #include "miniRT.h"
 
-float	vector_module(t_coord *a)
+float	vector_module(t_coord a)
 {
-	return (sqrt(pow(a->x, 2.0) + pow(a->y, 2.0) + pow(a->z, 2.0)));
+	return (sqrt(pow(a.x, 2.0) + pow(a.y, 2.0) + pow(a.z, 2.0)));
 }
 
-float	dot_product(t_coord *a, t_coord *b)
+float	dot_product(t_coord a, t_coord b)
 {
-	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
+	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
-t_coord	unit_vector(t_coord *v)
+t_coord	unit_vector(t_coord v)
 {
 	float	denominator;
 

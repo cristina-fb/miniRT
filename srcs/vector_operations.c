@@ -12,42 +12,42 @@
 
 #include "miniRT.h"
 
-t_coord	vector_add(t_coord *a, t_coord *b)
+t_coord	vector_add(t_coord a, t_coord b)
 {
 	t_coord	result;
 
-	result.x = a->x + b->x;
-	result.y = a->y + b->y;
-	result.z = a->z + b->z;
+	result.x = a.x + b.x;
+	result.y = a.y + b.y;
+	result.z = a.z + b.z;
 	return (result);
 }
 
-t_coord	vector_sub(t_coord *a, t_coord *b)
+t_coord	vector_sub(t_coord a, t_coord b)
 {
 	t_coord	result;
 
-	result.x = a->x - b->x;
-	result.y = a->y - b->y;
-	result.z = a->z - b->z;
+	result.x = a.x - b.x;
+	result.y = a.y - b.y;
+	result.z = a.z - b.z;
 	return (result);
 }
 
-t_coord	vector_mul(t_coord *a, float b)
+t_coord	vector_mul(t_coord a, float b)
 {
 	t_coord	result;
 
-	result.x = a->x * b;
-	result.y = a->y * b;
-	result.z = a->z * b;
+	result.x = a.x * b;
+	result.y = a.y * b;
+	result.z = a.z * b;
 	return (result);
 }
 
-t_coord	vector_div(t_coord *a, float b)
+t_coord	vector_div(t_coord a, float b)
 {
 	t_coord	result;
 
-	result.x = a->x / b;
-	result.y = a->y / b;
-	result.z = a->z / b;
+	result.x = a.x / b;
+	result.y = a.y / b;
+	result.z = a.z / b;
 	return (result);
 }

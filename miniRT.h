@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
-#include "libft.h"
-#include <fcntl.h>
+# define MINIRT_H
+# include "libft.h"
+# include <fcntl.h>
 # include <math.h>
 # define AMBIENT_LIGTH 0
 # define CAMERA 1
@@ -31,13 +31,6 @@
 # define N_DATA_P 4
 # define N_DATA_CY 6
 
-bool file_format(char *file_name);
-
-/*		UTILS */
-double ft_mod_atof(const char *str, bool *out_of_range);
-bool	str_is_float(const char * str);
-bool	str_is_int(const char *str);
-char** read_file(unsigned short int fd);
 
 /*		STRUCTS */
 typedef struct s_coord
@@ -96,7 +89,7 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_coord	*center;
-	t_coord	*vector; //// ni idea de que punto en el plano se refiere
+	t_coord	*vector;
 	float	diameter;
 	float	radius;
 	float	height;
@@ -116,21 +109,32 @@ typedef struct s_program
 	int			screen_height;
 }t_program;
 
+//??
+bool file_format(char *file_name);
+
+//UTILS
+double ft_mod_atof(const char *str, bool *out_of_range);
+bool	str_is_float(const char * str);
+bool	str_is_int(const char *str);
+char** read_file(unsigned short int fd);
+
 //DISTANCE
-float	distance_sphere(t_coord *point, t_sphere *sphere);
-float	distance_plane(t_coord *point, t_plane *plane);
+float	distance_sphere(t_coord point, t_sphere sphere);
+float	distance_plane(t_coord point, t_plane plane);
 
 //VECTOR_OPERATIONS
-t_coord	vector_add(t_coord *a, t_coord *b);
-t_coord	vector_sub(t_coord *a, t_coord *b);
-t_coord	vector_mul(t_coord *a, float b);
-t_coord	vector_div(t_coord *a, float b);
+t_coord	vector_add(t_coord a, t_coord b);
+t_coord	vector_sub(t_coord a, t_coord b);
+t_coord	vector_mul(t_coord a, float b);
+t_coord	vector_div(t_coord a, float b);
 
 //VECTOR_OPERATIONS1
-float	vector_module(t_coord *a);
-float	dot_product(t_coord *a, t_coord *b);
+float	vector_module(t_coord a);
+float	dot_product(t_coord a, t_coord b);
 
 //SCREEN
 float   distance_screen(t_camera *camara, int width);
 t_coord center_point_screen(t_camera *camara, int width);
+t_coord	unit_vector(t_coord v);
+
 #endif

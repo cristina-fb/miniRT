@@ -12,14 +12,14 @@
 
 #include "miniRT.h"
 
-float	distance_sphere(t_coord *point, t_sphere *sphere)
+float	distance_sphere(t_coord point, t_sphere sphere)
 {
-	return (vector_module(vector_sub(sphere->center, point)) - sphere->radius);
+	return (vector_module(vector_sub(sphere.center, point)) - sphere.radius);
 }
 
-float	distance_plane(t_coord *point, t_plane *plane)
+float	distance_plane(t_coord point, t_plane plane)
 {
-	return (abs(dot_product(plane->normal, vector_sub(point, plane->point))) / vector_mod(plane->normal));
+	return (abs(dot_product(plane.normal, vector_sub(point, plane.point))));
 }
 
 /*float distance_cylinder(t_coord *point, t_cylinder *cylinder)
