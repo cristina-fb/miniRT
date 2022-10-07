@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_operations.c                                :+:      :+:    :+:   */
+/*   vector_operations1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:27:14 by crisfern          #+#    #+#             */
-/*   Updated: 2022/09/29 19:33:53 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:17:53 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ t_coord	unit_vector(t_coord v)
 	float	denominator;
 
 	denominator = vector_module(v);
-	return(vector_div(v, denominator));
+	return (vector_div(v, denominator));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_cris.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/30 16:42:47 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:05:30 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,19 @@ int main (void)
     a.y = 0.0;
     a.z = 0.0;
     t_sphere b;
-    b.center->x = 1.0;
-    b.center->y = 1.0;
-    b.center->z = 1.0;
+    b.center.x = 1.0;
+    b.center.y = 1.0;
+    b.center.z = 1.0;
     b.radius = 1.0;
-    printf("Resultado: %f\n", distance_sphere(&a, &b));
+    t_plane c;
+    c.normal.x = 0.577350;
+    c.normal.y = -0.577350;
+    c.normal.z = 0.577350;
+    c.point.x = 3.0;
+    c.point.y = 1.0;
+    c.point.z = 2.0;
+    t_coord aaa = unit_vector(c.normal);
+    printf("%f %f %f\n", aaa.x, aaa.y, aaa.z);
+    printf("Resultado: %f\n", distance_plane(a, c));
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/02 13:46:48 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:58:24 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define N_DATA_SP 4
 # define N_DATA_P 4
 # define N_DATA_CY 6
-
 
 /*		STRUCTS */
 typedef struct s_coord
@@ -69,7 +68,7 @@ typedef struct s_ambient
 
 typedef struct s_sphere
 {
-	t_coord	*center;
+	t_coord	center;
 	float	diameter;
 	float	radius;
 	int		r;
@@ -79,8 +78,8 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_coord	*point;
-	t_coord	*normal;
+	t_coord	point;
+	t_coord	normal;
 	int		r;
 	int		g;
 	int		b;
@@ -104,19 +103,19 @@ typedef struct s_program
 	t_light		*light;
 	t_ambient	*ambient;
 	t_list		*geometries;
-	size_t		*n_gemetries;
+	size_t		*n_geometries;
 	int			screen_width;
 	int			screen_height;
 }t_program;
 
 //??
-bool file_format(char *file_name);
+bool	file_format(char *file_name);
 
 //UTILS
-double ft_mod_atof(const char *str, bool *out_of_range);
-bool	str_is_float(const char * str);
+double	ft_mod_atof(const char *str, bool *out_of_range);
+bool	str_is_float(const char *str);
 bool	str_is_int(const char *str);
-char** read_file(unsigned short int fd);
+char	**read_file(unsigned short int fd);
 
 //DISTANCE
 float	distance_sphere(t_coord point, t_sphere sphere);
@@ -133,8 +132,8 @@ float	vector_module(t_coord a);
 float	dot_product(t_coord a, t_coord b);
 
 //SCREEN
-float   distance_screen(t_camera *camara, int width);
-t_coord center_point_screen(t_camera *camara, int width);
+float	distance_screen(t_camera *camara, int width);
+t_coord	center_point_screen(t_camera *camara, int width);
 t_coord	unit_vector(t_coord v);
 
 #endif
