@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/07 17:58:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:40:42 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_coord	*center;
-	t_coord	*vector;
+	t_coord	ba;
+	t_coord	bb;
+	t_coord	vector;
 	float	diameter;
 	float	radius;
 	float	height;
@@ -120,6 +121,7 @@ char	**read_file(unsigned short int fd);
 //DISTANCE
 float	distance_sphere(t_coord point, t_sphere sphere);
 float	distance_plane(t_coord point, t_plane plane);
+float	distance_cylinder(t_coord point, t_cylinder cylinder);
 
 //VECTOR_OPERATIONS
 t_coord	vector_add(t_coord a, t_coord b);
