@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/02 13:46:48 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:58:11 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ typedef struct s_light
 
 typedef struct s_ambient
 {
-	float	r;
-	float	g;
-	float	b;
+	short int *rgb;
 	float	ratio;
 }t_ambient;
 
@@ -79,18 +77,14 @@ typedef struct s_sphere
 	t_coord	*center;
 	float	diameter;
 	float	radius;
-	int		r;
-	int		g;
-	int		b;
+	short int *rgb;
 }t_sphere;
 
 typedef struct s_plane
 {
 	t_coord	*point;
 	t_coord	*normal;
-	int		r;
-	int		g;
-	int		b;
+	short int *rgb;
 }t_plane;
 
 typedef struct s_cylinder
@@ -100,9 +94,7 @@ typedef struct s_cylinder
 	float	diameter;
 	float	radius;
 	float	height;
-	int		r;
-	int		g;
-	int		b;
+	short int *rgb;
 }t_cylinder;
 
 typedef struct s_program
@@ -112,6 +104,7 @@ typedef struct s_program
 	t_ambient	*ambient;
 	t_list		*geometries;
 	size_t		*n_gemetries;
+	char		**attr_buf;
 	int			screen_width;
 	int			screen_height;
 }t_program;
