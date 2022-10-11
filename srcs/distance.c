@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/10 18:18:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:57:51 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,22 @@ float	distance_cylinder(t_coord point, t_cylinder cylinder)
 	float	h;
 
 	da = 0.0;
-	cylinder.bb = vector_add(cylinder.ba, vector_mul(cylinder.vector, cylinder.height));
 	h = dot_product(cylinder.vector, vector_sub(point, cylinder.ba));
-	if ((h >= 0) && (h <= cylinder.height))
+	if (h > cylinder.height)
 	{
-		da = vector_module(vector_sub(cylinder.ba, point));
-		return (fabs(sqrt(pow(da, 2.0) - pow(h, 2.0)) - cylinder.radius));
-	}
-	else if (h < 0)
-		da = vector_module(vector_sub(cylinder.ba, point));
-	else if (h > cylinder.height)
-	{
+		cylinder.bb = vector_add(cylinder.ba, \
+			vector_mul(cylinder.vector, cylinder.height));
 		da = vector_module(vector_sub(cylinder.bb, point));
 		h = h - cylinder.height;
 	}
+	else
+		da = vector_module(vector_sub(cylinder.ba, point));
 	dl = sqrt(pow(da, 2.0) - pow(h, 2.0));
-	printf("%.10f %.10f\n", dl, cylinder.radius);
-	if (dl <= cylinder.radius)
+	if ((dl < cylinder.radius) && (h < cylinder.height) && (h > 0))
+		return (0);
+	else if ((h >= 0) && (h <= cylinder.height))
+		return (fabs(dl) - cylinder.radius);
+	else if (dl <= cylinder.radius)
 		return (fabs(h));
 	else
 		return (fabs(sqrt(pow(dl - cylinder.radius, 2.0) + pow(h, 2.0))));

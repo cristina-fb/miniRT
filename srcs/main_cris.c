@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/10 18:17:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:55:32 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int main (void)
 {
     t_coord a;
-    a.x = 0.0;
-    a.y = 0.9999999999999;
-    a.z = 3.0;
+    a.x = -1.92;
+    a.y = 5.15;
+    a.z = 4.83;
     t_sphere b;
     b.center.x = 1.0;
     b.center.y = 1.0;
@@ -31,14 +31,14 @@ int main (void)
     c.point.y = 1.0;
     c.point.z = 2.0;
     t_cylinder d;
-    d.ba.x = 0.0;
-    d.ba.y = 0.0;
-    d.ba.z = 0.0;
-    d.height = 2.0;
-    d.vector.x = 0.0;
-    d.vector.y = 0.0;
-    d.vector.z = 1.0;
-    d.radius = 1.0;
+    d.ba.x = -1.42;
+    d.ba.y = 9.29;
+    d.ba.z = 4.83;
+    d.height = 11.36;
+    d.vector.x = -0.8468;
+    d.vector.y = -0.4216;
+    d.vector.z = -0.3239;
+    d.radius = 2.22;
     printf("%f\n", distance_cylinder(a, d));
     return (0);
 }
