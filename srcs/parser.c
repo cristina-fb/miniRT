@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/10 18:51:14 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:47:51 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ short int *save_rgb(char **rgb_buf, bool *err)
 		*err = true;
 		return (NULL);
 	}
-	rgb[0] = ft_mod_atoi(rgb_buf[0], err);
-	rgb[1] = ft_mod_atoi(rgb_buf[1], err);
-	rgb[2] = ft_mod_atoi(rgb_buf[2], err);
+	rgb[0] = ft_mod_atof(rgb_buf[0], err);
+	rgb[1] = ft_mod_atof(rgb_buf[1], err);
+	rgb[2] = ft_mod_atof(rgb_buf[2], err);
 	while (++i < 3 && !*err)
 		*err = (rgb[i] < 0 || rgb[i] > 255);
 	return (rgb);
@@ -52,8 +52,8 @@ short int *get_rgb(char **attr_buf, bool *err)
 	short int *rgb;
 
 	rgb_buf = ft_split(attr_buf[2], ',');
-	if (!str_is_int(rgb_buf[0]) || !str_is_int(rgb_buf[1])
-		 || !str_is_int(rgb_buf[2]))
+	if (!str_is_float(rgb_buf[0]) || !str_is_float(rgb_buf[1])
+		 || !str_is_float(rgb_buf[2]))
 		*err = true;
 	rgb = get_rgb(rgb_buf, err);
 	ft_free_matrix(rgb_buf);
@@ -63,18 +63,23 @@ short int *get_rgb(char **attr_buf, bool *err)
 // create function to get bright_ratio
 /*this functions returns true on success*/
 
-bool parse_ambient_ligth(t_program *program, char **attr_buf)
+/* returns a t_coord pointer to t_coord struct*/
+t_coord *get_coords(char *str_coords)
+{
+	;
+}
+bool parse_ambient_ligth(t_program *program)
 {
 	t_ambient	a_light;
 	bool		err;
 
 	err = false;
-	if (!str_is_float(attr_buf[1]) && ft_word_count(attr_buf[2], ',') != 3)
+	if (!str_is_float(program->attr_buf[1]) && ft_word_count(program->attr_buf[2], ',') != 3)
 		return (false);
-	a_light.ratio = ft_mod_atof(attr_buf[1], &err);
+	a_light.ratio = ft_mod_atof(program->attr_buf[1], &err);
 	if (err && (a_light.ratio < 0.00 || a_light.ratio > 1.00))
 		return (false);
-	a_light.rgb = get_rgb(attr_buf, &err);
+	a_light.rgb = get_rgb(program->attr_buf, &err);
 	if (err)
 	{
 		free(a_light.rgb);
@@ -87,8 +92,15 @@ bool parse_ambient_ligth(t_program *program, char **attr_buf)
 	return (true);
 }
 
-bool parse_camera(t_program *program, char **attr_buf)
+bool parse_camera(t_program *program)
 {
+	t_camera	camera;
+	bool		err;
+
+	err = false;
+	if (ft_word_count(program->attr_buf[1], ',') != 3 && )
+		return (false);
+	
 	return (true);
 }
 
@@ -155,9 +167,8 @@ t_program get_attributes(char **all_file, bool *error)
 	{
 		program.attr_buf = ft_split(all_file[i], ' ');
 		element = is_rt_element(program.attr_buf);
-		if (element < 0)
-			*error = true;
-		*error = !function[element](&program);
+		if (element >= 0)
+			*error = !function[element](&program);
 		ft_free_matrix(program.attr_buf);
 	}
 	//function  to free all and return ---- falta hcerla
