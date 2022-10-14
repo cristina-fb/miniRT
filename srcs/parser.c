@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/13 17:47:51 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:39:11 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,58 @@ short int *get_rgb(char **attr_buf, bool *err)
 	ft_free_matrix(rgb_buf);
 	return (rgb);
 }
-
-// create function to get bright_ratio
 /*this functions returns true on success*/
 
+
 /* returns a t_coord pointer to t_coord struct*/
+void	save_coords(t_coord *coord ,char **floats_buf, bool *err)
+{
+	return_coord->x = ft_mod_atof(floats_buf[0], err);
+	return_coord->y = ft_mod_atof(floats_buf[1], err);
+	return_coord->z = ft_mod_atof(floats_buf[2], err);
+}
+
 t_coord *get_coords(char *str_coords)
 {
-	;
+	char	**floats_buf;
+	t_coord *return_coord;
+	bool	err;
+
+	floats_buf = ft_split(str_coords, ',');
+	err = false
+	if (!floats_buf)
+		return (NULL);
+	else if (!str_is_float(floats_buf[0]) || !str_is_float(floats_buf[1])
+		 || !str_is_float(floats_buf[2]))
+		err = true;
+	return_coord = ft_calloc(1, sizeof(t_coord));
+	if ( !return_coord)
+		err = true;
+	else
+		save_coords(return_coord, floats_buf, &err);
+	ft_free_matrix(floats_buf);
+	if (err)
+	{
+		free(return_coord);
+		return (NULL);
+	}
+	return (return_coord);
+}
+
+t_coord *orientation_vector(char *str_cords)
+{
+	t_coord *coord;
+
+	coord = get_coords(str_cords);
+	if(coord)
+	{
+		if ( coord->x < -1.00 || coord->x > 1.00 || coord->y < -1.00 ||
+			coord->y > 1.00 || coord->z < -1.00 || coord->z > 1.00)
+		{
+			free(coord);
+			coord = NULL;
+		}
+	return (coord);
 }
 bool parse_ambient_ligth(t_program *program)
 {
@@ -92,34 +136,62 @@ bool parse_ambient_ligth(t_program *program)
 	return (true);
 }
 
+bool	parse_fov(t_camera camera, bool err)
+{
+	if (err || camera.fov < 0.00 || camera.fov > 180.00)
+	{
+		free(camera.center);
+		free(camera.orientation);
+		return (false);
+	}
+	return (true);
+}
+/*falta gestionar fov*/
 bool parse_camera(t_program *program)
 {
-	t_camera	camera;
 	bool		err;
+	float		fov;
 
 	err = false;
-	if (ft_word_count(program->attr_buf[1], ',') != 3 && )
-		return (false);
-	
+	program->camera = ft_calloc(1,sizeof(t_camera));
+	/// inicializar a null la struct
+	if (ft_word_count(program->attr_buf[1], ',') == 3 && 
+		ft_word_count(program->attr_buf[2], ',') == 3 && 
+		str_is_float(program->attr_buf[3]) && program->camera)
+	{
+		program->camera->center = get_coords(program->attr_buf[1]);
+		program->camera->orientation = orientation_vector(program->attr_buf[2]);
+		if (!program->camera->center || !program->camera->orientation)
+		{
+			free(program->camera->center);
+			free(program->camera->orientation);
+			err = true;
+		}
+		program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
+		if (parse_fov(camera, err))
+		{
+			program->camera = ;
+		}
+	}
 	return (true);
 }
 
-bool parse_light(t_program *program, char **attr_buf)
+bool parse_light(t_program *program)
 {
 	return (true);
 }
 
-bool parse_cylinder(t_program *program, char **attr_buf)
+bool parse_cylinder(t_program *program)
 {
 	return (true);
 }
 
-bool parse_plane(t_program *program, char **attr_buf)
+bool parse_plane(t_program *program)
 {
 	return (true);
 }
 
-bool parse_sphere(t_program *program, char **attr_buf)
+bool parse_sphere(t_program *program)
 {
 	return (true);
 }
