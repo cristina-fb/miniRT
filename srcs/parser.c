@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/14 18:39:11 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:08:58 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ short int *get_rgb(char **attr_buf, bool *err)
 	short int *rgb;
 
 	rgb_buf = ft_split(attr_buf[2], ',');
-	if (!str_is_float(rgb_buf[0]) || !str_is_float(rgb_buf[1])
-		 || !str_is_float(rgb_buf[2]))
+	if (!str_is_float(rgb_buf[0]) || !str_is_float(rgb_buf[1]) || \
+		!str_is_float(rgb_buf[2]))
 		*err = true;
-	rgb = get_rgb(rgb_buf, err);
+	rgb = save_rgb(rgb_buf, err);
 	ft_free_matrix(rgb_buf);
 	return (rgb);
 }
@@ -65,9 +65,9 @@ short int *get_rgb(char **attr_buf, bool *err)
 /* returns a t_coord pointer to t_coord struct*/
 void	save_coords(t_coord *coord ,char **floats_buf, bool *err)
 {
-	return_coord->x = ft_mod_atof(floats_buf[0], err);
-	return_coord->y = ft_mod_atof(floats_buf[1], err);
-	return_coord->z = ft_mod_atof(floats_buf[2], err);
+	coord->x = ft_mod_atof(floats_buf[0], err);
+	coord->y = ft_mod_atof(floats_buf[1], err);
+	coord->z = ft_mod_atof(floats_buf[2], err);
 }
 
 t_coord *get_coords(char *str_coords)
@@ -77,11 +77,11 @@ t_coord *get_coords(char *str_coords)
 	bool	err;
 
 	floats_buf = ft_split(str_coords, ',');
-	err = false
+	err = false;
 	if (!floats_buf)
 		return (NULL);
-	else if (!str_is_float(floats_buf[0]) || !str_is_float(floats_buf[1])
-		 || !str_is_float(floats_buf[2]))
+	else if (!str_is_float(floats_buf[0]) || !str_is_float(floats_buf[1]) || \
+			!str_is_float(floats_buf[2]))
 		err = true;
 	return_coord = ft_calloc(1, sizeof(t_coord));
 	if ( !return_coord)
@@ -97,87 +97,105 @@ t_coord *get_coords(char *str_coords)
 	return (return_coord);
 }
 
-t_coord *orientation_vector(char *str_cords)
+t_coord	*orientation_vector(char *str_cords)
 {
-	t_coord *coord;
+	t_coord	*coord;
 
 	coord = get_coords(str_cords);
-	if(coord)
+	if (coord)
 	{
-		if ( coord->x < -1.00 || coord->x > 1.00 || coord->y < -1.00 ||
+		if (coord->x < -1.00 || coord->x > 1.00 || coord->y < -1.00 || \
 			coord->y > 1.00 || coord->z < -1.00 || coord->z > 1.00)
 		{
 			free(coord);
 			coord = NULL;
 		}
+	}
 	return (coord);
 }
-bool parse_ambient_ligth(t_program *program)
+
+bool	not_in_ambient_ratio(float ratio)
 {
-	t_ambient	a_light;
+	return (ratio < 0.00 || ratio > 1.00);
+}
+
+void	ambient_light_cleaner(t_ambient *ambient)
+{
+	if (!ambient)
+		return ;
+	free(ambient->rgb);
+	ambient->rgb = NULL;
+}
+
+bool	parse_ambient_ligth(t_program *program)
+{
 	bool		err;
 
 	err = false;
-	if (!str_is_float(program->attr_buf[1]) && ft_word_count(program->attr_buf[2], ',') != 3)
+	program->ambient = ft_calloc(1, sizeof(t_ambient));
+	if (!program->ambient)
 		return (false);
-	a_light.ratio = ft_mod_atof(program->attr_buf[1], &err);
-	if (err && (a_light.ratio < 0.00 || a_light.ratio > 1.00))
+	program->ambient[0] = (t_ambient){NULL, 0.00};
+	if (!str_is_float(program->attr_buf[1]) && \
+		ft_word_count(program->attr_buf[2], ',') != 3)
 		return (false);
-	a_light.rgb = get_rgb(program->attr_buf, &err);
-	if (err)
-	{
-		free(a_light.rgb);
-		return (false);
-	}
-	program->ambient = (t_ambient*)ft_calloc(1, sizeof(t_ambient));
-	if(!program->ambient)
-		return (false);
-	program->ambient[0] = a_light;
-	return (true);
+	program->ambient->ratio = ft_mod_atof(program->attr_buf[1], &err);
+	program->ambient->rgb = get_rgb(program->attr_buf, &err);
+	if (err || not_ambient_ratio(program->ambient->ratio))
+		ambient_light_cleaner(program->ambient);
+	return (err == false);
 }
 
-bool	parse_fov(t_camera camera, bool err)
+bool	is_not_fov(float fov)
 {
-	if (err || camera.fov < 0.00 || camera.fov > 180.00)
-	{
-		free(camera.center);
-		free(camera.orientation);
-		return (false);
-	}
-	return (true);
+	return (fov < 0.00 || fov > 180.00);
 }
-/*falta gestionar fov*/
-bool parse_camera(t_program *program)
+
+void camera_cleaner(t_camera *camera)
+{
+	if (!camera)
+		return ;
+	free(camera->center);
+	camera->center = NULL;
+	free(camera->orientation);
+	camera->orientation = NULL;
+}
+
+bool	parse_camera(t_program *program)
 {
 	bool		err;
 	float		fov;
 
 	err = false;
-	program->camera = ft_calloc(1,sizeof(t_camera));
-	/// inicializar a null la struct
-	if (ft_word_count(program->attr_buf[1], ',') == 3 && 
-		ft_word_count(program->attr_buf[2], ',') == 3 && 
-		str_is_float(program->attr_buf[3]) && program->camera)
-	{
-		program->camera->center = get_coords(program->attr_buf[1]);
-		program->camera->orientation = orientation_vector(program->attr_buf[2]);
-		if (!program->camera->center || !program->camera->orientation)
-		{
-			free(program->camera->center);
-			free(program->camera->orientation);
-			err = true;
-		}
-		program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
-		if (parse_fov(camera, err))
-		{
-			program->camera = ;
-		}
-	}
-	return (true);
+	program->camera = ft_calloc(1, sizeof(t_camera));
+	if (!program->camera)
+		return (false);
+	program->camera[0] = (t_camera){NULL, NULL, 0.00};
+	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
+		ft_word_count(program->attr_buf[2], ',') != 3 || \
+		!str_is_float(program->attr_buf[3]))
+		return (false);
+	program->camera->center = get_coords(program->attr_buf[1]);
+	program->camera->orientation = orientation_vector(program->attr_buf[2]);
+	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
+	if (!program->camera->center || !program->camera->orientation || \
+		err || is_not_fov(program->camera->fov))
+		camera_cleaner(program->camera);
+	return (err == false);
 }
-
+// empezando light parser
 bool parse_light(t_program *program)
 {
+	bool err;
+
+	err = false;
+	program->light = ft_calloc(1, sizeof(t_light));
+	if (!program->light)
+		return (false);
+	program->light[0] = (t_light){NULL, 0.00};
+	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
+		!str_is_float(program->attr_buf[2]) || \
+		ft_word_count(program->attr_buf[3], ',') != 3)
 	return (true);
 }
 
