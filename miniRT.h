@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/10 17:58:11 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:39:26 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define SCREEN_HEIGHT
 # define N_DATA_A 3
 # define N_DATA_CA 4
-# define N_DATA_L 4
+# define N_DATA_L 3
 # define N_DATA_SP 4
 # define N_DATA_P 4
 # define N_DATA_CY 6

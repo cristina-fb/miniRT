@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/18 19:08:58 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:16:29 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ short int *get_rgb(char **attr_buf, bool *err)
 	return (rgb);
 }
 /*this functions returns true on success*/
-
 
 /* returns a t_coord pointer to t_coord struct*/
 void	save_coords(t_coord *coord ,char **floats_buf, bool *err)
@@ -132,6 +131,8 @@ bool	parse_ambient_ligth(t_program *program)
 	bool		err;
 
 	err = false;
+	if (program->ambient)
+		return (false);
 	program->ambient = ft_calloc(1, sizeof(t_ambient));
 	if (!program->ambient)
 		return (false);
@@ -167,6 +168,8 @@ bool	parse_camera(t_program *program)
 	float		fov;
 
 	err = false;
+	if (program->camera)
+		return (false);
 	program->camera = ft_calloc(1, sizeof(t_camera));
 	if (!program->camera)
 		return (false);
@@ -183,24 +186,47 @@ bool	parse_camera(t_program *program)
 		camera_cleaner(program->camera);
 	return (err == false);
 }
-// empezando light parser
+
+void light_cleaner(t_light *light)
+{
+	if (!light)
+		return ;
+	free(light->point);
+	light->point = NULL;
+}
+
 bool parse_light(t_program *program)
 {
 	bool err;
 
 	err = false;
+	if (program->light)
+		return (false);
 	program->light = ft_calloc(1, sizeof(t_light));
 	if (!program->light)
 		return (false);
 	program->light[0] = (t_light){NULL, 0.00};
 	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
-		!str_is_float(program->attr_buf[2]) || \
-		ft_word_count(program->attr_buf[3], ',') != 3)
+		!str_is_float(program->attr_buf[2]))
+		return (false);
+	program->light->point = get_coords(program->attr_buf[1]);
+	program->light->ratio = ft_mod_atof(program->attr_buf[2], &err);
+	if (err || not_ambient_ratio(program->light->ratio))
+		light_cleaner(program->light);
 	return (true);
 }
 
 bool parse_cylinder(t_program *program)
 {
+	t_cylinder *cylinder;
+	bool err;
+
+	err = false;
+	cylinder = ft_calloc(1, sizeof(t_cylinder));
+	if (!cylinder)
+		return (false);
+	*cylinder = (t_cylinder){NULL, NULL, 0.00, 0.00, 0.00, 0};
+	
 	return (true);
 }
 
