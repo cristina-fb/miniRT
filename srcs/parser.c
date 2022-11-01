@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/10/25 17:42:58 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:55:23 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,40 +225,159 @@ bool cylinder_basic_parse(t_program *program)
 		ft_word_count(program->attr_buf[5], ',') != 3);
 }
 
-bool parse_cylinder(t_program *program)
+void cylinder_cleaner(t_cylinder *cylinder)
 {
-	t_cylinder *cylinder;
+	if (!cylinder)
+		return ;
+	free(cylinder->center);
+	free(cylinder->vector);
+	free(cylinder->rgb);
+	free(cylinder);
+}
+
+bool get_cylinder_data(t_cylinder *cylinder, t_program *program)
+{
 	bool err;
 
 	err = false;
-	cylinder = ft_calloc(1, sizeof(t_cylinder));
-	if (!cylinder)
-		return (false);
-	*cylinder = (t_cylinder){NULL, NULL, 0.00, 0.00, 0.00, NULL};
-	if (cylinder_basic_parse(program))
-	{
-		free(cylinder);
-		return (false);
-	}
 	cylinder->center = get_coords(program->attr_buf[1]);
 	cylinder->vector = orientation_vector(program->attr_buf[2]);
 	cylinder->diameter = ft_mod_atof(program->attr_buf[3], &err);
 	cylinder->height = ft_mod_atof(program->attr_buf[4], &err);
 	cylinder->rgb = get_rgb(program->attr_buf[5], &err);
-	
+	if (!cylinder->center || !cylinder->vector || err || !cylinder->rgb)
+	{
+		cylinder_cleaner(cylinder);
+		return (false);
+	}
+	return (true);
+}
+
+bool parse_cylinder(t_program *program)
+{
+	t_cylinder *cylinder;
+	t_list *new;
+
+	if (cylinder_basic_parse(program))
+		return (false);
+	cylinder = ft_calloc(1, sizeof(t_cylinder));
+	if (!cylinder)
+		return (false);
+	*cylinder = (t_cylinder){NULL, NULL, 0.00, 0.00, 0.00, NULL};
+	if (!get_cylinder_data(cylinder, program))
+		return (false);
+	new = ft_mod_lstnew(CYLINDER, cylinder);
+	if (!new)
+		return (false);
+	ft_lstadd_back(&program->geometries, new);
+	return (true);
+}
+bool plane_basic_parse(t_program *program)
+{
+	return (ft_word_count(program->attr_buf[1], ',') != 3 || \
+		ft_word_count(program->attr_buf[2], ',') != 3 || \
+		ft_word_count(program->attr_buf[3], ',') != 3);
+}
+
+void plane_cleaner(t_plane *plane)
+{
+	if (!plane)
+		return ;
+	free(plane->point);
+	free(plane->normal);
+	free(plane->rgb);
+	free(plane);
+}
+
+bool get_plane_data(t_plane *plane, t_program *program)
+{
+	bool err;
+
+	err = false;
+	plane->point = get_coords(program->attr_buf[1]);
+	plane->normal = orientation_vector(program->attr_buf[2]);
+	plane->rgb = get_rgb(program->attr_buf[3], &err);
+	if (!plane->point || !plane->normal || err || !plane->rgb)
+	{
+		plane_cleaner(plane);
+		return (false);
+	}
 	return (true);
 }
 
 bool parse_plane(t_program *program)
 {
+	t_plane *plane;
+	t_list *new;
+
+	if (plane_basic_parse(program))
+		return (false);
+	plane = ft_calloc(1, sizeof(t_plane));
+	if (!plane)
+		return (false);
+	*plane = (t_plane){NULL, NULL, NULL};
+	if (!get_plane_data(plane, program))
+		return (false);
+	new = ft_mod_lstnew(PLANE, plane);
+	if (!new)
+		return (false);
+	ft_lstadd_back(&program->geometries, new);
+	return (true);
+}
+
+bool sphere_basic_parse(t_program *program)
+{
+	return (ft_word_count(program->attr_buf[1], ',') != 3 || \
+		!str_is_float(program->attr_buf[2]) || \
+		ft_word_count(program->attr_buf[3], ',') != 3);
+}
+
+void sphere_cleaner(t_sphere *sphere)
+{
+	if (!sphere)
+		return ;
+	free(sphere->center);
+	free(sphere->rgb);
+	free(sphere);
+}
+
+bool get_sphere_data(t_sphere *sphere, t_program *program)
+{
+	bool err;
+
+	err = false;
+	sphere->center = get_coords(program->attr_buf[1]);
+	sphere->diameter = ft_mod_atof(program->attr_buf[2], &err);
+	sphere->rgb = get_rgb(program->attr_buf[3], &err);
+	if (!sphere->center || err || !sphere->rgb)
+	{
+		sphere_cleaner(sphere);
+		return (false);
+	}
 	return (true);
 }
 
 bool parse_sphere(t_program *program)
 {
+	t_sphere	*sphere;
+	t_list		*new;
+
+	if (sphere_basic_parse(program))
+		return(false);
+	sphere = ft_calloc(1, sizeof(t_sphere));
+	if (!sphere)
+		return (false);
+	*sphere = (t_sphere){NULL, 0.00, 0.00, NULL};
+	if (!get_sphere_data(sphere, program))
+		return (false);
+	new = ft_mod_lstnew(SPHERE, sphere);
+	if (!new)
+		return (false);
+	ft_lstadd_back(&program->geometries, new);
 	return (true);
 }
 
+/// crear función que decida el cleaner a usar XD
 short int is_rt_element(char **attr_buf)
 {
 	size_t m_len;
@@ -283,6 +402,11 @@ short int is_rt_element(char **attr_buf)
 	return (-1);
 }
 
+void free_program_data(t_program *t_program)
+{
+	;
+}
+
 t_program get_attributes(char **all_file, bool *error)
 {
 	t_program program;
@@ -298,7 +422,7 @@ t_program get_attributes(char **all_file, bool *error)
 	function[PLANE] = parse_plane;
 	function[SPHERE] = parse_sphere;
 	i = -1;
-	while(all_file[++i] && !error)
+	while(all_file[++i] && !*error)
 	{
 		program.attr_buf = ft_split(all_file[i], ' ');
 		element = is_rt_element(program.attr_buf);
@@ -306,6 +430,7 @@ t_program get_attributes(char **all_file, bool *error)
 			*error = !function[element](&program);
 		ft_free_matrix(program.attr_buf);
 	}
-	//function  to free all and return ---- falta hcerla
+	if (*error)
+		free_program_data(&program); //function  to free all and return ---- falta hcerla
 	return (program);
 }

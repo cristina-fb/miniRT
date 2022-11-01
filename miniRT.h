@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/19 16:39:26 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:59:10 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_program
 	t_light		*light;
 	t_ambient	*ambient;
 	t_list		*geometries;
+	//// estructura nueva para hacer el array de geometrias
 	size_t		*n_gemetries;
 	char		**attr_buf;
 	int			screen_width;
