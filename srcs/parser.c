@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/01 14:55:23 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:04:49 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ short int *save_rgb(char **rgb_buf, bool *err)
 	return (rgb);
 }
 
-short int *get_rgb(char **attr_buf, bool *err)
+short int *get_rgb(char *attr_buf, bool *err)
 {
-	char *rgb_buf;
+	char **rgb_buf;
 	short int *rgb;
 
-	rgb_buf = ft_split(attr_buf[2], ',');
+	rgb_buf = ft_split(attr_buf, ',');
 	if (!str_is_float(rgb_buf[0]) || !str_is_float(rgb_buf[1]) || \
 		!str_is_float(rgb_buf[2]))
 		*err = true;
@@ -141,8 +141,8 @@ bool	parse_ambient_ligth(t_program *program)
 		ft_word_count(program->attr_buf[2], ',') != 3)
 		return (false);
 	program->ambient->ratio = ft_mod_atof(program->attr_buf[1], &err);
-	program->ambient->rgb = get_rgb(program->attr_buf, &err);
-	if (err || not_ambient_ratio(program->ambient->ratio))
+	program->ambient->rgb = get_rgb(program->attr_buf[2], &err);
+	if (err || not_in_ambient_ratio(program->ambient->ratio))
 		ambient_light_cleaner(program->ambient);
 	return (err == false);
 }
@@ -165,7 +165,6 @@ void camera_cleaner(t_camera *camera)
 bool	parse_camera(t_program *program)
 {
 	bool		err;
-	float		fov;
 
 	err = false;
 	if (program->camera)
@@ -211,7 +210,7 @@ bool parse_light(t_program *program)
 		return (false);
 	program->light->point = get_coords(program->attr_buf[1]);
 	program->light->ratio = ft_mod_atof(program->attr_buf[2], &err);
-	if (err || not_ambient_ratio(program->light->ratio))
+	if (err || not_in_ambient_ratio(program->light->ratio))
 		light_cleaner(program->light);
 	return (true);
 }
@@ -402,10 +401,10 @@ short int is_rt_element(char **attr_buf)
 	return (-1);
 }
 
-void free_program_data(t_program *t_program)
+/*void free_program_data(t_program *t_program)
 {
 	;
-}
+}*/
 
 t_program get_attributes(char **all_file, bool *error)
 {
@@ -431,6 +430,7 @@ t_program get_attributes(char **all_file, bool *error)
 		ft_free_matrix(program.attr_buf);
 	}
 	if (*error)
-		free_program_data(&program); //function  to free all and return ---- falta hcerla
+		exit(1);
+	//	free_program_data(&program); //function  to free all and return ---- falta hcerla
 	return (program);
 }
