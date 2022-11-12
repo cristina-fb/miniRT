@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/02 18:04:49 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/12 15:05:49 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,7 +376,6 @@ bool parse_sphere(t_program *program)
 	return (true);
 }
 
-/// crear función que decida el cleaner a usar XD
 short int is_rt_element(char **attr_buf)
 {
 	size_t m_len;
@@ -412,7 +411,7 @@ t_program get_attributes(char **all_file, bool *error)
 	unsigned int i;
 	short int element;
 
-	program = (t_program){NULL, NULL, NULL, NULL, NULL, NULL, 0, 0};
+	program = (t_program){NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0};
 	bool (*function[6])(t_program *);
 	function[AMBIENT_LIGTH] = parse_ambient_ligth;
 	function[CAMERA] = parse_camera;
@@ -430,7 +429,9 @@ t_program get_attributes(char **all_file, bool *error)
 		ft_free_matrix(program.attr_buf);
 	}
 	if (*error)
-		exit(1);
+	{
 	//	free_program_data(&program); //function  to free all and return ---- falta hcerla
+		exit(1);
+	}
 	return (program);
 }

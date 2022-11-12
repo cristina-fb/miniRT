@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/02 16:37:53 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/12 14:57:19 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ bool	str_is_int(const char *str);
 char** read_file(unsigned short int fd);
 
 /*		STRUCTS */
+typedef struct s_llist
+{
+	void		*content;
+	short int	*type;
+}t_llist;
+/// ligth list
 typedef struct s_coord
 {
 	float	x;
@@ -103,12 +109,18 @@ typedef struct s_program
 	t_light		*light;
 	t_ambient	*ambient;
 	t_list		*geometries;
-	//// estructura nueva para hacer el array de geometrias
-	size_t		*n_gemetries;
+	t_llist		*shapes;
+	size_t		n_geometries;
 	char		**attr_buf;
 	int			screen_width;
 	int			screen_height;
 }t_program;
+
+//CLEANERS
+void cylinder_cleaner(t_cylinder *cylinder);
+void sphere_cleaner(t_sphere *sphere);
+void plane_cleaner(t_plane *plane);
+void	ft_modlstclear(t_list *lst);
 
 //DISTANCE
 float	distance_sphere(t_coord *point, t_sphere *sphere);
