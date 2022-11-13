@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/12 15:05:49 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/13 13:11:01 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ bool parse_light(t_program *program)
 	program->light->ratio = ft_mod_atof(program->attr_buf[2], &err);
 	if (err || not_in_ambient_ratio(program->light->ratio))
 		light_cleaner(program->light);
-	return (true);
+	return (err == false);
 }
 
 bool cylinder_basic_parse(t_program *program)
@@ -271,6 +271,7 @@ bool parse_cylinder(t_program *program)
 	ft_lstadd_back(&program->geometries, new);
 	return (true);
 }
+
 bool plane_basic_parse(t_program *program)
 {
 	return (ft_word_count(program->attr_buf[1], ',') != 3 || \
@@ -400,10 +401,18 @@ short int is_rt_element(char **attr_buf)
 	return (-1);
 }
 
-/*void free_program_data(t_program *t_program)
+void free_program_data(t_program *program)
 {
-	;
-}*/
+	if (!program)
+		return ;
+	camera_cleaner(program->camera);
+	free(program->camera);
+	light_cleaner(program->light);
+	free(program->light);
+	ambient_light_cleaner(program->ambient);
+	free(program->ambient);
+	ft_modlstclear(program->geometries);
+}
 
 t_program get_attributes(char **all_file, bool *error)
 {
@@ -429,9 +438,6 @@ t_program get_attributes(char **all_file, bool *error)
 		ft_free_matrix(program.attr_buf);
 	}
 	if (*error)
-	{
-	//	free_program_data(&program); //function  to free all and return ---- falta hcerla
-		exit(1);
-	}
+		free_program_data(&program);
 	return (program);
 }

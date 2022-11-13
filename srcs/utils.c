@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/12 14:56:09 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/13 12:58:52 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ t_llist *lst_to_array(t_list *lst, size_t size)
 
 void	ft_modlstclear(t_list *lst)
 {
+	t_list *aux;
+
 	while (lst)
 	{
+		aux = lst;
 		if (lst->type == CYLINDER)
 			cylinder_cleaner(lst->content);
 		else if (lst->type == SPHERE)
@@ -44,5 +47,6 @@ void	ft_modlstclear(t_list *lst)
 		else if (lst->type = PLANE)
 			plane_cleaner(lst->content);
 		lst = lst->next;
+		free(aux);
 	}
 }
