@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/13 12:58:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:48:59 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_modlstclear(t_list *lst)
 			cylinder_cleaner(lst->content);
 		else if (lst->type == SPHERE)
 			sphere_cleaner(lst->content);
-		else if (lst->type = PLANE)
+		else if (lst->type == PLANE)
 			plane_cleaner(lst->content);
 		lst = lst->next;
 		free(aux);

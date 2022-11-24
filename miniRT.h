@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/12 14:57:19 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:48:32 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ double ft_mod_atof(const char *str, bool *out_of_range);
 bool	str_is_float(const char * str);
 bool	str_is_int(const char *str);
 char** read_file(unsigned short int fd);
+void	ft_modlstclear(t_list *lst);
 
 /*		STRUCTS */
 typedef struct s_llist
 {
 	void		*content;
-	short int	*type;
+	short int	type;
 }t_llist;
 /// ligth list
 typedef struct s_coord

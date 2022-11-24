@@ -6,12 +6,24 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/02 17:17:35 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:50:19 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-int main ()
+/*int main(int argc, char **argv)
+{
+    t_program program;
+    char **file;
+    if (argc != 2)
+        return (0);
+    else if (file_format(argv[1]))
+    {
+        file = read_file;
+    }
+    return (0);
+}*/
+/*int main ()
 {
     printf ("-------------- PRUEBAS FILE FORMAT ------------------ \n");
     printf ("%d \n", file_format("holala"));
@@ -39,4 +51,4 @@ int main ()
     for (int a = 0; all_file[a]; a++ )
         printf("|%s|\n", all_file[a]);
     close(i);
-}
+}*/
