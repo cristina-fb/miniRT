@@ -6,23 +6,32 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/24 20:50:19 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/24 21:43:01 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-/*int main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     t_program program;
     char **file;
+    unsigned int fd;
     if (argc != 2)
         return (0);
-    else if (file_format(argv[1]))
-    {
-        file = read_file;
-    }
+    else if (!file_format(argv[1]))
+        return (0);
+    fd = open(argv[1], O_RDONLY);
+    file = read_file(fd);
+    close(fd);
+    if (!file)
+        return (0);
+    program = get_attributes(char **all_file, bool *error);
     return (0);
-}*/
+}
+// TODO = falta parsear que los atributos con letras mayusculas no sean NULL
+// Devolver mensajes de error: utilizando perror y stderror
+// convertir en un array las geometrias
+// 
 /*int main ()
 {
     printf ("-------------- PRUEBAS FILE FORMAT ------------------ \n");
