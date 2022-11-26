@@ -6,16 +6,35 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/24 21:43:01 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:08:28 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+t_program process_data(char **file)
+{
+    t_program program;
+    bool err;
+
+    err = 0;
+    program = get_attributes(file, &err);
+    if (!are_basic_attr(program) || err)
+        free_program_data(&program);
+    program.n_geometries = ft_lstsize(program.geometries);
+    program.shapes = lst_to_array(program.geometries, program.n_geometries);
+    if ( !program.shapes && program.n_geometries)
+        ;
+}
+
 int main(int argc, char **argv)
 {
     t_program program;
     char **file;
     unsigned int fd;
+    bool err;
+
+    err = 0;
     if (argc != 2)
         return (0);
     else if (!file_format(argv[1]))
@@ -25,13 +44,14 @@ int main(int argc, char **argv)
     close(fd);
     if (!file)
         return (0);
-    program = get_attributes(char **all_file, bool *error);
+    program = process_data(file);
     return (0);
 }
+
 // TODO = falta parsear que los atributos con letras mayusculas no sean NULL
 // Devolver mensajes de error: utilizando perror y stderror
 // convertir en un array las geometrias
-// 
+//
 /*int main ()
 {
     printf ("-------------- PRUEBAS FILE FORMAT ------------------ \n");
