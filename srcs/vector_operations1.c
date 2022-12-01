@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:27:14 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/06 18:17:53 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:41:05 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ float	vector_module(t_coord a)
 float	dot_product(t_coord a, t_coord b)
 {
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
+}
+
+t_coord	vector_product(t_coord a, t_coord b)
+{
+	t_coord	result;
+
+	result.x = (a.y * b.z) - (a.z * b.y);
+	result.y = (a.z * b.x) - (a.x * b.z);
+	result.z = (a.x * b.y) - (a.y * b.x);
+	return (result);
 }
 
 t_coord	unit_vector(t_coord v)

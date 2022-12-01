@@ -6,7 +6,7 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2022/10/06 18:36:00 by crisfern         ###   ########.fr        #
+#    Updated: 2022/10/21 20:02:28 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = miniRT
 
 # Source files #
 #SRC_FILES = main_jose.c parser.c ft_mod_atof.c num_str_format.c reader.c
-SRC_FILES = main_cris.c distance.c vector_operations.c vector_operations1.c
+SRC_FILES = main_cris.c distance.c vector_operations.c vector_operations1.c screen.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #

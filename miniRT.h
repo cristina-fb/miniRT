@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/10/08 17:40:42 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:09:43 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ typedef struct s_camera
 {
 	t_coord	*center;
 	t_coord	*orientation;
+	t_coord	*vp_init;
+	t_coord	*vp_up;
+	t_coord	*vp_right;
 	float	fov;
+	int		vp_width;
+	int		vp_height;
 }t_camera;
 
 typedef struct s_light
@@ -105,8 +110,8 @@ typedef struct s_program
 	t_ambient	*ambient;
 	t_list		*geometries;
 	size_t		*n_geometries;
-	int			screen_width;
-	int			screen_height;
+	int			window_width;
+	int			window_height;
 }t_program;
 
 //??
@@ -132,10 +137,10 @@ t_coord	vector_div(t_coord a, float b);
 //VECTOR_OPERATIONS1
 float	vector_module(t_coord a);
 float	dot_product(t_coord a, t_coord b);
-
-//SCREEN
-float	distance_screen(t_camera *camara, int width);
-t_coord	center_point_screen(t_camera *camara, int width);
+t_coord	vector_product(t_coord a, t_coord b);
 t_coord	unit_vector(t_coord v);
+
+//VIEWPORT
+void	init_point_vp(t_camera *camera, t_program *program);
 
 #endif
