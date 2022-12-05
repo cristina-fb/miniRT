@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/24 20:48:59 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:10:20 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,23 @@ t_llist *lst_to_array(t_list *lst, size_t size)
 		i++;
 	}
 	return (array);
+}
+
+void	array_geometries_clear(t_llist *shapes, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while(i < len)
+	{
+		if (shapes[i].type == CYLINDER)
+			cylinder_cleaner(shapes[i].content);
+		else if (shapes[i].type == SPHERE)
+			sphere_cleaner(shapes[i].content);
+		else if (shape[i].type == PLANE)
+			plane_cleaner(shapes[i].content);
+		i++;
+	}	
 }
 
 void	ft_modlstclear(t_list *lst)

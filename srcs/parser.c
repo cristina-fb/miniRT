@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/26 13:44:41 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:18:03 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,11 +407,16 @@ void free_program_data(t_program *program)
 		return ;
 	camera_cleaner(program->camera);
 	free(program->camera);
+	program->camera = NULL;
 	light_cleaner(program->light);
 	free(program->light);
+	program->light = NULL;
 	ambient_light_cleaner(program->ambient);
 	free(program->ambient);
+	program->ambient = NULL;
 	ft_modlstclear(program->geometries);
+	program->geometries = NULL;
+	if 
 }
 
 bool are_basic_attr(t_program program)
