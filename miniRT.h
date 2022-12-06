@@ -6,12 +6,13 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/06 16:04:44 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:22:13 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 #define MINIRT_H
+#include "minirt_errors.h"
 #include "libft.h"
 #include <fcntl.h>
 # include <math.h>

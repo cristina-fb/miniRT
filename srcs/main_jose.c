@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/06 16:26:48 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:35:32 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,39 @@ t_program process_data(char **file, bool *err)
     return (program);
 }
 
+char** open_read(char *file_name, short int *err)
+{
+    unsigned int fd;
+    char **file;
+
+    fd = open(file_name, O_RDONLY);
+    if (fd == -1)
+    {
+        *err = 3;
+        return (NULL);
+    }
+    file = read_file(fd);
+    close(fd);
+    if (!file)
+        *err = 4;
+    return (file);
+}
+
 int main(int argc, char **argv)
 {
     t_program program;
     char **file;
-    unsigned int fd;
-    bool err;
+    short int err;
 
     err = 0;
+    file = NULL;
     if (argc != 2)
-        return (0);
+        err = 1;
     else if (!file_format(argv[1]))
-        return (0);
-    fd = open(argv[1], O_RDONLY);
-    file = read_file(fd);
-    close(fd);
-    if (!file)
-        return (0);
-    program = process_data(file, &err);
+        err = 2;
+    else
+        file = open_read(argv[1], &err);
+    program = process_data(file, &err);//TODO
     if (err || !program.camera || !program.light || !program.ambient)
         free_program_data( &program );
     printf("ERROR!!\n");
