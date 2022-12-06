@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/05 16:09:50 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:26:48 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_program process_data(char **file, bool *err)
         *err = 1;
     }
     else
-        ft_modlstclear(program->geometries);
-    program->geometries = NULL;
+        ft_modlstclear(program.geometries);
+    program.geometries = NULL;
     return (program);
 }
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     if (!file)
         return (0);
     program = process_data(file, &err);
-    if (err || !program->camera || !program->light || !program->ambient)
+    if (err || !program.camera || !program.light || !program.ambient)
         free_program_data( &program );
     printf("ERROR!!\n");
     return (0);
@@ -58,7 +58,6 @@ int main(int argc, char **argv)
 
 // TODO =
 // Devolver mensajes de error: utilizando perror y stderror
-//
 /*int main ()
 {
     printf ("-------------- PRUEBAS FILE FORMAT ------------------ \n");

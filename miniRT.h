@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/05 14:05:20 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:04:44 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define N_DATA_CY 6
 
 bool file_format(char *file_name);
-bool are_basic_attr(t_program program);
 /*		UTILS */
 double ft_mod_atof(const char *str, bool *out_of_range);
 bool	str_is_float(const char * str);
@@ -117,8 +116,10 @@ typedef struct s_program
 	int			screen_height;
 }t_program;
 
+void	array_geometries_clear(t_llist *shapes, size_t len);
 t_program get_attributes(char **all_file, bool *error);
 t_llist *lst_to_array(t_list *lst, size_t size);
+bool are_basic_attr(t_program program);
 //CLEANERS
 void free_program_data(t_program *program);
 void cylinder_cleaner(t_cylinder *cylinder);

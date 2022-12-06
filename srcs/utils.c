@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/05 17:10:20 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:09:21 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	array_geometries_clear(t_llist *shapes, size_t len)
 			cylinder_cleaner(shapes[i].content);
 		else if (shapes[i].type == SPHERE)
 			sphere_cleaner(shapes[i].content);
-		else if (shape[i].type == PLANE)
+		else if (shapes[i].type == PLANE)
 			plane_cleaner(shapes[i].content);
 		i++;
 	}	
