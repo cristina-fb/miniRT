@@ -6,13 +6,15 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/06 17:22:13 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:18:08 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 #define MINIRT_H
 #include "minirt_errors.h"
+#include <errno.h>
+#include <string.h>
 #include "libft.h"
 #include <fcntl.h>
 # include <math.h>
@@ -37,7 +39,7 @@ bool file_format(char *file_name);
 double ft_mod_atof(const char *str, bool *out_of_range);
 bool	str_is_float(const char * str);
 bool	str_is_int(const char *str);
-char** read_file(unsigned short int fd);
+char** read_file(int fd);
 void	ft_modlstclear(t_list *lst);
 
 /*		STRUCTS */

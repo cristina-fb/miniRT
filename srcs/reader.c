@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:14:08 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/28 18:15:39 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:19:06 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char **resize_matrix(char **matrix, char *new_str)
 }
 
 /* This function returns every line in a matrix */
-char** read_file(unsigned short int fd)
+char** read_file( int fd)
 {
 	char *line;
 	char **new_matrix;
@@ -41,6 +41,7 @@ char** read_file(unsigned short int fd)
 
 	old_matrix = NULL;
 	new_matrix = NULL;
+	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strlen(line))
