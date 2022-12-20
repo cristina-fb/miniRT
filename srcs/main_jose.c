@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/10 17:14:03 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:53:34 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int main(int argc, char **argv)
 		print_error(err_message);
 		free(err_message);
 	}
-	//else
+	else
+		print_program_data(program);
 	/// ir al programa de generación de imagen
 	free_program_data(&program);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/10 17:18:08 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:17:23 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define SCREEN_HEIGHT
 # define N_DATA_A 3
 # define N_DATA_CA 4
-# define N_DATA_L 3
+# define N_DATA_L 4
 # define N_DATA_SP 4
 # define N_DATA_P 4
 # define N_DATA_CY 6
@@ -72,6 +72,7 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_coord	*point;
+	short int *rgb;
 	float	ratio;
 }t_light;
 
@@ -123,6 +124,7 @@ void	array_geometries_clear(t_llist *shapes, size_t len);
 t_program get_attributes(char **all_file, bool *error);
 t_llist *lst_to_array(t_list *lst, size_t size);
 bool are_basic_attr(t_program program);
+void print_program_data(t_program program);
 //CLEANERS
 void free_program_data(t_program *program);
 void cylinder_cleaner(t_cylinder *cylinder);

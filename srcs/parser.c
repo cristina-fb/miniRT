@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/06 16:07:30 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:27:06 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,12 +204,14 @@ bool parse_light(t_program *program)
 	program->light = ft_calloc(1, sizeof(t_light));
 	if (!program->light)
 		return (false);
-	program->light[0] = (t_light){NULL, 0.00};
+	program->light[0] = (t_light){NULL, NULL, 0.00};
 	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
-		!str_is_float(program->attr_buf[2]))
+		!str_is_float(program->attr_buf[2]) || \
+		ft_word_count(program->attr_buf[3], ',') != 3)
 		return (false);
 	program->light->point = get_coords(program->attr_buf[1]);
 	program->light->ratio = ft_mod_atof(program->attr_buf[2], &err);
+	program->light->rgb = get_rgb(program->attr_buf[3], &err);
 	if (err || not_in_ambient_ratio(program->light->ratio))
 		light_cleaner(program->light);
 	return (err == false);
@@ -386,6 +388,7 @@ short int is_rt_element(char **attr_buf)
 		return (-1);
 	m_len = ft_matrix_len(attr_buf);
 	str_len = ft_strlen(attr_buf[0]);
+	printf("|%s|\n", attr_buf[0]);
 	if (!ft_strncmp(attr_buf[0], "A", str_len) && m_len == N_DATA_A)
 		return (AMBIENT_LIGTH);
 	else if (!ft_strncmp(attr_buf[0], "C", str_len) && m_len == N_DATA_CA)
@@ -444,6 +447,7 @@ t_program get_attributes(char **all_file, bool *error)
 	{
 		program.attr_buf = ft_split(all_file[i], ' ');
 		element = is_rt_element(program.attr_buf);
+		printf("ELEMENT : %d \n",element);
 		if (element >= 0)
 			*error = !function[element](&program);
 		ft_free_matrix(program.attr_buf);
