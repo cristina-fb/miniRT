@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:39:45 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/25 13:40:06 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:46:49 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ bool	str_is_int(const char *str)
 		return (false);
 	while (ft_isdigit(*str))
 		str++;
-	if(!ft_isdigit(*str) && *str)
+	if (!ft_isdigit(*str) && *str)
 		return (false);
 	return (true);
 }
 
-bool	str_is_float(const char * str)
+bool	str_is_float(const char *str)
 {
 	if (ft_issign(*str))
 		str++;
@@ -41,7 +41,7 @@ bool	str_is_float(const char * str)
 	}
 	while (ft_isdigit(*str))
 		str++;
-	if(!ft_isdigit(*str) && *str)
+	if (!ft_isdigit(*str) && *str)
 		return (false);
 	return (true);
 }

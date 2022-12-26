@@ -6,11 +6,32 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/20 20:25:17 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:13:27 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+bool filename_format(char *file_name)
+{
+	short int start_sufix;
+	short int str_len;
+
+	str_len = ft_strlen(file_name);
+	start_sufix = str_len - 3;
+	if (start_sufix >= 0 && str_len > 3)
+		return (!ft_strncmp(file_name + start_sufix, ".rt", 3));
+	return (false);
+}
+
+void print_error(char *message)
+{
+	printf("ERROR\n");
+	if (message)
+		printf("%s\n", message);
+	else
+		printf("ME FALTA crear el mensaje por defecto"); ///TODO
+}
 
 void print_program_data(t_program program)
 {
@@ -51,40 +72,4 @@ t_llist *lst_to_array(t_list *lst, size_t size)
 		i++;
 	}
 	return (array);
-}
-
-void	array_geometries_clear(t_llist *shapes, size_t len)
-{
-	size_t	i;
-
-	i = 0;
-	while(i < len)
-	{
-		printf("hollaaaa\n");
-		if (shapes[i].type == CYLINDER)
-			cylinder_cleaner(shapes[i].content);
-		else if (shapes[i].type == SPHERE)
-			sphere_cleaner(shapes[i].content);
-		else if (shapes[i].type == PLANE)
-			plane_cleaner(shapes[i].content);
-		i++;
-	}	
-}
-
-void	ft_modlstclear(t_list *lst)
-{
-	t_list *aux;
-
-	while (lst)
-	{
-		aux = lst;
-		if (lst->type == CYLINDER)
-			cylinder_cleaner(lst->content);
-		else if (lst->type == SPHERE)
-			sphere_cleaner(lst->content);
-		else if (lst->type == PLANE)
-			plane_cleaner(lst->content);
-		lst = lst->next;
-		free(aux);
-	}
 }

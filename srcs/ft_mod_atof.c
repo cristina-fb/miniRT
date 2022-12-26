@@ -6,13 +6,13 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:32:21 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/25 13:44:22 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:56:03 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	absolute_float(const char *str, bool *out_of_range)
+static double	absolute_float(const char *str, bool *out_of_range)
 {
 	bool	after_dot;
 	float	scale;

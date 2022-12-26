@@ -1,17 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_format_main.c                                 :+:      :+:    :+:   */
+/*   scene_cleaners.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 17:04:57 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/02 17:18:52 by jalvarad         ###   ########.fr       */
+/*   Created: 2022/12/26 17:01:53 by jalvarad          #+#    #+#             */
+/*   Updated: 2022/12/26 17:44:56 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-int main(int argc, char **argv )
+
+void	ambient_light_cleaner(t_ambient *ambient)
 {
-    return (0);
+	if (!ambient)
+		return ;
+	free(ambient->rgb);
+	ambient->rgb = NULL;
+}
+
+void	camera_cleaner(t_camera *camera)
+{
+	if (!camera)
+		return ;
+	free(camera->center);
+	camera->center = NULL;
+	free(camera->orientation);
+	camera->orientation = NULL;
+}
+
+void	light_cleaner(t_light *light)
+{
+	if (!light)
+		return ;
+	free(light->point);
+	light->point = NULL;
 }
