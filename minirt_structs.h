@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 12:16:56 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:41:40 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ typedef struct s_camera
 	t_coord	*orientation;
 	float	fov;
 }t_camera;
-
+/*
+vp_init npi
+vp_up
+ancho cristal camara -> vp_width y vp_height
+cambiar float a double
+*/
 typedef struct s_light
 {
 	t_coord	*point;
@@ -61,7 +66,7 @@ typedef struct s_sphere
 	float	radius;
 	short int *rgb;
 }t_sphere;
-
+/* inicializar radio*/
 typedef struct s_plane
 {
 	t_coord	*point;
@@ -78,6 +83,9 @@ typedef struct s_cylinder
 	float	height;
 	short int *rgb;
 }t_cylinder;
+/* ba -> base abajo
+	bb ->base arriba
+*/
 
 typedef struct s_program
 {
