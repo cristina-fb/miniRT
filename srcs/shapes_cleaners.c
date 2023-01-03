@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:23:12 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 17:43:15 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:40:53 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	cylinder_cleaner(t_cylinder *cylinder)
 		return ;
 	free(cylinder->center);
 	free(cylinder->vector);
+	free(cylinder->ba);
+	free(cylinder->bb);
 	free(cylinder->rgb);
 	free(cylinder);
 }

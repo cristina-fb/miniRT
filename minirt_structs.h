@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/28 17:41:40 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/03 21:18:40 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ typedef struct s_llist
 /// ligth list
 typedef struct s_coord
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }t_coord;
 
 typedef struct s_pixel
@@ -38,7 +38,12 @@ typedef struct s_camera
 {
 	t_coord	*center;
 	t_coord	*orientation;
-	float	fov;
+	t_coord *vp_init;
+	t_coord *vp_up;
+	t_coord *vp_right;
+	double	fov;
+	int		vp_widht;
+	int		vp_height;
 }t_camera;
 /*
 vp_init npi
@@ -50,20 +55,20 @@ typedef struct s_light
 {
 	t_coord	*point;
 	short int *rgb;
-	float	ratio;
+	double	ratio;
 }t_light;
 
 typedef struct s_ambient
 {
 	short int *rgb;
-	float	ratio;
+	double	ratio;
 }t_ambient;
 
 typedef struct s_sphere
 {
 	t_coord	*center;
-	float	diameter;
-	float	radius;
+	double	diameter;
+	double	radius;
 	short int *rgb;
 }t_sphere;
 /* inicializar radio*/
@@ -78,12 +83,14 @@ typedef struct s_cylinder
 {
 	t_coord	*center;
 	t_coord	*vector;
-	float	diameter;
-	float	radius;
-	float	height;
+	t_coord *ba;
+	t_coord *bb;
+	double	diameter;
+	double	radius;
+	double	height;
 	short int *rgb;
 }t_cylinder;
-/* ba -> base abajo
+/* ba -> base abajo   TODO -> cambiar nombres
 	bb ->base arriba
 */
 
