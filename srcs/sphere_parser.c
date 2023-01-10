@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:19:51 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 17:42:33 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:24:17 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static bool	get_sphere_data(t_sphere *sphere, t_program *program)
 	err = false;
 	sphere->center = get_coords(program->attr_buf[1]);
 	sphere->diameter = ft_mod_atof(program->attr_buf[2], &err);
+	sphere->radius =(double)sphere->diameter/2;
 	sphere->rgb = get_rgb(program->attr_buf[3], &err);
 	if (!sphere->center || err || !sphere->rgb)
 	{
