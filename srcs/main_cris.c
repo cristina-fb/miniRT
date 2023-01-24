@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_cris.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/30 16:42:47 by jalvarad         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:41:14 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int main (void)
 {
-    t_coord a;
-    a.x = 0.0;
-    a.y = 0.0;
-    a.z = 0.0;
-    t_sphere b;
-    b.center->x = 1.0;
-    b.center->y = 1.0;
-    b.center->z = 1.0;
-    b.radius = 1.0;
-    printf("Resultado: %f\n", distance_sphere(&a, &b));
+    t_coord a, b;
+    a.x = 3.0;
+	a.y = -1.0;
+	a.z = 2.0;
+    b.x = 1.0;
+	b.y = 1.0;
+	b.z = 3.0;
+    t_coord c = vector_product(a, b);
+    printf("|%f %f %f|\n", c.x, c.y, c.z);
     return (0);
 }
