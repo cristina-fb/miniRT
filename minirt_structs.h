@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/01/03 21:18:40 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:52:06 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_camera
 	t_coord *vp_up;
 	t_coord *vp_right;
 	double	fov;
-	int		vp_widht;
+	int		vp_width;
 	int		vp_height;
 }t_camera;
 /*

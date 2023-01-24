@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/24 19:18:49 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:52:39 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define N_TYPES 6
 
 /*                     Screen Size                         */
-# define SCREEN_WIDHT
+# define SCREEN_WIDTH
 # define SCREEN_HEIGHT
 
 /*               Number of data for element                */
