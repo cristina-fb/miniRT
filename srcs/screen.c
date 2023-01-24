@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/01 19:39:09 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:29:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
+//TODO -> falta acabarla
 void	init_point_vp(t_camera *camera, t_program *program)
 {
 	t_coord	vp_center;

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/24 18:55:45 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:18:49 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,9 @@ void	camera_cleaner(t_camera *camera);
 void	ambient_light_cleaner(t_ambient *ambient);
 
 
-//??
-bool	file_format(char *file_name);
-
-//UTILS
-double	ft_mod_atof(const char *str, bool *out_of_range);
-bool	str_is_float(const char *str);
-bool	str_is_int(const char *str);
-char	**read_file(unsigned short int fd);
-
 //DISTANCE
 float	distance_sphere(t_coord point, t_sphere sphere);
 float	distance_plane(t_coord point, t_plane plane);
-float	distance_cylinder(t_coord point, t_cylinder cylinder);
 
 //VECTOR_OPERATIONS
 t_coord	vector_add(t_coord a, t_coord b);
@@ -113,10 +103,8 @@ t_coord	vector_div(t_coord a, float b);
 //VECTOR_OPERATIONS1
 float	vector_module(t_coord a);
 float	dot_product(t_coord a, t_coord b);
-t_coord	vector_product(t_coord a, t_coord b);
-t_coord	unit_vector(t_coord v);
 
-//VIEWPORT
-void	init_point_vp(t_camera *camera, t_program *program);
-
+//SCREEN
+float   distance_screen(t_camera *camara, int width);
+t_coord center_point_screen(t_camera *camara, int width);
 #endif
