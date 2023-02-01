@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/01/03 20:30:32 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:24:18 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	parse_camera(t_program *program)
 
 bool	parse_ambient_ligth(t_program *program)
 {
-	bool		err;
+	bool	err;
 
 	err = false;
 	if (program->ambient)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mod_lstnew.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:45:23 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/01 10:46:16 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:41:16 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_mod_lstnew(short int type, void *content)
 	if (!a)
 		return (NULL);
 	a->content = content;
-    a->type = type;
+	a->type = type;
 	a->next = NULL;
 	return (a);
 }
