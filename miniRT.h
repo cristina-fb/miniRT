@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/01 14:46:16 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:20:48 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_coord		vector_div(t_coord a, float b);
 /*                  VECTOR OPERATIONS 1	       			    */
 float		vector_module(t_coord a);
 float		dot_product(t_coord a, t_coord b);
+t_coord		vector_product(t_coord a, t_coord b);
+t_coord		unit_vector(t_coord v);
 
 /*                        SCREEN					        */
 float		distance_screen(t_camera *camara, int width);
