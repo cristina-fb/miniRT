@@ -6,13 +6,13 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:37:11 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/30 16:41:03 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:29:48 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool ft_issign(int c)
+bool	ft_issign(int c)
 {
-    return (c == '+' || c == '-');
+	return (c == '+' || c == '-');
 }

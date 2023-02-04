@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/04 13:44:46 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:38:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	parse_camera(t_program *program)
 
 bool	parse_ambient_ligth(t_program *program)
 {
-	bool		err;
+	bool	err;
 
 	err = false;
 	if (program->ambient)
