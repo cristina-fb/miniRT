@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 17:48:34 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:21:45 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_program	process_data(char **file, bool *err)
 	else
 		ft_modlstclear(program.geometries, false);
 	program.geometries = NULL;
+	program.screen_height = RESOLUTION;
+	program.screen_width = horizontal_resolution();
 	return (program);
 }
 

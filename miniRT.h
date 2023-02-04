@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/04 15:37:01 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:19:52 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 # define SPHERE 5
 # define N_TYPES 6
 
-/*                     Screen Size                         */
-# define SCREEN_WIDTH
-# define SCREEN_HEIGHT
+/*                     Resolution                         */
+# define RESOLUTION 1080
 
 /*               Number of data for element                */
 # define N_DATA_A 3
@@ -105,6 +104,7 @@ float		vector_module(t_coord a);
 float		dot_product(t_coord a, t_coord b);
 
 /*                        SCREEN					        */
+int 		horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width);
 t_coord		center_point_screen(t_camera *camara, int width);
 #endif
