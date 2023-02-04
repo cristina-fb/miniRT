@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/24 19:52:39 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:30:32 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define N_DATA_SP 4
 # define N_DATA_P 4
 # define N_DATA_CY 6
+
+# define MAX_STEPS 100
+# define MAX_DIST 100.
 
 
 /* ------------------- FUNCTIONS -------------------------- */

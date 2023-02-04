@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:53 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/01/10 19:32:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/04 13:44:39 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void	ambient_light_cleaner(t_ambient *ambient)
 	ambient->rgb = NULL;
 }
 
+void	view_plane_cleaner(t_view_plane *view_plane)
+{
+	if (!view_plane)
+		return ;
+	free(view_plane->vp_init);
+	view_plane->vp_init = NULL;
+	free(view_plane->vp_up);
+	view_plane->vp_up = NULL;
+	free(view_plane->vp_right);
+	view_plane->vp_right = NULL;
+}
+
 void	camera_cleaner(t_camera *camera)
 {
 	if (!camera)
@@ -28,12 +40,8 @@ void	camera_cleaner(t_camera *camera)
 	camera->center = NULL;
 	free(camera->orientation);
 	camera->orientation = NULL;
-	free(camera->vp_init);
-	camera->vp_init = NULL;
-	free(camera->vp_up);
-	camera->vp_up = NULL;
-	free(camera->vp_right);
-	camera->vp_right = NULL;
+	free(camera->view_plane);
+	camera->view_plane = NULL;
 }
 
 void	light_cleaner(t_light *light)
