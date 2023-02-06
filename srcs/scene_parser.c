@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/01/26 12:24:18 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:38:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	parse_camera(t_program *program)
 	program->camera = ft_calloc(1, sizeof(t_camera));
 	if (!program->camera)
 		return (false);
-	program->camera[0] = (t_camera){NULL, NULL, NULL, NULL, NULL, 0.00, 0, 0};
+	program->camera[0] = (t_camera){NULL, NULL, 0.0, NULL};
 	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
 		ft_word_count(program->attr_buf[2], ',') != 3 || \
 		!str_is_float(program->attr_buf[3]))

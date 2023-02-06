@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/02 12:45:51 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:12:39 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,19 @@ typedef struct s_pixel
 	int		color;
 }t_pixel;
 
+typedef struct s_view_plane
+{
+	t_coord *vp_init;
+	t_coord *vp_up;
+	t_coord *vp_right;
+	int		vp_width;
+	int		vp_height;
+}t_view_plane;
+
 typedef struct s_camera
 {
 	t_coord	*center;
 	t_coord	*orientation;
-	t_coord	*vp_init;
-	t_coord	*vp_up;
-	t_coord	*vp_right;
 	double	fov;
 	double	vp_width;
 	double	vp_height;

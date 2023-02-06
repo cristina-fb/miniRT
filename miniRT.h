@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/03 14:52:28 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:13:12 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define N_TYPES 6
 
 /*                     Screen Size                         */
-# define SCREEN_WIDHT
+# define SCREEN_WIDTH
 # define SCREEN_HEIGHT
 
 /*               Number of data for element                */
@@ -39,6 +39,10 @@
 # define N_DATA_SP 4
 # define N_DATA_P 4
 # define N_DATA_CY 6
+
+# define MAX_STEPS 100
+# define MAX_DIST 100.
+
 
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
