@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/01 14:57:28 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/02 12:45:51 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_camera
 	t_coord	*vp_up;
 	t_coord	*vp_right;
 	double	fov;
-	int		vp_width;
-	int		vp_height;
+	double	vp_width;
+	double	vp_height;
 }t_camera;
 /*
 vp_init npi

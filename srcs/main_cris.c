@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/01 17:41:14 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:14:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 int main (void)
 {
-    t_coord a, b;
-    a.x = 3.0;
-	a.y = -1.0;
-	a.z = 2.0;
-    b.x = 1.0;
-	b.y = 1.0;
-	b.z = 3.0;
-    t_coord c = vector_product(a, b);
-    printf("|%f %f %f|\n", c.x, c.y, c.z);
+    t_coord	center = (t_coord){0, 0, 0};
+	t_coord	orientation = (t_coord){1, 0, 0};
+    t_camera cam = (t_camera){&center, &orientation,NULL, NULL, NULL, 120, 0, 0};
+    init_point_vp(&cam);
     return (0);
 }

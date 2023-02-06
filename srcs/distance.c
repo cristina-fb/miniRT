@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/24 19:27:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:05:17 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	distance_sphere(t_coord point, t_sphere sphere)
+double	distance_sphere(t_coord point, t_sphere sphere)
 {
 	return (vector_module(vector_sub(*sphere.center, point)) - sphere.radius);
 }
 
-float	distance_plane(t_coord point, t_plane plane)
+double	distance_plane(t_coord point, t_plane plane)
 {
 	return (fabs(dot_product(*plane.normal, vector_sub(point, *plane.point))));
 }
 
-float	distance_cylinder(t_coord point, t_cylinder cylinder)
+double	distance_cylinder(t_coord point, t_cylinder cylinder)
 {
-	float	da;
-	float	dl;
-	float	h;
+	double	da;
+	double	dl;
+	double	h;
 
 	da = 0.0;
 	h = dot_product(*cylinder.vector, vector_sub(point, *cylinder.ba));
