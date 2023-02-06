@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/06 17:13:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:52:26 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 
 # define MAX_STEPS 100
 # define MAX_DIST 100.
-
 
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
@@ -89,6 +88,7 @@ void		plane_cleaner(t_plane *plane);
 void		light_cleaner(t_light *light);
 void		camera_cleaner(t_camera *camera);
 void		ambient_light_cleaner(t_ambient *ambient);
+void		viewpane_cleaner(t_viewpane *viewpane);
 
 /*                       DISTANCE					        */
 double		distance_sphere(t_coord point, t_sphere sphere);
@@ -107,5 +107,6 @@ t_coord		vector_product(t_coord a, t_coord b);
 t_coord		unit_vector(t_coord v);
 
 /*                        SCREEN					        */
-void		init_point_vp(t_camera *cam);
+void		init_vp(t_camera *cam, double res);
+void		pixels_array(int width, int height, t_camera *cam);
 #endif

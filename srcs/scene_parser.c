@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/04 15:38:05 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:54:18 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ bool	parse_camera(t_program *program)
 	program->camera = ft_calloc(1, sizeof(t_camera));
 	if (!program->camera)
 		return (false);
-	program->camera[0] = (t_camera){NULL, NULL, 0.0, NULL};
+	program->camera[0] = (t_camera){NULL, NULL, NULL, 0.0};
 	if (ft_word_count(program->attr_buf[1], ',') != 3 || \
 		ft_word_count(program->attr_buf[2], ',') != 3 || \
 		!str_is_float(program->attr_buf[3]))
 		return (false);
 	program->camera->center = get_coords(program->attr_buf[1]);
-	program->camera->orientation = orientation_vector(program->attr_buf[2]);
+	program->camera->dir = orientation_vector(program->attr_buf[2]);
 	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
-	if (!program->camera->center || !program->camera->orientation || \
+	if (!program->camera->center || !program->camera->dir || \
 		err || is_not_fov(program->camera->fov))
 		camera_cleaner(program->camera);
 	return (err == false);
