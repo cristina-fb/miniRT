@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/02/07 16:30:24 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/02/07 19:11:39 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,14 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # Libft #
 LIBFT_DIR = ./Libft/
+
 LIBFT = libft.a
 
 # Includes #
+HEADERS = -I ./ -I $(LIBMLX)/include
 HEADER = miniRT.h
-
+LIBMLX	:= ../MLX42
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 # Flags #
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = gcc
@@ -48,10 +51,10 @@ all: make-libft $(NAME)
 	@echo "Proyect $(NAME) ready!"
 
 $(NAME): $(OBJ) $(HEADER_DIR)$(HEADER)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_DIR)$(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_DIR)$(LIBFT) $(LIBs) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(HEADER_DIR)  -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(HEADERS) -c $< -o $@
 
 make-libft:
 	@make -C $(LIBFT_DIR)
