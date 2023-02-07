@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/06 17:52:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:58:21 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,5 @@ t_coord		unit_vector(t_coord v);
 
 /*                        SCREEN					        */
 void		init_vp(t_camera *cam, double res);
-void		pixels_array(int width, int height, t_camera *cam);
+void		pixels_array(int w, int h, t_camera *cam);
 #endif

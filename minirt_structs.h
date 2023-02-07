@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/06 17:24:50 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:56:04 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct s_viewpane
 	t_coord	*init;
 	t_coord	*up;
 	t_coord	*right;
-	int		width;
-	int		height;
+	t_pixel	**arr;
+	double	width;
+	double	height;
 }t_viewpane;
 
 typedef struct s_camera
