@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/06 17:54:18 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:45:07 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	parse_camera(t_program *program)
 		return (false);
 	program->camera->center = get_coords(program->attr_buf[1]);
 	program->camera->dir = orientation_vector(program->attr_buf[2]);
-	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
+	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err) * M_PI / 180;
 	if (!program->camera->center || !program->camera->dir || \
 		err || is_not_fov(program->camera->fov))
 		camera_cleaner(program->camera);

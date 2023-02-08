@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/07 16:13:29 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:57:17 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_vp(t_camera *cam, double res)
 	cam->vp->init = ft_calloc(sizeof(t_coord), 1);
 	if ((!cam->vp->init) || (!cam->vp->right) || (!cam->vp->up))
 		return ;
-	cam->vp->width = 2 * tanf((cam->fov / 2) * M_PI / 180);
+	cam->vp->width = 2 * tanf(cam->fov / 2);
 	cam->vp->height = cam->vp->width * (1 / res);
 	vp_center = vector_add(*(cam->center), *(cam->dir));
 	*(cam->vp->right) = unit_vector((vector_product(*(cam->dir), up)));

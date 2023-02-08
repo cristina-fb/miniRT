@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/07 15:07:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:25:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int main (void)
 {
-    t_coord	center = (t_coord){0, 1, 0};
-	t_coord	orientation = (t_coord){0.84, -0.2, 0.5};
-    t_camera cam = (t_camera){&center, &orientation, NULL, 120};
+    t_coord	center = (t_coord){1.2, 2.3, 3.4};
+	t_coord	orientation = (t_coord){0.71, 0.32, -0.63};
+    t_camera cam = (t_camera){&center, &orientation, NULL, 60};
     init_vp(&cam, 1);
-    pixels_array(10, 10, &cam);
+    pixels_array(1920, 1920, &cam);
     return (0);
 }

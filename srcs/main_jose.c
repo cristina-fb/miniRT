@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_jose.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 17:48:34 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:50:37 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,5 @@ int	main(int argc, char **argv)
 	}
 	else
 		print_program_data(program);
-	/// ir al programa de generación de imagen
-	free_program_data(&program, false);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/02 16:05:17 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:53:12 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ double	distance_cylinder(t_coord point, t_cylinder cylinder)
 	h = dot_product(*cylinder.vector, vector_sub(point, *cylinder.ba));
 	if (h > cylinder.height)
 	{
-		cylinder.bb = malloc(sizeof(t_coord));
-		//TODO -> proteger este malloc
-		//TODO -> inincializar BA
-		*cylinder.bb = vector_add(*cylinder.ba, \
-			vector_mul(*cylinder.vector, cylinder.height));
 		da = vector_module(vector_sub(*cylinder.bb, point));
 		h = h - cylinder.height;
 	}

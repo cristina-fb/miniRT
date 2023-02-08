@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/07 15:56:04 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:51:47 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_coord		*center;
 	t_coord		*vector;
 	t_coord		*ba;
 	t_coord		*bb;
