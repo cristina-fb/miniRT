@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_jose.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/09 12:06:23 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:12:25 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ int	main(int argc, char **argv)
 	{
 		print_error(err_message);
 		free(err_message);
+		return (0);
 	}
-	else
-		print_program_data(program);
+	print_program_data(program);
+	//bucle rm
+	t_coord point = (t_coord){0,0,0};
+	min_distance(point, &program);
 	return (0);
 }
