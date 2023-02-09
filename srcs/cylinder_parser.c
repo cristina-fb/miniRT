@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:30:06 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/08 18:54:01 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:03:19 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	get_cylinder_data(t_cylinder *cylinder, t_program *program)
 	cylinder->height = ft_mod_atof(program->attr_buf[4], &err);
 	cylinder->rgb = get_rgb(program->attr_buf[5], &err);
 	cylinder->ba = get_coords(program->attr_buf[1]);
-	cylinder->bb = ft_calloc(sizeof(t_coord), 1);
+	cylinder->bb = ft_calloc(1, sizeof(t_coord));
 	if (!cylinder->ba || !cylinder->bb || !cylinder->vector || err
 		|| !cylinder->rgb)
 	{

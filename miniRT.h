@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/09 11:35:16 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:48:17 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # define N_TYPES 6
 
 /*                     Resolution                         */
-# define RESOLUTION 1080
+# define WIDTH 1080
+# define HEIGHT 720
 
 /*               Number of data for element                */
 # define N_DATA_A 3
@@ -106,8 +107,8 @@ t_coord		vector_product(t_coord a, t_coord b);
 t_coord		unit_vector(t_coord v);
 
 /*                        SCREEN					        */
-void		init_vp(t_camera *cam, double res);
-void		pixels_array(int w, int h, t_camera *cam);
+bool		init_vp(t_camera *cam);
+bool		pixels_array(t_camera *cam);
 int			horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width); //NO EXISTE (?)
 t_coord		center_point_screen(t_camera *camara, int width); //NO EXISTE (?)

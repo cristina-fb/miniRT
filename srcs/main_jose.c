@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/09 11:31:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:06:23 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ t_program	process_data(char **file, bool *err)
 	else
 		ft_modlstclear(program.geometries, false);
 	program.geometries = NULL;
-	program.screen_height = RESOLUTION;
-	program.screen_width = horizontal_resolution();
 	return (program);
 }
 
