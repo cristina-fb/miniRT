@@ -31,8 +31,8 @@ t_program	process_data(char **file, bool *err)
 	else
 		ft_modlstclear(program.geometries, false);
 	program.geometries = NULL;
-	program.screen_height = RESOLUTION;
-	program.screen_width = horizontal_resolution();
+	program.s_height = RESOLUTION;
+	program.s_width = horizontal_resolution();
 	return (program);
 }
 
@@ -71,5 +71,6 @@ int	main(int argc, char **argv)
 		print_program_data(program);
 	/// ir al programa de generación de imagen
 	free_program_data(&program, false);
+	open_window(program);
 	return (0);
 }

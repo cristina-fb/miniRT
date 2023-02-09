@@ -109,8 +109,8 @@ typedef struct s_program
 	t_llist		*shapes;
 	size_t		n_geometries;
 	char		**attr_buf;
-	int			screen_width;
-	int			screen_height;
+	int			s_width;//screen_width
+	int			s_height;//screen_height
 }t_program;
 
 #endif

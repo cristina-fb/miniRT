@@ -14,6 +14,7 @@
 # define MINIRT_H
 # include "minirt_errors.h"
 # include "minirt_structs.h"
+# include "MLX42/MLX42.h"
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
@@ -107,4 +108,5 @@ float		dot_product(t_coord a, t_coord b);
 int 		horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width);
 t_coord		center_point_screen(t_camera *camara, int width);
+int	        open_window(t_program prog);
 #endif

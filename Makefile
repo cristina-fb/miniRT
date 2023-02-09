@@ -15,7 +15,7 @@
 NAME = miniRT
 
 # Source files #
-SRC_FILES = main_jose.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
+SRC_FILES = main_jose.c open_window.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
 			reader.c utils.c rgb.c generic_cleaners.c plane_parser.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
@@ -43,7 +43,7 @@ LIBMLX_DIR = ./MLX42
 # Includes #
 HEADERS = -I ./ -I $(LIBMLX_DIR)/include
 HEADER = miniRT.h
-EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -pthread -lm
 # Flags #
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = gcc
