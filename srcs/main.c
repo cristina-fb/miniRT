@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/09 18:12:25 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:44:39 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,42 @@ char	**basic_parser(int argc, char **argv, char **err_message)
 	return (file);
 }
 
+void	raymarching(t_program *program)
+{
+	int		i;
+	int		j;
+	int		n;
+	double	min;
+	double	total;
+	t_coord	point;
+
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		j = -1;
+		while (++j < WIDTH)
+		{
+			n = 0;
+			total = 0;
+			while ((total < MAX_DIST) && (n++ < MAX_STEPS))
+			{
+				//distancia min
+				min_distance(point, &program);
+				if (min < MIN_DIST)
+				{
+					//llamar a calcular color
+					break;
+				}
+				else
+				{
+					total += min;
+					point = vector_add(point, vector_mul(*program->camera->vp->arr[i][j].ray, min));
+				}
+			}
+		}
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_program	program;
@@ -69,6 +105,5 @@ int	main(int argc, char **argv)
 	print_program_data(program);
 	//bucle rm
 	t_coord point = (t_coord){0,0,0};
-	min_distance(point, &program);
 	return (0);
 }

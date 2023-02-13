@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/09 18:46:01 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:06:09 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ double	min_distance(t_coord p, t_program *program)
 			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
 		else if (program->shapes[i].type == 5)
 			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
-		if (i == 0)
+		if ((i == 0) || ((dist > 0) && (dist < min)))
+		{
 			min = dist;
-		else if ((dist > 0) && (dist < min)) //habrá que ver que pasa con lo neg
-			min = dist;
+		}
 	}
+	/*if (min < MIN_DIST)
+		//colision*/
+	printf("%f\n", min);
 	return (min);
 }
