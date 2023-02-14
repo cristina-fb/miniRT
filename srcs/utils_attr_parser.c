@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 17:41:08 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:02:23 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static short int	is_rt_element(char **attr_buf)
 		return (LIGHT);
 	else if (!ft_strncmp(attr_buf[0], "cy", str_len) && m_len == N_DATA_CY)
 		return (CYLINDER);
-	else if (!ft_strncmp(attr_buf[0], "p", str_len) && m_len == N_DATA_P)
+	else if (!ft_strncmp(attr_buf[0], "pl", str_len) && m_len == N_DATA_P)
 		return (PLANE);
 	else if (!ft_strncmp(attr_buf[0], "sp", str_len) && m_len == N_DATA_SP)
 		return (SPHERE);
