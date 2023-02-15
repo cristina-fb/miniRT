@@ -6,16 +6,37 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/09 14:44:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:26:30 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-//Falta ver que pasa con fov 180
-bool	init_vp(t_camera *cam)
+//Falta ver que pasa con fov 180 //derecha es x
+static void	fill_vp(t_camera *cam, t_coord *vp_center, t_coord *up)
 {
 	t_coord	aux;
+
+	if ((cam->dir->x == up->x) && (cam->dir->y == up->y)
+		&& (cam->dir->z == up->z))
+	{
+		*cam->vp->right = (t_coord){1, 0, 0};
+		*cam->vp->up = (t_coord){0, 1, 0};
+	}
+	else
+	{
+		*cam->vp->right = unit_vector((vector_product(*cam->dir, *up)));
+		*cam->vp->up = unit_vector(vector_product(*cam->vp->right, \
+		*cam->dir));
+	}
+	aux = vector_sub(*vp_center, vector_mul(*cam->vp->right, \
+	cam->vp->width / 2));
+	*cam->vp->init = vector_sub(aux, vector_mul(*cam->vp->up, \
+	cam->vp->height / 2));
+}
+
+bool	init_vp(t_camera *cam)
+{
 	t_coord	vp_center;
 	t_coord	up;
 
@@ -31,13 +52,7 @@ bool	init_vp(t_camera *cam)
 	cam->vp->width = 2 * tanf(cam->fov / 2);
 	cam->vp->height = cam->vp->width * (1 / (WIDTH / HEIGHT));
 	vp_center = vector_add(*(cam->center), *(cam->dir));
-	*(cam->vp->right) = unit_vector((vector_product(*(cam->dir), up)));
-	*(cam->vp->up) = unit_vector(vector_product(*(cam->vp->right), \
-	*(cam->dir)));
-	aux = vector_sub(vp_center, vector_mul(*(cam->vp->right), \
-	cam->vp->width / 2));
-	*(cam->vp->init) = vector_sub(aux, vector_mul(*(cam->vp->up), \
-	cam->vp->height / 2));
+	fill_vp(cam, &vp_center, &up);
 	return (pixels_array(cam));
 }
 

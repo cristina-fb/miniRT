@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/13 17:44:39 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:48:16 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	raymarching(t_program *program)
 	double	min;
 	double	total;
 	t_coord	point;
+	t_llist	*aux;
 
 	i = -1;
 	while (++i < HEIGHT)
@@ -65,21 +66,19 @@ void	raymarching(t_program *program)
 		{
 			n = 0;
 			total = 0;
+			point = *program->camera->center;
+			aux = NULL;
 			while ((total < MAX_DIST) && (n++ < MAX_STEPS))
 			{
-				//distancia min
-				min_distance(point, &program);
-				if (min < MIN_DIST)
-				{
-					//llamar a calcular color
-					break;
-				}
-				else
-				{
-					total += min;
-					point = vector_add(point, vector_mul(*program->camera->vp->arr[i][j].ray, min));
-				}
+				aux = min_distance(point, program, &min);
+				if (aux)
+					break ;
+				total += min;
+				point = vector_add(point, vector_mul(*program->camera->vp->arr[i][j].ray, min));
 			}
+			//llamar a calcular color (si aux existe ha habido colision)
+			if (aux)
+				printf("%d %d | ", i, j);
 		}
 	}
 }
@@ -103,7 +102,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	print_program_data(program);
-	//bucle rm
-	t_coord point = (t_coord){0,0,0};
+	raymarching(&program);
 	return (0);
 }

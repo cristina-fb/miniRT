@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/13 12:46:59 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:40:26 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		viewpane_cleaner(t_viewpane *viewpane);
 /*                       DISTANCE					        */
 double		distance_sphere(t_coord point, t_sphere *sphere);
 double		distance_plane(t_coord point, t_plane *plane);
-double		min_distance(t_coord point, t_program *program);
+t_llist		*min_distance(t_coord p, t_program *program, double *min);
 
 /*                   VECTOR OPERATIONS					    */
 t_coord		vector_add(t_coord a, t_coord b);
