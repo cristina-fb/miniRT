@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/15 14:48:16 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:32:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ void	raymarching(t_program *program)
 				total += min;
 				point = vector_add(point, vector_mul(*program->camera->vp->arr[i][j].ray, min));
 			}
-			//llamar a calcular color (si aux existe ha habido colision)
 			if (aux)
-				printf("%d %d | ", i, j);
+			{
+				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point, program->camera->vp->arr[i][j].ray);
+				printf("LIGHT: %d", program->camera->vp->arr[i][j].color);
+			}
 		}
 	}
 }

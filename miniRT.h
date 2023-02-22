@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/15 14:40:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:25:32 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 char		**open_read(char *file_name, char **err_message);
 /*                       RGB                                */
 short int	*get_rgb(char *attr_buf, bool *err);
+short int	*object_rgb(t_llist *obj);
+int         get_int_color(short int *rgb);
 
 /*                  GEOMETRIES PARSER                       */
 bool		parse_sphere(t_program *program);
@@ -114,4 +116,8 @@ bool		pixels_array(t_camera *cam);
 int			horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width); //NO EXISTE (?)
 t_coord		center_point_screen(t_camera *camara, int width); //NO EXISTE (?)
+
+/*                        SHADING					        */
+double      pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray);
+t_coord	    get_normal(t_llist *obj, t_coord *point);
 #endif

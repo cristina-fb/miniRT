@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:03:30 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 15:21:02 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:25:40 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ short int	*get_rgb(char *attr_buf, bool *err)
 	rgb = save_rgb(rgb_buf, err);
 	ft_free_matrix(rgb_buf);
 	return (rgb);
+}
+
+short int	*object_rgb(t_llist *obj)
+{
+	if (obj->type == 3)
+		return (((t_cylinder *)obj->content)->rgb);
+	else if (obj->type == 4)
+		return (((t_plane *)obj->content)->rgb);
+	else if (obj->type == 5)
+		return (((t_sphere *)obj->content)->rgb);
+	return (0);
+}
+
+int	get_int_color(short int *rgb)
+{
+	return ((rgb[0] << 16) + (rgb[1] << 8) + rgb[2]);
 }
