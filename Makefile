@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
+#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/02/21 16:29:59 by crisfern         ###   ########.fr        #
+#    Updated: 2023/02/23 19:26:33 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,12 @@
 NAME = miniRT
 
 # Source files #
-<<<<<<< HEAD
-SRC_FILES = main_jose.c open_window.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
-=======
 SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
->>>>>>> cris
 			reader.c utils.c rgb.c generic_cleaners.c plane_parser.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
 			distance.c vector_operations.c vector_operations1.c screen.c \
-			resolution.c shading.c
+			resolution.c shading.c open_window.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
@@ -46,7 +42,7 @@ LIBMLX_DIR = ./MLX42
 # Includes #
 HEADERS = -I ./ -I $(LIBMLX_DIR)/include
 HEADER = miniRT.h
-EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -pthread -lm
+EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 # Flags #
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = gcc

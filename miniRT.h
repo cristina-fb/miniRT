@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/23 14:06:28 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:25:35 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,14 @@ t_coord		cross_product(t_coord a, t_coord b);
 t_coord		v_unit(t_coord v);
 
 /*                        SCREEN					        */
-<<<<<<< HEAD
-int 		horizontal_resolution(void);
-float		distance_screen(t_camera *camara, int width);
-t_coord		center_point_screen(t_camera *camara, int width);
-int	        open_window(t_program prog);
-=======
 bool		init_vp(t_camera *cam);
 bool		pixels_array(t_camera *cam);
 int			horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width); //NO EXISTE (?)
 t_coord		center_point_screen(t_camera *camara, int width); //NO EXISTE (?)
+int			open_window(t_program prog);
 
 /*                        SHADING					        */
 double      pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray);
 t_coord	    get_normal(t_llist *obj, t_coord *point);
->>>>>>> cris
 #endif

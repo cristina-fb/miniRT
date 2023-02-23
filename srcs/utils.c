@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/22 12:23:08 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:12:00 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_program_data(t_program program)
 	for (size_t i = 0; i < program.n_geometries ; i++)
 	{
 		printf("type : %d\n", program.shapes[i].type);
-		printf("COLOR %d\n", get_int_color(((t_sphere *)program.shapes[i].content)->rgb));
+		//printf("COLOR %d\n", get_int_color(((t_sphere *)program.shapes[i].content)->rgb));
 	}
 }
 

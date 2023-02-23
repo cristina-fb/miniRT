@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/23 14:08:57 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:26:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ t_program	process_data(char **file, bool *err)
 	else
 		ft_modlstclear(program.geometries, false);
 	program.geometries = NULL;
-<<<<<<< HEAD:srcs/main_jose.c
-	program.s_height = RESOLUTION;
-	program.s_width = horizontal_resolution();
-=======
->>>>>>> cris:srcs/main.c
 	return (program);
 }
 
@@ -108,15 +103,8 @@ int	main(int argc, char **argv)
 		free(err_message);
 		return (0);
 	}
-<<<<<<< HEAD:srcs/main_jose.c
-	else
-		print_program_data(program);
-	/// ir al programa de generación de imagen
-	free_program_data(&program, false);
-	open_window(program);
-=======
 	print_program_data(program);
 	raymarching(&program);
->>>>>>> cris:srcs/main.c
+	open_window(program);
 	return (0);
 }

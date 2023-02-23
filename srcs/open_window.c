@@ -1,6 +1,4 @@
 #include "miniRT.h"
-#define WIDTH 1920
-#define HEIGHT 1080
 
 // Exit the program as failure.
 static void ft_error(void)
@@ -12,16 +10,24 @@ static void ft_error(void)
 int	open_window(t_program prog)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_t* mlx = mlx_init(prog.s_width, prog.s_height, "miniRT", true);
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!mlx)
 		ft_error();
 
 	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, prog.s_width, prog.s_height);
+	mlx_image_t* img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		ft_error();
-
-	mlx_put_pixel(img, 100, 100, 0xFF0000FF);
+	int i = -1;
+	int j;
+	while (++i < HEIGHT)
+	{
+		j = -1;
+		while (++j < WIDTH)
+		{
+			mlx_put_pixel(img, j, i, prog.camera->vp->arr[i][j].color);
+		}
+	}
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
