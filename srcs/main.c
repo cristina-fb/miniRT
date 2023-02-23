@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/22 15:32:06 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:08:57 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void	raymarching(t_program *program)
 				if (aux)
 					break ;
 				total += min;
-				point = vector_add(point, vector_mul(*program->camera->vp->arr[i][j].ray, min));
+				point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
 			}
 			if (aux)
 			{
 				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point, program->camera->vp->arr[i][j].ray);
-				printf("LIGHT: %d", program->camera->vp->arr[i][j].color);
+				printf("LIGHT: %d\n", program->camera->vp->arr[i][j].color);
 			}
 		}
 	}

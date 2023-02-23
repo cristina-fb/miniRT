@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/21 12:56:51 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:22:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,11 @@ static void	fill_vp(t_camera *cam, t_coord *vp_center, t_coord *up)
 	}
 	else
 	{
-		*cam->vp->right = unit_vector((vector_product(*cam->dir, *up)));
-		*cam->vp->up = unit_vector(vector_product(*cam->vp->right, \
-		*cam->dir));
+		*cam->vp->right = v_unit((cross_product(*cam->dir, *up)));
+		*cam->vp->up = v_unit(cross_product(*cam->vp->right, *cam->dir));
 	}
-	aux = vector_sub(*vp_center, vector_mul(*cam->vp->right, \
-	cam->vp->width / 2));
-	*cam->vp->init = vector_sub(aux, vector_mul(*cam->vp->up, \
-	cam->vp->height / 2));
+	aux = v_sub(*vp_center, v_mul(*cam->vp->right, cam->vp->width / 2));
+	*cam->vp->init = v_sub(aux, v_mul(*cam->vp->up, cam->vp->height / 2));
 }
 
 bool	init_vp(t_camera *cam)
@@ -51,7 +48,7 @@ bool	init_vp(t_camera *cam)
 		return (false);
 	cam->vp->width = 2 * tanf(cam->fov / 2);
 	cam->vp->height = cam->vp->width * (1 / (WIDTH / HEIGHT));
-	vp_center = vector_add(*(cam->center), *(cam->dir));
+	vp_center = v_add(*(cam->center), *(cam->dir));
 	fill_vp(cam, &vp_center, &up);
 	return (pixels_array(cam));
 }
@@ -61,17 +58,17 @@ static void	fill_pixels_array(t_camera *cam, int i, int j, bool *err)
 	t_coord	ray_center;
 	t_coord	*ray;
 
-	ray_center = vector_add(*(cam->vp->init), \
-	vector_mul(*(cam->vp->up), cam->vp->height / WIDTH * (i + 0.5)));
-	ray_center = vector_add(ray_center, \
-	vector_mul(*(cam->vp->right), cam->vp->width / WIDTH * (j + 0.5)));
+	ray_center = v_add(*(cam->vp->init), \
+	v_mul(*(cam->vp->up), cam->vp->height / WIDTH * (i + 0.5)));
+	ray_center = v_add(ray_center, \
+	v_mul(*(cam->vp->right), cam->vp->width / WIDTH * (j + 0.5)));
 	ray = ft_calloc(1, sizeof(t_coord));
 	if (!ray)
 	{
 		*err = true;
 		return ;
 	}
-	*ray = unit_vector(vector_sub(ray_center, *(cam->center)));
+	*ray = v_unit(v_sub(ray_center, *(cam->center)));
 	cam->vp->arr[HEIGHT - i - 1][j] = (t_pixel){ray, 0};
 }
 

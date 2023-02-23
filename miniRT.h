@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/22 15:25:32 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:06:28 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,16 @@ double		distance_plane(t_coord point, t_plane *plane);
 t_llist		*min_distance(t_coord p, t_program *program, double *min);
 
 /*                   VECTOR OPERATIONS					    */
-t_coord		vector_add(t_coord a, t_coord b);
-t_coord		vector_sub(t_coord a, t_coord b);
-t_coord		vector_mul(t_coord a, float b);
-t_coord		vector_div(t_coord a, float b);
+t_coord		v_add(t_coord a, t_coord b);
+t_coord		v_sub(t_coord a, t_coord b);
+t_coord		v_mul(t_coord a, float b);
+t_coord		v_div(t_coord a, float b);
 
 /*                  VECTOR OPERATIONS 1	       			    */
-float		vector_module(t_coord a);
+float		v_module(t_coord a);
 float		dot_product(t_coord a, t_coord b);
-t_coord		vector_product(t_coord a, t_coord b);
-t_coord		unit_vector(t_coord v);
+t_coord		cross_product(t_coord a, t_coord b);
+t_coord		v_unit(t_coord v);
 
 /*                        SCREEN					        */
 bool		init_vp(t_camera *cam);

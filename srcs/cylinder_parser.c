@@ -6,32 +6,30 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:30:06 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/09 12:03:19 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:24:36 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	get_cylinder_data(t_cylinder *cylinder, t_program *program)
+static bool	get_cylinder_data(t_cylinder *cy, t_program *program)
 {
 	bool	err;
 
 	err = false;
-	cylinder->vector = orientation_vector(program->attr_buf[2]);
-	cylinder->diameter = ft_mod_atof(program->attr_buf[3], &err);
-	cylinder->radius = cylinder->diameter / 2;
-	cylinder->height = ft_mod_atof(program->attr_buf[4], &err);
-	cylinder->rgb = get_rgb(program->attr_buf[5], &err);
-	cylinder->ba = get_coords(program->attr_buf[1]);
-	cylinder->bb = ft_calloc(1, sizeof(t_coord));
-	if (!cylinder->ba || !cylinder->bb || !cylinder->vector || err
-		|| !cylinder->rgb)
+	cy->vector = orientation_vector(program->attr_buf[2]);
+	cy->diameter = ft_mod_atof(program->attr_buf[3], &err);
+	cy->radius = cy->diameter / 2;
+	cy->height = ft_mod_atof(program->attr_buf[4], &err);
+	cy->rgb = get_rgb(program->attr_buf[5], &err);
+	cy->ba = get_coords(program->attr_buf[1]);
+	cy->bb = ft_calloc(1, sizeof(t_coord));
+	if (!cy->ba || !cy->bb || !cy->vector || err || !cy->rgb)
 	{
-		cylinder_cleaner(cylinder);
+		cylinder_cleaner(cy);
 		return (false);
 	}
-	*cylinder->bb = vector_add(*cylinder->ba, \
-	vector_mul(*cylinder->vector, cylinder->height));
+	*cy->bb = v_add(*cy->ba, v_mul(*cy->vector, cy->height));
 	return (true);
 }
 

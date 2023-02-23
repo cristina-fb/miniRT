@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/15 12:46:53 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:07:42 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 double	distance_sphere(t_coord p, t_sphere *sphere)
 {
-	return (vector_module(vector_sub(*sphere->center, p)) - sphere->radius);
+	return (v_module(v_sub(*sphere->center, p)) - sphere->radius);
 }
 
 double	distance_plane(t_coord p, t_plane *plane)
 {
-	return (fabs(dot_product(*plane->normal, vector_sub(p, *plane->point))));
+	return (fabs(dot_product(*plane->normal, v_sub(p, *plane->point))));
 }
 
 double	distance_cylinder(t_coord p, t_cylinder *cylinder)
@@ -29,14 +29,14 @@ double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 	double	h;
 
 	da = 0.0;
-	h = dot_product(*cylinder->vector, vector_sub(p, *cylinder->ba));
+	h = dot_product(*cylinder->vector, v_sub(p, *cylinder->ba));
 	if (h > cylinder->height)
 	{
-		da = vector_module(vector_sub(*cylinder->bb, p));
+		da = v_module(v_sub(*cylinder->bb, p));
 		h = h - cylinder->height;
 	}
 	else
-		da = vector_module(vector_sub(*cylinder->ba, p));
+		da = v_module(v_sub(*cylinder->ba, p));
 	dl = sqrt(pow(da, 2.0) - pow(h, 2.0));
 	if ((dl < cylinder->radius) && (h < cylinder->height) && (h > 0))
 		return (0);
