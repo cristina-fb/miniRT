@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/04 15:37:44 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:12:39 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_llist
 	short int	type;
 }t_llist;
 
-/// ligth list
+/// light list
 typedef struct s_coord
 {
 	double	x;
@@ -35,28 +35,24 @@ typedef struct s_pixel
 	int		color;
 }t_pixel;
 
-typedef struct s_view_plane
+typedef struct s_viewpane
 {
-	t_coord *vp_init;
-	t_coord *vp_up;
-	t_coord *vp_right;
-	int		vp_width;
-	int		vp_height;
-}t_view_plane;
+	t_coord	*init;
+	t_coord	*up;
+	t_coord	*right;
+	t_pixel	**arr;
+	double	width;
+	double	height;
+}t_viewpane;
 
 typedef struct s_camera
 {
-	t_coord	*center;
-	t_coord	*orientation;
-	double	fov;
-	t_view_plane *view_plane;
+	t_coord		*center;
+	t_coord		*dir;
+	t_viewpane	*vp;
+	double		fov;
 }t_camera;
-/*
-vp_init npi
-vp_up
-ancho cristal camara -> vp_width y vp_height
-cambiar float a double
-*/
+
 typedef struct s_light
 {
 	t_coord		*point;
@@ -77,7 +73,7 @@ typedef struct s_sphere
 	double		radius;
 	short int	*rgb;
 }t_sphere;
-/* inicializar radio*/
+
 typedef struct s_plane
 {
 	t_coord		*point;
@@ -87,7 +83,6 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_coord		*center;
 	t_coord		*vector;
 	t_coord		*ba;
 	t_coord		*bb;
@@ -96,9 +91,6 @@ typedef struct s_cylinder
 	double		height;
 	short int	*rgb;
 }t_cylinder;
-/* ba -> base abajo   TODO -> cambiar nombres
-	bb ->base arriba
-*/
 
 typedef struct s_program
 {

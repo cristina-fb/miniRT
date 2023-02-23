@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_cleaners.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:53 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/04 13:44:39 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:38:03 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,56 @@ void	ambient_light_cleaner(t_ambient *ambient)
 	ambient->rgb = NULL;
 }
 
-void	view_plane_cleaner(t_view_plane *view_plane)
+void	viewpane_arr_cleaner(t_viewpane *viewpane)
 {
-	if (!view_plane)
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		if (viewpane->arr[i])
+		{
+			j = -1;
+			while (++j < WIDTH)
+			{
+				if (viewpane->arr[i][j].ray)
+				{
+					free(viewpane->arr[i][j].ray);
+					viewpane->arr[i][j].ray = NULL;
+				}
+			}
+			free(viewpane->arr[i]);
+			viewpane->arr[i] = NULL;
+		}
+	}
+}
+
+void	viewpane_cleaner(t_viewpane *viewpane)
+{
+	if (!viewpane)
 		return ;
-	free(view_plane->vp_init);
-	view_plane->vp_init = NULL;
-	free(view_plane->vp_up);
-	view_plane->vp_up = NULL;
-	free(view_plane->vp_right);
-	view_plane->vp_right = NULL;
+	if (viewpane->init)
+	{
+		free(viewpane->init);
+		viewpane->init = NULL;
+	}
+	if (viewpane->up)
+	{
+		free(viewpane->up);
+		viewpane->up = NULL;
+	}
+	if (viewpane->right)
+	{
+		free(viewpane->right);
+		viewpane->right = NULL;
+	}
+	if (viewpane->arr)
+	{
+		viewpane_arr_cleaner(viewpane);
+		free(viewpane->arr);
+		viewpane->arr = NULL;
+	}
 }
 
 void	camera_cleaner(t_camera *camera)
@@ -38,10 +78,10 @@ void	camera_cleaner(t_camera *camera)
 		return ;
 	free(camera->center);
 	camera->center = NULL;
-	free(camera->orientation);
-	camera->orientation = NULL;
-	free(camera->view_plane);
-	camera->view_plane = NULL;
+	free(camera->dir);
+	camera->dir = NULL;
+	free(camera->vp);
+	camera->vp = NULL;
 }
 
 void	light_cleaner(t_light *light)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/04 16:19:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:06:28 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 # define N_TYPES 6
 
 /*                     Resolution                         */
-# define RESOLUTION 1080
+# define WIDTH 1080
+# define HEIGHT 720
 
 /*               Number of data for element                */
 # define N_DATA_A 3
@@ -40,15 +41,17 @@
 # define N_DATA_P 4
 # define N_DATA_CY 6
 
-# define MAX_STEPS 100
-# define MAX_DIST 100.
-
+# define MAX_STEPS 1000
+# define MAX_DIST 10000.
+# define MIN_DIST 0.001
 
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
 char		**open_read(char *file_name, char **err_message);
 /*                       RGB                                */
 short int	*get_rgb(char *attr_buf, bool *err);
+short int	*object_rgb(t_llist *obj);
+int         get_int_color(short int *rgb);
 
 /*                  GEOMETRIES PARSER                       */
 bool		parse_sphere(t_program *program);
@@ -89,24 +92,40 @@ void		plane_cleaner(t_plane *plane);
 void		light_cleaner(t_light *light);
 void		camera_cleaner(t_camera *camera);
 void		ambient_light_cleaner(t_ambient *ambient);
+void		viewpane_cleaner(t_viewpane *viewpane);
 
 /*                       DISTANCE					        */
-float		distance_sphere(t_coord point, t_sphere sphere);
-float		distance_plane(t_coord point, t_plane plane);
+double		distance_sphere(t_coord point, t_sphere *sphere);
+double		distance_plane(t_coord point, t_plane *plane);
+t_llist		*min_distance(t_coord p, t_program *program, double *min);
 
 /*                   VECTOR OPERATIONS					    */
-t_coord		vector_add(t_coord a, t_coord b);
-t_coord		vector_sub(t_coord a, t_coord b);
-t_coord		vector_mul(t_coord a, float b);
-t_coord		vector_div(t_coord a, float b);
+t_coord		v_add(t_coord a, t_coord b);
+t_coord		v_sub(t_coord a, t_coord b);
+t_coord		v_mul(t_coord a, float b);
+t_coord		v_div(t_coord a, float b);
 
 /*                  VECTOR OPERATIONS 1	       			    */
-float		vector_module(t_coord a);
+float		v_module(t_coord a);
 float		dot_product(t_coord a, t_coord b);
+t_coord		cross_product(t_coord a, t_coord b);
+t_coord		v_unit(t_coord v);
 
 /*                        SCREEN					        */
+<<<<<<< HEAD
 int 		horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width);
 t_coord		center_point_screen(t_camera *camara, int width);
 int	        open_window(t_program prog);
+=======
+bool		init_vp(t_camera *cam);
+bool		pixels_array(t_camera *cam);
+int			horizontal_resolution(void);
+float		distance_screen(t_camera *camara, int width); //NO EXISTE (?)
+t_coord		center_point_screen(t_camera *camara, int width); //NO EXISTE (?)
+
+/*                        SHADING					        */
+double      pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray);
+t_coord	    get_normal(t_llist *obj, t_coord *point);
+>>>>>>> cris
 #endif

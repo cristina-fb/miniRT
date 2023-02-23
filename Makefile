@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
+#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/02/08 19:35:41 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/02/21 16:29:59 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,16 @@
 NAME = miniRT
 
 # Source files #
+<<<<<<< HEAD
 SRC_FILES = main_jose.c open_window.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
+=======
+SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
+>>>>>>> cris
 			reader.c utils.c rgb.c generic_cleaners.c plane_parser.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
-			distance.c vector_operations.c vector_operations1.c\
-			resolution.c
-#SRC_FILES = main.c distance.c vector_operations.c
+			distance.c vector_operations.c vector_operations1.c screen.c \
+			resolution.c shading.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #

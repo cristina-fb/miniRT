@@ -6,13 +6,13 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:27:14 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/01 17:41:05 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:07:55 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	vector_module(t_coord a)
+float	v_module(t_coord a)
 {
 	return (sqrt(pow(a.x, 2.0) + pow(a.y, 2.0) + pow(a.z, 2.0)));
 }
@@ -22,7 +22,7 @@ float	dot_product(t_coord a, t_coord b)
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
-t_coord	vector_product(t_coord a, t_coord b)
+t_coord	cross_product(t_coord a, t_coord b)
 {
 	t_coord	result;
 
@@ -32,10 +32,10 @@ t_coord	vector_product(t_coord a, t_coord b)
 	return (result);
 }
 
-t_coord	unit_vector(t_coord v)
+t_coord	v_unit(t_coord v)
 {
 	float	denominator;
 
-	denominator = vector_module(v);
-	return (vector_div(v, denominator));
+	denominator = v_module(v);
+	return (v_div(v, denominator));
 }

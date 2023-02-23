@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/14 19:02:23 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:34:09 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static short int	is_rt_element(char **attr_buf)
 		return (-1);
 	m_len = ft_matrix_len(attr_buf);
 	str_len = ft_strlen(attr_buf[0]);
-	printf("|%s|\n", attr_buf[0]);
 	if (!ft_strncmp(attr_buf[0], "A", str_len) && m_len == N_DATA_A)
 		return (AMBIENT_LIGTH);
 	else if (!ft_strncmp(attr_buf[0], "C", str_len) && m_len == N_DATA_CA)
@@ -59,7 +58,7 @@ t_program	get_attributes(char **all_file, bool *error)
 	short int		element;
 
 	program = (t_program){NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0};
-	bool (*function[6])(t_program *);
+	bool (*function[N_TYPES])(t_program *);
 	function[AMBIENT_LIGTH] = parse_ambient_ligth;
 	function[CAMERA] = parse_camera;
 	function[LIGHT] = parse_light;
