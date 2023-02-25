@@ -20,15 +20,17 @@ int	open_window(t_program prog)
 		ft_error();
 	int i = -1;
 	int j;
+	printf("%d, %d\n", WIDTH, HEIGHT);
 	while (++i < HEIGHT)
 	{
 		j = -1;
 		while (++j < WIDTH)
 		{
+			if (prog.camera->vp->arr[i][j].color)
+				printf("%d, %d, %d\n", j, i, prog.camera->vp->arr[i][j].color);
 			mlx_put_pixel(img, j, i, prog.camera->vp->arr[i][j].color);
 		}
 	}
-
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:03:30 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/23 13:44:43 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:18:37 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ int	get_int_color(short int *rgb)
 	while (++i < 3)
 		if (rgb[i] > 255)
 			rgb[i] = 255;
-	return ((rgb[0] << 16) + (rgb[1] << 8) + rgb[2]);
+	return ((rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8) + 255);
 }
