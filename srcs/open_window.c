@@ -9,7 +9,6 @@ static void ft_error(void)
 
 int	open_window(t_program prog)
 {
-	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!mlx)
 		ft_error();
