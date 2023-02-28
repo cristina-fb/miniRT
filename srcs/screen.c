@@ -48,6 +48,8 @@ bool	init_vp(t_camera *cam)
 		return (false);
 	cam->vp->width = 2 * tanf(cam->fov / 2);
 	cam->vp->height = cam->vp->width * (1 / (WIDTH / HEIGHT));
+	cam->vp->pixel_width = cam->vp->width / WIDTH;
+    cam->vp->pixel_height = cam->vp->height / HEIGHT;
 	vp_center = v_add(*(cam->center), *(cam->dir));
 	fill_vp(cam, &vp_center, &up);
 	return (pixels_array(cam));

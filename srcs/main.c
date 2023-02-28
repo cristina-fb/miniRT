@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 		free(err_message);
 		return (0);
 	}
-	print_program_data(program);
+	//print_program_data(program);
 	raymarching(&program);
 	open_window(program);
 	return (0);

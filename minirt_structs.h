@@ -41,6 +41,8 @@ typedef struct s_viewpane
 	t_coord	*up;
 	t_coord	*right;
 	t_pixel	**arr;
+	double pixel_width;
+	double pixel_height;
 	double	width;
 	double	height;
 }t_viewpane;
