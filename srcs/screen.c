@@ -28,8 +28,10 @@ static void	fill_vp(t_camera *cam, t_coord *vp_center, t_coord *up)
 		*cam->vp->right = v_unit((cross_product(*cam->dir, *up)));
 		*cam->vp->up = v_unit(cross_product(*cam->vp->right, *cam->dir));
 	}
-	aux = v_sub(*vp_center, v_mul(*cam->vp->right, cam->vp->width / 2));
-	*cam->vp->init = v_sub(aux, v_mul(*cam->vp->up, cam->vp->height / 2));
+	aux = v_sub(*vp_center, v_mul(*cam->vp->right, cam->vp->width / 2.0f));
+	aux = v_sub(aux, v_mul(*cam->vp->up, cam->vp->height / 2.0f));
+	aux = v_add(aux, v_mul(*cam->vp->right, cam->vp->pixel_width / 2.0f));
+	*cam->vp->init = v_add(aux, v_mul(*cam->vp->up, cam->vp->pixel_height / 2.0f));
 }
 
 bool	init_vp(t_camera *cam)
@@ -61,9 +63,9 @@ static void	fill_pixels_array(t_camera *cam, int i, int j, bool *err)
 	t_coord	*ray;
 
 	ray_center = v_add(*(cam->vp->init), \
-	v_mul(*(cam->vp->up), (float)cam->vp->height / WIDTH * (float)(i + 0.5)));
+	v_mul(*(cam->vp->up), (float)cam->vp->pixel_height * (float)(i + 0.5)));
 	ray_center = v_add(ray_center, \
-	v_mul(*(cam->vp->right), (float)cam->vp->width / WIDTH * (float)(j + 0.5)));
+	v_mul(*(cam->vp->right), (float)cam->vp->pixel_width * (float)(j + 0.5)));
 	ray = ft_calloc(1, sizeof(t_coord));
 	if (!ray)
 	{
@@ -99,10 +101,6 @@ bool	pixels_array(t_camera *cam)
 			while (++j < WIDTH)
 			{
 				fill_pixels_array(cam, i, j, &err);
-				if (HEIGHT - i - 1 == 359 && j == 539)
-				{
-					exit(1);
-				}
 			}
 		}
 		else
@@ -113,6 +111,6 @@ bool	pixels_array(t_camera *cam)
 		}
 	}
 	printf("rayo central pepep= x=%f y =%f  z= %f\n", cam->vp->arr[360][540].ray->x, cam->vp->arr[360][540].ray->y, cam->vp->arr[360][540].ray->z);
-	exit(1);
+	//exit(1);
 	return (err);
 }
