@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/27 20:08:06 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:20:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	raymarching(t_program *program)
 			if (aux)
 			{
 				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point, program->camera->vp->arr[i][j].ray);
-				printf("LIGHT: %d i = %d j= %d\n", program->camera->vp->arr[i][j].color, i, j);
 			}
 		}
 	}

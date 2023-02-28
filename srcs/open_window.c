@@ -25,8 +25,6 @@ int	open_window(t_program prog)
 		j = -1;
 		while (++j < WIDTH)
 		{
-			if (prog.camera->vp->arr[i][j].color)
-				printf("%d, %d, %d\n", j, i, prog.camera->vp->arr[i][j].color);
 			mlx_put_pixel(img, j, i, prog.camera->vp->arr[i][j].color);
 		}
 	}
