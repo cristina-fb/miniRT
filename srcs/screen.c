@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/28 19:25:01 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:09:37 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ bool	init_vp(t_camera *cam)
 	cam->vp->init = ft_calloc(1, sizeof(t_coord));
 	if ((!cam->vp->init) || (!cam->vp->right) || (!cam->vp->up))
 		return (false);
-	cam->vp->width = 2 * tanf(cam->fov / 2);
-	cam->vp->height = cam->vp->width * (1 / (WIDTH / HEIGHT));
-	cam->vp->pixel_width = cam->vp->width / WIDTH;
-    cam->vp->pixel_height = cam->vp->height / HEIGHT;
+	cam->vp->width = 2.00 * tanf((double)cam->fov / 2.00);
+	cam->vp->height = (double)cam->vp->width / ((double)WIDTH / (double)HEIGHT);
+	cam->vp->pixel_width = (double)cam->vp->width / (double)WIDTH;
+    cam->vp->pixel_height = (double)cam->vp->height / (double)HEIGHT;
+	printf("%f, %f, %f, %f\n",cam->vp->width,cam->vp->height, cam->vp->pixel_width, cam->vp->pixel_height);
 	vp_center = v_add(*(cam->center), *(cam->dir));
 	fill_vp(cam, &vp_center, &up);
 	return (pixels_array(cam));
