@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/23 14:12:39 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:28:52 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_STRUCTS_H
 # define MINIRT_STRUCTS_H
 # include "libft.h"
-
-/* STRUCT TO SAVE ON ARRAY */
-typedef struct s_llist
-{
-	void		*content;
-	short int	type;
-}t_llist;
 
 /// light list
 typedef struct s_coord
@@ -29,11 +22,25 @@ typedef struct s_coord
 	double	z;
 }t_coord;
 
+typedef struct s_bounding_box
+{
+    t_coord     *min;
+    t_coord     *max;
+}   t_bounding_box;
+
 typedef struct s_pixel
 {
 	t_coord	*ray;
 	int		color;
 }t_pixel;
+
+/* STRUCT TO SAVE ON ARRAY */
+typedef struct s_llist
+{
+	void		*content;
+	short int	type;
+	t_bounding_box *bbox;
+}t_llist;
 
 typedef struct s_viewpane
 {
@@ -74,6 +81,8 @@ typedef struct s_sphere
 	double		diameter;
 	double		radius;
 	short int	*rgb;
+	t_coord		*min;
+	t_coord		*max;
 }t_sphere;
 
 typedef struct s_plane
@@ -81,6 +90,8 @@ typedef struct s_plane
 	t_coord		*point;
 	t_coord		*normal;
 	short int	*rgb;
+	t_coord		*min;
+	t_coord		*max;
 }t_plane;
 
 typedef struct s_cylinder
@@ -92,6 +103,8 @@ typedef struct s_cylinder
 	double		radius;
 	double		height;
 	short int	*rgb;
+	t_coord		*min;
+	t_coord		*max;
 }t_cylinder;
 
 typedef struct s_program

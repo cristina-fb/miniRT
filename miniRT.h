@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/23 19:25:35 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:58:20 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <math.h>
+# include <time.h>
 /* ---------------------- MACROS --------------------------*/
 /*                    Index for save                       */
 # define AMBIENT_LIGTH 0
@@ -117,9 +118,18 @@ bool		pixels_array(t_camera *cam);
 int			horizontal_resolution(void);
 float		distance_screen(t_camera *camara, int width); //NO EXISTE (?)
 t_coord		center_point_screen(t_camera *camara, int width); //NO EXISTE (?)
-int			open_window(t_program prog);
+int			open_window(t_program prog, clock_t start);
 
 /*                        SHADING					        */
 double      pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray);
 t_coord	    get_normal(t_llist *obj, t_coord *point);
+
+
+
+/*puebas performance */
+t_bounding_box get_bounding_box_sphere(t_sphere *sphere);
+t_bounding_box get_bounding_box_cylinder(t_cylinder *cylinder);
+t_bounding_box get_bounding_box_plane(t_plane *plane);
+t_coord get_center_bounding_box(t_bounding_box bbox);
+void sort_primitives(t_llist *primitives, int n_primitives, int axis);
 #endif

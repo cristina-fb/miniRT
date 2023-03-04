@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/02/28 08:33:48 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/03/04 17:59:12 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
 			distance.c vector_operations.c vector_operations1.c screen.c \
-			resolution.c shading.c open_window.c
+			resolution.c shading.c open_window.c sort_primitives.c bounding_box.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
@@ -45,7 +45,7 @@ HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
 EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 # Flags #
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address
 CC = gcc
 
 
