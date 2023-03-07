@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/23 14:07:42 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:04:43 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,51 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-	double	da;
-	double	dl;
-	double	h;
+	t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba);
+  	t_coord  pa = v_sub(p, *cylinder->ba);
+  	double baba = dot_product(ba,ba);
+	double paba = dot_product(pa,ba);
+	double x = v_module(v_sub(v_mul(pa, baba), v_mul(ba, paba))) - cylinder->radius * baba;
+	double y = fabs(paba-(baba*0.5))-(baba*0.5);
+	double x2 = x*x;
+	double y2 = y*y*baba;
+	double d = 0.0;
 
-	da = 0.0;
-	h = dot_product(*cylinder->vector, v_sub(p, *cylinder->ba));
-	if (h > cylinder->height)
+	double aux;
+	if (x < y)
+		aux = y;
+	else
+		aux = x;
+	if (aux<0.0)
 	{
-		da = v_module(v_sub(*cylinder->bb, p));
-		h = h - cylinder->height;
+		if (x2 > y2)
+			d = -y2;
+		else
+			d = -x2;
 	}
 	else
-		da = v_module(v_sub(*cylinder->ba, p));
-	dl = sqrt(pow(da, 2.0) - pow(h, 2.0));
-	if ((dl < cylinder->radius) && (h < cylinder->height) && (h > 0))
-		return (0);
-	else if ((h >= 0) && (h <= cylinder->height))
-		return (fabs(dl) - cylinder->radius);
-	else if (dl <= cylinder->radius)
-		return (fabs(h));
-	else
-		return (fabs(sqrt(pow(dl - cylinder->radius, 2.0) + pow(h, 2.0))));
-	return (0.0);
+	{
+		if ((x>0.0))
+		{
+			d += x2;
+		}
+		else
+		{
+			d += 0.0;
+		}
+		if ((y>0.0))
+		{
+			d += y2;
+		}
+		else
+		{
+			d += 0.0;
+		}
+	}
+	int sign = 1;
+	if (d < 0.0)
+		sign = -1;
+	return sign*sqrt(fabs(d))/baba;
 }
 
 t_llist	*min_distance(t_coord p, t_program *program, double *min)
@@ -76,4 +98,27 @@ t_llist	*min_distance(t_coord p, t_program *program, double *min)
 	if (*min < MIN_DIST)
 		return (obj);
 	return (0);
+}
+
+double	min_sdf(t_coord p, t_program *program)
+{
+	double	dist;
+	double	min;
+	size_t	i;
+
+	i = -1;
+	min = 0;
+	while (++i < program->n_geometries)
+	{
+		if (program->shapes[i].type == 3)
+			dist = distance_cylinder(p, \
+			(t_cylinder *)program->shapes[i].content);
+		else if (program->shapes[i].type == 4)
+			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
+		else if (program->shapes[i].type == 5)
+			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
+		if ((i == 0) || (fabs(dist) < fabs(min)))
+			min = dist;
+	}
+	return (min);
 }

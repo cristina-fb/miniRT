@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:30:06 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/23 14:24:36 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:12:28 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	parse_cylinder(t_program *program)
 	cylinder = ft_calloc(1, sizeof(t_cylinder));
 	if (!cylinder)
 		return (false);
-	*cylinder = (t_cylinder){NULL, NULL, NULL, 0.00, 0.00, 0.00, NULL};
+	*cylinder = (t_cylinder){NULL, NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL};
 	if (!get_cylinder_data(cylinder, program))
 		return (false);
 	new = ft_mod_lstnew(CYLINDER, cylinder);

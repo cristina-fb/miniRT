@@ -6,31 +6,37 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/02/23 16:46:19 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:04:54 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_coord	get_normal(t_llist *obj, t_coord *point)
+t_coord	get_normal(t_program *p, t_coord *point)
 {
-	t_cylinder	*cy;
-	int			d;
-	if (obj->type == 3) //Hay que ver que pasa con las tapas
-	{
-		cy = (t_cylinder *)obj->content;
-		d = dot_product(*cy->vector, v_sub(*point, *cy->ba));
-		return (v_unit(v_sub(*point, v_add(*cy->ba, v_mul(*cy->vector, d)))));
-	}
-	else if (obj->type == 4)
-		return (*((t_plane *)obj->content)->normal);
-	else if (obj->type == 5)
-		return (v_unit(v_sub(*point, \
-		*((t_sphere *)obj->content)->center)));
-	return ((t_coord){0, 0, 0});
+	t_coord	norm;
+	t_coord	aux1;
+	t_coord	aux2;
+
+	aux1 = *point;
+	aux2 = *point;
+	aux1.x += 0.001;
+	aux2.x -= 0.001;
+	norm.x = min_sdf(aux1, p) - min_sdf(aux2, p);
+	aux1 = *point;
+	aux2 = *point;
+	aux1.y += 0.001;
+	aux2.y -= 0.001;
+	norm.y = min_sdf(aux1, p) - min_sdf(aux2, p);
+	aux1 = *point;
+	aux2 = *point;
+	aux1.z += 0.001;
+	aux2.z -= 0.001;
+	norm.z = min_sdf(aux1, p) - min_sdf(aux2, p);
+	return (v_unit(norm));
 }
 
-double	pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray)
+double	pcolor(t_program *p, t_llist *obj, t_coord *point)
 {
 	double		light[3];
 	t_coord		normal;
@@ -43,8 +49,8 @@ double	pcolor(t_program *p, t_llist *obj, t_coord *point, t_coord *ray)
 	light[2] = p->ambient->ratio * p->ambient->rgb[2];
 	if (obj)
 	{
-		dir = v_mul(*ray, -1);
-		normal = get_normal(obj, point);
+		dir = v_unit(v_sub(*p->light->point, *point));
+		normal = get_normal(p, point);
 		ratio = dot_product(normal, dir);
 		if (ratio < 0.0)
 			ratio = 0.0;

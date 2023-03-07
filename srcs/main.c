@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/04 18:01:39 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:09:48 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,59 +47,6 @@ char	**basic_parser(int argc, char **argv, char **err_message)
 		file = open_read(argv[1], err_message);
 	return (file);
 }
-void    swap_primitives(t_llist *a, t_llist *b)
-{
-    t_llist tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-void generate_bounding_box(t_llist *primitives, int n_primitives) {
-    for (int i = 0; i < n_primitives; i++) {
-        t_bounding_box *bbox = (t_bounding_box *)malloc(sizeof(t_bounding_box));
-		
-		if (primitives[i].type == SPHERE)
-			*bbox = get_bounding_box_sphere((t_sphere*)primitives[i].content);
-		else if (primitives[i].type == PLANE)
-			*bbox =get_bounding_box_plane((t_plane*)primitives[i].content);
-		else if (primitives[i].type == CYLINDER)
-			*bbox = get_bounding_box_cylinder((t_cylinder*)primitives[i].content);;
-        primitives[i].bbox = bbox;
-    }
-}
-
-
-void    build_bvh(t_llist *primitives, int n_primitives, t_bounding_box *bboxes, int depth)
-{
-    // Si solo hay una primitiva, se almacena su caja de límites y se devuelve
-    if (n_primitives == 1)
-    {
-        bboxes[0] = *(primitives->bbox);
-        return;
-    }
-
-    // Se elige un eje de división
-    int axis = depth % 3;
-
-    // Se ordenan las primitivas en base a su centro en el eje de división
-    sort_primitives(primitives, n_primitives, axis);
-
-    // Se dividen las primitivas en dos grupos
-    int n_left = n_primitives / 2;
-    int n_right = n_primitives - n_left;
-
-    // Se construyen los dos sub-BVH recursivamente
-    build_bvh(primitives, n_left, bboxes, depth + 1);
-    build_bvh(primitives + n_left, n_right, bboxes + n_left, depth + 1);
-
-    // Se almacena la caja de límites del sub-BVH actual
-    t_bounding_box bbox_left = bboxes[0];
-    t_bounding_box bbox_right = bboxes[n_left];
-
-    // Se actualiza la caja de límites actual
-    bboxes[0].min = min_coord(bbox_left.min, bbox_right.min);
-    bboxes[0].max = max_coord(bbox_left.max, bbox_right.max);
-}
 
 void	raymarching(t_program *program)
 {
@@ -131,7 +78,7 @@ void	raymarching(t_program *program)
 			}
 			if (aux)
 			{
-				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point, program->camera->vp->arr[i][j].ray);
+				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point);
 			}
 		}
 	}

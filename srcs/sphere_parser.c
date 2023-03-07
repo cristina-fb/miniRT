@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:19:51 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/01/25 12:41:27 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:12:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	parse_sphere(t_program *program)
 	sphere = ft_calloc(1, sizeof(t_sphere));
 	if (!sphere)
 		return (false);
-	*sphere = (t_sphere){NULL, 0.00, 0.00, NULL};
+	*sphere = (t_sphere){NULL, 0.00, 0.00, NULL, NULL, NULL};
 	if (!get_sphere_data(sphere, program))
 		return (false);
 	new = ft_mod_lstnew(SPHERE, sphere);

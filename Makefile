@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
+#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/03/04 17:59:12 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/03/07 15:09:25 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
 			distance.c vector_operations.c vector_operations1.c screen.c \
-			resolution.c shading.c open_window.c sort_primitives.c bounding_box.c
+			resolution.c shading.c open_window.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
