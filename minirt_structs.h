@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/04 16:28:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:04:10 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ typedef struct s_coord
 	double	z;
 }t_coord;
 
-typedef struct s_bounding_box
-{
-    t_coord     *min;
-    t_coord     *max;
-}   t_bounding_box;
-
 typedef struct s_pixel
 {
 	t_coord	*ray;
@@ -39,7 +33,6 @@ typedef struct s_llist
 {
 	void		*content;
 	short int	type;
-	t_bounding_box *bbox;
 }t_llist;
 
 typedef struct s_viewpane
@@ -81,8 +74,6 @@ typedef struct s_sphere
 	double		diameter;
 	double		radius;
 	short int	*rgb;
-	t_coord		*min;
-	t_coord		*max;
 }t_sphere;
 
 typedef struct s_plane
@@ -90,8 +81,6 @@ typedef struct s_plane
 	t_coord		*point;
 	t_coord		*normal;
 	short int	*rgb;
-	t_coord		*min;
-	t_coord		*max;
 }t_plane;
 
 typedef struct s_cylinder
@@ -103,8 +92,6 @@ typedef struct s_cylinder
 	double		radius;
 	double		height;
 	short int	*rgb;
-	t_coord		*min;
-	t_coord		*max;
 }t_cylinder;
 
 typedef struct s_program

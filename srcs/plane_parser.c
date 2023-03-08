@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:45 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/07 15:11:56 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:05:08 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	parse_plane(t_program *program)
 	plane = ft_calloc(1, sizeof(t_plane));
 	if (!plane)
 		return (false);
-	*plane = (t_plane){NULL, NULL, NULL, NULL, NULL};
+	*plane = (t_plane){NULL, NULL, NULL};
 	if (!get_plane_data(plane, program))
 		return (false);
 	new = ft_mod_lstnew(PLANE, plane);
