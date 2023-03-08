@@ -22,6 +22,9 @@ int	open_window(t_program prog, clock_t start)
 	int i = -1;
 	int j;
 	printf("%d, %d\n", WIDTH, HEIGHT);
+	end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+	printf("El tiempo de ejecución de la porción de código fue de %f segundos.\n", cpu_time_used);
 	while (++i < HEIGHT)
 	{
 		j = -1;

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/08 18:04:10 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:09:17 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ typedef struct s_cylinder
 	t_coord		*vector;
 	t_coord		*ba;
 	t_coord		*bb;
+	t_coord		*ba_aux;
 	double		diameter;
 	double		radius;
 	double		height;
+	double	baba;
 	short int	*rgb;
 }t_cylinder;
 

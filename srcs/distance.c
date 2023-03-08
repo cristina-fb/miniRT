@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/07 15:04:43 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:57:52 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-	t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba);
   	t_coord  pa = v_sub(p, *cylinder->ba);
-  	double baba = dot_product(ba,ba);
-	double paba = dot_product(pa,ba);
-	double x = v_module(v_sub(v_mul(pa, baba), v_mul(ba, paba))) - cylinder->radius * baba;
-	double y = fabs(paba-(baba*0.5))-(baba*0.5);
+	double paba = dot_product(pa,*cylinder->ba_aux);
+	double x = v_module(v_sub(v_mul(pa, cylinder->baba), v_mul(*cylinder->ba_aux, paba))) - cylinder->radius * cylinder->baba;
+	double y = fabs(paba-(cylinder->baba*0.5))-(cylinder->baba*0.5);
 	double x2 = x*x;
-	double y2 = y*y*baba;
+	double y2 = y*y*cylinder->baba;
 	double d = 0.0;
 
 	double aux;
@@ -68,7 +66,7 @@ double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 	int sign = 1;
 	if (d < 0.0)
 		sign = -1;
-	return sign*sqrt(fabs(d))/baba;
+	return sign*sqrt(fabs(d))/cylinder->baba;
 }
 
 t_llist	*min_distance(t_coord p, t_program *program, double *min)
