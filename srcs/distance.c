@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/08 18:57:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:33:28 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,49 +24,35 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-  	t_coord  pa = v_sub(p, *cylinder->ba);
-	double paba = dot_product(pa,*cylinder->ba_aux);
-	double x = v_module(v_sub(v_mul(pa, cylinder->baba), v_mul(*cylinder->ba_aux, paba))) - cylinder->radius * cylinder->baba;
-	double y = fabs(paba-(cylinder->baba*0.5))-(cylinder->baba*0.5);
-	double x2 = x*x;
-	double y2 = y*y*cylinder->baba;
-	double d = 0.0;
+	double x;
+	double y;
 
-	double aux;
-	if (x < y)
-		aux = y;
-	else
-		aux = x;
-	if (aux<0.0)
+	//t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba); //h
+  	t_coord  pa = v_sub(p, *cylinder->ba); //pa
+
+	y = dot_product(pa, *cylinder->ba_aux) / cylinder->height;
+	x = sqrt(pow(v_module(pa), 2.0) - (y * y)) - cylinder->radius;
+
+	if ((y >= 0.0) && (y <= cylinder->height))
 	{
-		if (x2 > y2)
-			d = -y2;
+		if (x <= 0.0)
+			return (0.0);
 		else
-			d = -x2;
+			return (x);
+	}
+	else if (x <= 0.0)
+	{
+		if (y <= 0.0)
+			return (-y);
+		else
+			return (y - cylinder->height);
 	}
 	else
 	{
-		if ((x>0.0))
-		{
-			d += x2;
-		}
-		else
-		{
-			d += 0.0;
-		}
-		if ((y>0.0))
-		{
-			d += y2;
-		}
-		else
-		{
-			d += 0.0;
-		}
+		if (y >= cylinder->height)
+			y -= cylinder->height;
+		return (sqrt((y * y) + (x * x)));
 	}
-	int sign = 1;
-	if (d < 0.0)
-		sign = -1;
-	return sign*sqrt(fabs(d))/cylinder->baba;
 }
 
 t_llist	*min_distance(t_coord p, t_program *program, double *min)
