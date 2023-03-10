@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/07 15:04:43 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:41:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-	t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba);
-  	t_coord  pa = v_sub(p, *cylinder->ba);
-  	double baba = dot_product(ba,ba);
-	double paba = dot_product(pa,ba);
+	/*t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba); //h
+  	t_coord  pa = v_sub(p, *cylinder->ba); //pa
+  	double baba = dot_product(ba,ba); //h^2
+	double paba = dot_product(pa,ba); //h' * h
 	double x = v_module(v_sub(v_mul(pa, baba), v_mul(ba, paba))) - cylinder->radius * baba;
 	double y = fabs(paba-(baba*0.5))-(baba*0.5);
 	double x2 = x*x;
@@ -50,11 +50,11 @@ double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 	{
 		if ((x>0.0))
 		{
-			d += x2;
+			d = x2;
 		}
 		else
 		{
-			d += 0.0;
+			d = 0.0;
 		}
 		if ((y>0.0))
 		{
@@ -68,7 +68,37 @@ double	distance_cylinder(t_coord p, t_cylinder *cylinder)
 	int sign = 1;
 	if (d < 0.0)
 		sign = -1;
-	return sign*sqrt(fabs(d))/baba;
+	return sign*sqrt(fabs(d))/baba;*/
+
+	double x;
+	double y;
+
+	t_coord  ba = v_sub(*cylinder->bb, *cylinder->ba); //h
+  	t_coord  pa = v_sub(p, *cylinder->ba); //pa
+
+	y = dot_product(pa, ba) / cylinder->height;
+	x = sqrt(pow(v_module(pa), 2.0) - (y * y)) - cylinder->radius;
+
+	if ((y >= 0.0) && (y <= cylinder->height))
+	{
+		if (x <= 0.0)
+			return (0.0);
+		else
+			return (x);
+	}
+	else if (x <= 0.0)
+	{
+		if (y <= 0.0)
+			return (-y);
+		else
+			return (y - cylinder->height);
+	}
+	else
+	{
+		if (y >= cylinder->height)
+			y -= cylinder->height;
+		return (sqrt((y * y) + (x * x)));
+	}
 }
 
 t_llist	*min_distance(t_coord p, t_program *program, double *min)

@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/07 15:15:06 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:40:49 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 # define MAX_STEPS 1000
 # define MAX_DIST 10000.
-# define MIN_DIST 0.001
+# define MIN_DIST 0.01
 
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
