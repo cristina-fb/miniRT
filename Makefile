@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
+#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/03/07 15:09:25 by crisfern         ###   ########.fr        #
+#    Updated: 2023/03/11 16:53:37 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
 			shapes_cleaners.c sphere_parser.c cylinder_parser.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
 			distance.c vector_operations.c vector_operations1.c screen.c \
-			resolution.c shading.c open_window.c
+			shading.c open_window.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 # Directories #
@@ -45,7 +45,7 @@ HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
 EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 # Flags #
-CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast -fsanitize=address
 CC = gcc
 
 
