@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/08 18:38:33 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:00:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	raymarching(t_program *program)
 			aux = NULL;
 			while ((total < MAX_DIST) && (n++ < MAX_STEPS))
 			{
-				aux = min_distance(point, program, &min);
+				aux = min_distance(point, program, &min, *program->camera->vp->arr[i][j].ray);
 				if (aux)
 					break ;
 				total += min;

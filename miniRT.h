@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/10 15:40:49 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:14:13 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@
 # define N_DATA_P 4
 # define N_DATA_CY 6
 
-# define MAX_STEPS 1000
+# define MAX_STEPS 100
 # define MAX_DIST 10000.
-# define MIN_DIST 0.01
+# define MIN_DIST 0.001
 
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
@@ -96,10 +96,12 @@ void		ambient_light_cleaner(t_ambient *ambient);
 void		viewpane_cleaner(t_viewpane *viewpane);
 
 /*                       DISTANCE					        */
-double		distance_sphere(t_coord point, t_sphere *sphere);
+//double		distance_sphere(t_coord point, t_sphere *sphere);
+double distance_sphere(t_coord p, t_sphere *sphere, t_coord rd);
 double		distance_plane(t_coord point, t_plane *plane);
-t_llist		*min_distance(t_coord p, t_program *program, double *min);
-double	    min_sdf(t_coord p, t_program *program);
+//t_llist		*min_distance(t_coord p, t_program *program, double *min);
+t_llist	*min_distance(t_coord p, t_program *program, double *min, t_coord rd);
+double	    min_sdf(t_coord p, t_program *program, t_coord rd);
 
 /*                   VECTOR OPERATIONS					    */
 t_coord		v_add(t_coord a, t_coord b);
@@ -121,5 +123,5 @@ int			open_window(t_program prog, clock_t start);
 
 /*                        SHADING					        */
 double      pcolor(t_program *p, t_llist *obj, t_coord *point);
-t_coord	    get_normal(t_program *p, t_coord *point);
+t_coord	    get_normal(t_program *p, t_coord *point, t_coord rd);
 #endif
