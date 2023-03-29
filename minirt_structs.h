@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/08 18:09:17 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:31:37 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct s_llist
 	void		*content;
 	short int	type;
 }t_llist;
+
+typedef struct s_bvh_node {
+    t_coord min; // Bounding box min corner
+    t_coord max; // Bounding box max corner
+    struct s_bvh_node *left; // Left child node
+    struct s_bvh_node *right; // Right child node
+    t_llist *geometry; // Pointer to geometry if this is a leaf node, NULL otherwise
+} t_bvh_node;
 
 typedef struct s_viewpane
 {
