@@ -43,7 +43,7 @@ LIBMLX_DIR = ./MLX42
 HEADERS = -I ./ -I $(LIBMLX_DIR)/include
 HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
-EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -pthread -lm
 # Flags #
 CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast -fsanitize=address
 CC = gcc

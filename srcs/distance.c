@@ -74,7 +74,7 @@ t_llist	*min_distance(t_coord p, t_program *program, double *min)
 			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
 		else if (program->shapes[i].type == 5)
 			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
-		if ((i == 0) || ((dist > 0) && (dist < *min))) // en algún momento dist será menor a 0?
+		if ((i == 0) || ((dist > 0.0) && (dist < *min))) // en algún momento dist será menor a 0?
 		{
 			*min = dist;
 			obj = &program->shapes[i];
