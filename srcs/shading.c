@@ -36,6 +36,25 @@ t_coord	get_normal(t_program *p, t_coord *point)
 	return (v_unit(norm));
 }
 
+bool is_in_shadow(t_program *p, t_coord *point, t_coord *light_dir)
+{
+    double t = 0.001;
+    double min_dist;
+    double max_distance = v_module(v_sub(*point, *p->light->point));
+
+    while (t < max_distance) {
+        t_coord ray_point = v_add(*point, v_mul(*light_dir, t));
+        min_dist = min_sdf(ray_point, p);
+
+        if (min_dist < 0.0001) {
+            return true;
+        }
+        t += min_dist;
+    }
+    return false;
+}
+
+
 double	pcolor(t_program *p, t_llist *obj, t_coord *point)
 {
 	double		light[3];
@@ -54,9 +73,14 @@ double	pcolor(t_program *p, t_llist *obj, t_coord *point)
 		ratio = dot_product(normal, dir);
 		if (ratio < 0.0)
 			ratio = 0.0;
-		light[0] += ratio * p->light->rgb[0];
+		if (!is_in_shadow(p, point, &dir)) {
+            light[0] += ratio * p->light->rgb[0];
+            light[1] += ratio * p->light->rgb[1];
+            light[2] += ratio * p->light->rgb[2];
+        }
+		/*light[0] += ratio * p->light->rgb[0];
 		light[1] += ratio * p->light->rgb[1];
-		light[2] += ratio * p->light->rgb[2];
+		light[2] += ratio * p->light->rgb[2];*/
 		color[0] = (light[0] / 255) * object_rgb(obj)[0];
 		color[1] = (light[1] / 255) * object_rgb(obj)[1];
 		color[2] = (light[2] / 255) * object_rgb(obj)[2];
