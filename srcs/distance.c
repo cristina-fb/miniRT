@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/06 17:10:46 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:28:24 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ double distance_cylinder(t_coord p, t_cylinder *cylinder)
     double pa_squared = dot_product(pa, pa);
     x = sqrt(pa_squared - y_squared) - cylinder->radius;
 
-    if ((y >= 0.0) && (y <= cylinder->height))
+    if ((y > -MIN_DIST) && (y < cylinder->height))
     {
-        if (x <= 0.0)
+        if (x < -MIN_DIST)
             return (0.0);
         return (x);
     }
-    else if (x <= 0.0)
+    else if (x < -MIN_DIST)
     {
-        if (y <= 0.0)
+        if (y < -MIN_DIST)
             return (-y);
         return (y - cylinder->height);
     }
-    else if (y >= cylinder->height)
+    else if (y > cylinder->height)
         y -= cylinder->height;
 
     return (sqrt(y * y + x * x));

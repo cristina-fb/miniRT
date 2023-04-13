@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/28 19:34:25 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:31:04 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define N_DATA_CY 6
 
 # define MAX_STEPS 1000
-# define MAX_DIST 10000.
+# define MAX_DIST 1000.
 # define MIN_DIST 0.01
 
 /* ------------------- FUNCTIONS -------------------------- */
