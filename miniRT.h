@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/13 18:31:04 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/15 15:13:54 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define N_TYPES 6
 
 /*                     Resolution                         */
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 /*               Number of data for element                */
 # define N_DATA_A 3

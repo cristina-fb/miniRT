@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/03/11 16:53:37 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/04/15 14:06:50 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ LIBMLX_DIR = ./MLX42
 HEADERS = -I ./ -I $(LIBMLX_DIR)/include
 HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
-EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -pthread -lm
+EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 # Flags #
-CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast
 CC = gcc
 
 
