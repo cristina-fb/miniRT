@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/13 18:28:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:53:21 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 double distance_sphere(t_coord p, t_sphere *sphere)
 {
-    double dist = pow(p.x - sphere->center->x, 2.0);
+    double dist;
+	dist = pow(p.x - sphere->center->x, 2.0);
     dist += pow(p.y - sphere->center->y, 2.0);
     dist += pow(p.z - sphere->center->z, 2.0);
     return (sqrt(dist) - sphere->radius);
@@ -22,7 +23,11 @@ double distance_sphere(t_coord p, t_sphere *sphere)
 
 double	distance_plane(t_coord p, t_plane *plane)
 {
-	return (fabs(dot_product(*plane->normal, v_sub(p, *plane->point))));
+	double	dist;
+	dist = (plane->point->x - p.x) * plane->normal->x;
+	dist += (plane->point->y - p.y) * plane->normal->y;
+	dist += (plane->point->z - p.z) * plane->normal->z;
+	return (fabs(dist));
 }
 
 double distance_cylinder(t_coord p, t_cylinder *cylinder)
@@ -31,7 +36,6 @@ double distance_cylinder(t_coord p, t_cylinder *cylinder)
     double y;
 
     t_coord pa = v_sub(p, *cylinder->ba);
-
     y = dot_product(pa, *cylinder->ba_aux) / cylinder->height;
     double y_squared = y * y;
     double pa_squared = dot_product(pa, pa);
@@ -51,7 +55,6 @@ double distance_cylinder(t_coord p, t_cylinder *cylinder)
     }
     else if (y > cylinder->height)
         y -= cylinder->height;
-
     return (sqrt(y * y + x * x));
 }
 
