@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
+#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/04/15 14:06:50 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/04/18 17:52:06 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
 EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 # Flags #
-CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast
+CFLAGS = -Wall -Wextra -Werror -g3 -fno-stack-protector -fomit-frame-pointer -Ofast
 CC = gcc
 
 

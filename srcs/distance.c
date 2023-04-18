@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/17 15:53:21 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:55:47 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,17 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-    double x;
-    double y;
-
-    t_coord pa = v_sub(p, *cylinder->ba);
-    y = dot_product(pa, *cylinder->ba_aux) / cylinder->height;
-    double y_squared = y * y;
-    double pa_squared = dot_product(pa, pa);
-    x = sqrt(pa_squared - y_squared) - cylinder->radius;
-
+    double 	x;
+    double 	y;
+	double	pa_squared;
+	t_coord pa;
+	
+	pa.x = p.x - cylinder->ba->x;
+	pa.y = p.y - cylinder->ba->y;
+	pa.z = p.z - cylinder->ba->z;
+	pa_squared = pow(pa.x, 2.0) + pow(pa.y, 2.0) + pow(pa.z, 2.0);
+	y = ((pa.x * cylinder->ba_aux->x) + (pa.y * cylinder->ba_aux->y) + (pa.z * cylinder->ba_aux->z)) / cylinder->height;
+    x = sqrt(pa_squared - (y * y)) - cylinder->radius;
     if ((y > -MIN_DIST) && (y < cylinder->height))
     {
         if (x < -MIN_DIST)

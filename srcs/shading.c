@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/29 19:16:56 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:14:24 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,26 @@ t_coord	get_normal(t_program *p, t_coord *point)
 
 bool is_in_shadow(t_program *p, t_coord *point, t_coord *light_dir)
 {
-    double t = 0.001;
-    double min_dist;
-    double max_distance = v_module(v_sub(*point, *p->light->point));
+    double	t;
+    double	min_dist;
+    double	max_distance;
+	int		steps;
+	t_coord	ray_point;
 
-    while (t < max_distance) {
-        t_coord ray_point = v_add(*point, v_mul(*light_dir, t));
+	steps = 0;
+	t = 0.001;
+	max_distance = v_module(v_sub(*point, *p->light->point));
+    while ((t < max_distance) && (steps++ < MAX_STEPS))
+	{
+        ray_point = v_add(*point, v_mul(*light_dir, t));
         min_dist = min_sdf(ray_point, p);
 
-        if (min_dist < 0.0001) {
-            return true;
-        }
+        if (min_dist < 0.0001)
+            return (true);
         t += min_dist;
     }
     return false;
 }
-
 
 double	pcolor(t_program *p, t_llist *obj, t_coord *point)
 {
