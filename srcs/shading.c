@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/18 17:14:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:17:18 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool is_in_shadow(t_program *p, t_coord *point, t_coord *light_dir)
     return false;
 }
 
-double	pcolor(t_program *p, t_llist *obj, t_coord *point)
+double	pcolor(t_program *p, t_coord *point, t_llist *obj)
 {
 	double		light[3];
 	t_coord		normal;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/15 15:13:54 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:59:15 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,8 @@ void		viewpane_cleaner(t_viewpane *viewpane);
 double distance_cylinder(t_coord p, t_cylinder *cylinder);
 double distance_sphere(t_coord p, t_sphere *sphere);
 double		distance_plane(t_coord point, t_plane *plane);
-//t_llist		*min_distance(t_coord p, t_program *program, double *min);
-t_llist	*min_distance(t_coord p, t_program *program, double *min);
 double	    min_sdf(t_coord p, t_program *program);
+double	    min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int f_first, int *f);
 
 /*                   VECTOR OPERATIONS					    */
 t_coord		v_add(t_coord a, t_coord b);
@@ -123,7 +122,7 @@ int			horizontal_resolution(void);
 int			open_window(t_program prog, clock_t start);
 
 /*                        SHADING					        */
-double      pcolor(t_program *p, t_llist *obj, t_coord *point);
+double      pcolor(t_program *p, t_coord *point, t_llist *obj);
 t_coord	    get_normal(t_program *p, t_coord *point);
 
 t_bvh_node *build_bvh(t_llist *objects, size_t start, size_t end);

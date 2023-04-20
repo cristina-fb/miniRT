@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/18 17:55:47 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:22:22 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	distance_plane(t_coord p, t_plane *plane)
 
 double distance_cylinder(t_coord p, t_cylinder *cylinder)
 {
-    double 	x;
+    /*double 	x;
     double 	y;
 	double	pa_squared;
 	t_coord pa;
@@ -57,37 +57,45 @@ double distance_cylinder(t_coord p, t_cylinder *cylinder)
     }
     else if (y > cylinder->height)
         y -= cylinder->height;
-    return (sqrt(y * y + x * x));
-}
+    return (sqrt(y * y + x * x));*/
 
-t_llist	*min_distance(t_coord p, t_program *program, double *min)
-{
-	double	dist;
-	t_llist	*obj;
-	size_t	i;
-
-	i = -1;
-	*min = 0.0;
-	obj = NULL;
-	//(void)rd;
-	while (++i < program->n_geometries)
+	t_coord  ba;
+	ba.x = cylinder->bb->x - cylinder->ba->x;
+	ba.y = cylinder->bb->y - cylinder->ba->y;
+	ba.z = cylinder->bb->z - cylinder->ba->z;
+  	t_coord  pa;
+	pa.x = p.x - cylinder->ba->x;
+	pa.y = p.y - cylinder->ba->y;
+	pa.z = p.z - cylinder->ba->z;
+	double baba = pow(cylinder->height, 2.0);
+	double paba = (pa.x * ba.x) + (pa.y * ba.y) + (pa.z * ba.z);
+	double x = sqrt((pow((pa.x * baba) - (ba.x * paba), 2.0) + pow((pa.y * baba) - (ba.y * paba), 2.0) + pow((pa.z * baba) - (ba.z * paba), 2.0))) - cylinder->radius * baba;
+	double y = fabs(paba-(baba*0.5))-(baba*0.5);
+	double x2 = x*x;
+	double y2 = y*y*baba;
+	double d = 0.0;
+	double aux;
+	if (x < y)
+		aux = y;
+	else
+		aux = x;
+	if (aux<0.0)
 	{
-		if (program->shapes[i].type == 3)
-			dist = distance_cylinder(p, \
-			(t_cylinder *)program->shapes[i].content);
-		else if (program->shapes[i].type == 4)
-			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
-		else if (program->shapes[i].type == 5)
-			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
-		if ((i == 0) || ((dist > 0.0) && (dist < *min))) // en algún momento dist será menor a 0?
-		{
-			*min = dist;
-			obj = &program->shapes[i];
-		}
+		if (x2 > y2)
+			d = -y2;
+		else
+			d = -x2;
 	}
-	if (*min < MIN_DIST)
-		return (obj);
-	return (0);
+	else
+	{
+		if (x>0.0)
+			d = x2;
+		if (y>0.0)
+			d += y2;
+	}
+	if (d < 0.0)
+		return (-1 * sqrt(fabs(d))/baba);
+	return (sqrt(fabs(d))/baba);
 }
 
 double	min_sdf(t_coord p, t_program *program)
@@ -110,5 +118,48 @@ double	min_sdf(t_coord p, t_program *program)
 		if ((i == 0) || (fabs(dist) < fabs(min)))
 			min = dist;
 	}
+	return (min);
+}
+
+static double get_dist(t_coord p, t_llist obj)
+{
+	if (obj.type == 3)
+		return (distance_cylinder(p, \
+		(t_cylinder *)obj.content));
+	else if (obj.type == 4)
+		return (distance_plane(p, (t_plane *)obj.content));
+	return (distance_sphere(p, (t_sphere *)obj.content));
+}
+
+double	min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int f_first, int *f)
+{
+	double	dist;
+	double	min;
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	j = 0;
+	min = 0;
+	while (++i < program->n_geometries)
+	{
+		if (!f_first || !program->shapes[i].skip)
+		{
+			dist = get_dist(p, program->shapes[i]);
+			if(!f_first)
+				program->shapes[i].skip = false;
+			else if (dist > program->shapes[i].last_dist)
+				program->shapes[i].skip = true;
+			program->shapes[i].last_dist = dist;
+			if ((j == 0) || (fabs(dist) < fabs(min)))
+			{
+				min = dist;
+				*obj = program->shapes[i];
+			}
+			j++;
+		}
+	}
+	if (j == 0)
+		*f = 1;
 	return (min);
 }

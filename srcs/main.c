@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/15 17:07:16 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:07:55 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	raymarching(t_program *program)
 	int		i;
 	int		j;
 	int		n;
+	int 	f = 0;
 	double	min;
 	double	total;
 	t_coord	point;
-	t_llist	*aux;
+	t_llist	obj;
 
 	i = -1;
 	while (++i < HEIGHT)
@@ -67,19 +68,17 @@ void	raymarching(t_program *program)
 			n = 0;
 			total = 0;
 			point = *program->camera->center;
-			aux = NULL;
 			while ((total < MAX_DIST) && (n++ < MAX_STEPS))
 			{
-				aux = min_distance(point, program, &min);
-				if (aux)
+				min = min_sdf_loop(point, program, &obj, n - 1, &f);
+				if ((fabs(min) < MIN_DIST) || f == 1)
 					break ;
 				total += min;
 				point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
 			}
-			if (aux)
-			{
-				program->camera->vp->arr[i][j].color = pcolor(program, aux, &point);
-			}
+			if ((fabs(min) < MIN_DIST) && !f)
+				program->camera->vp->arr[i][j].color = pcolor(program, &point, &obj);
+			f = 0;
 		}
 	}
 }
@@ -87,7 +86,6 @@ void	raymarching(t_program *program)
 int	main(int argc, char **argv)
 {
 	clock_t start;
-
     start = clock();
 	t_program	program;
 	char		**file;
