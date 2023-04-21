@@ -6,7 +6,7 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/04/18 17:52:06 by crisfern         ###   ########.fr        #
+#    Updated: 2023/04/20 12:27:56 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ SRC_FILES = main.c utils_attr_parser.c ft_mod_atof.c num_str_format.c\
 			scene_cleaners.c scene_parser.c coords_parser.c\
 			distance.c vector_operations.c vector_operations1.c screen.c \
 			shading.c open_window.c
-
+			
 OBJ_FILES = $(SRC_FILES:.c=.o)
+
 # Directories #
 SRC_DIR = srcs/
 OBJ_DIR = obj/
@@ -44,11 +45,10 @@ HEADERS = -I ./ -I $(LIBMLX_DIR)/include
 HEADER = miniRT.h
 #/opt/homebrew/Cellar/glfw/3.3.8/lib/  -> path for home
 EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+
 # Flags #
 CFLAGS = -Wall -Wextra -Werror -g3 -fno-stack-protector -fomit-frame-pointer -Ofast
 CC = gcc
-
-
 
 all: install_cmake check_glfw make-libft libmlx $(NAME) 
 	@echo "Proyect $(NAME) ready!"

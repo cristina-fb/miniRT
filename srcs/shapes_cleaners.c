@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:23:12 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/08 18:52:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:37:21 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	cylinder_cleaner(t_cylinder *cylinder)
 		return ;
 	free(cylinder->vector);
 	free(cylinder->ba);
-	free(cylinder->bb);
+	free(cylinder->base);
 	free(cylinder->rgb);
 	free(cylinder);
 }

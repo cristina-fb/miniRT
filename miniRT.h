@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/20 11:59:15 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:55:17 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,8 @@ void		ambient_light_cleaner(t_ambient *ambient);
 void		viewpane_cleaner(t_viewpane *viewpane);
 
 /*                       DISTANCE					        */
-//double		distance_sphere(t_coord point, t_sphere *sphere);
-double distance_cylinder(t_coord p, t_cylinder *cylinder);
-double distance_sphere(t_coord p, t_sphere *sphere);
+double      distance_cylinder(t_coord p, t_cylinder *cylinder);
+double      distance_sphere(t_coord p, t_sphere *sphere);
 double		distance_plane(t_coord point, t_plane *plane);
 double	    min_sdf(t_coord p, t_program *program);
 double	    min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int f_first, int *f);
@@ -125,6 +124,4 @@ int			open_window(t_program prog, clock_t start);
 double      pcolor(t_program *p, t_coord *point, t_llist *obj);
 t_coord	    get_normal(t_program *p, t_coord *point);
 
-t_bvh_node *build_bvh(t_llist *objects, size_t start, size_t end);
-t_llist *distance_to_bvh(t_coord point, t_bvh_node *node, double *min_distance);
 #endif

@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/20 12:22:22 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:49:07 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,72 +30,33 @@ double	distance_plane(t_coord p, t_plane *plane)
 	return (fabs(dist));
 }
 
-double distance_cylinder(t_coord p, t_cylinder *cylinder)
+double distance_cylinder(t_coord p,t_cylinder *cy)
 {
-    /*double 	x;
-    double 	y;
-	double	pa_squared;
-	t_coord pa;
+  	t_coord	pa;
+	double	paba;
+	double	x;
+	double	y;
 	
-	pa.x = p.x - cylinder->ba->x;
-	pa.y = p.y - cylinder->ba->y;
-	pa.z = p.z - cylinder->ba->z;
-	pa_squared = pow(pa.x, 2.0) + pow(pa.y, 2.0) + pow(pa.z, 2.0);
-	y = ((pa.x * cylinder->ba_aux->x) + (pa.y * cylinder->ba_aux->y) + (pa.z * cylinder->ba_aux->z)) / cylinder->height;
-    x = sqrt(pa_squared - (y * y)) - cylinder->radius;
-    if ((y > -MIN_DIST) && (y < cylinder->height))
-    {
-        if (x < -MIN_DIST)
-            return (0.0);
-        return (x);
-    }
-    else if (x < -MIN_DIST)
-    {
-        if (y < -MIN_DIST)
-            return (-y);
-        return (y - cylinder->height);
-    }
-    else if (y > cylinder->height)
-        y -= cylinder->height;
-    return (sqrt(y * y + x * x));*/
-
-	t_coord  ba;
-	ba.x = cylinder->bb->x - cylinder->ba->x;
-	ba.y = cylinder->bb->y - cylinder->ba->y;
-	ba.z = cylinder->bb->z - cylinder->ba->z;
-  	t_coord  pa;
-	pa.x = p.x - cylinder->ba->x;
-	pa.y = p.y - cylinder->ba->y;
-	pa.z = p.z - cylinder->ba->z;
-	double baba = pow(cylinder->height, 2.0);
-	double paba = (pa.x * ba.x) + (pa.y * ba.y) + (pa.z * ba.z);
-	double x = sqrt((pow((pa.x * baba) - (ba.x * paba), 2.0) + pow((pa.y * baba) - (ba.y * paba), 2.0) + pow((pa.z * baba) - (ba.z * paba), 2.0))) - cylinder->radius * baba;
-	double y = fabs(paba-(baba*0.5))-(baba*0.5);
-	double x2 = x*x;
-	double y2 = y*y*baba;
-	double d = 0.0;
-	double aux;
-	if (x < y)
-		aux = y;
-	else
-		aux = x;
-	if (aux<0.0)
+	pa.x = p.x - cy->base->x;
+	pa.y = p.y - cy->base->y;
+	pa.z = p.z - cy->base->z;
+	paba = (pa.x * cy->ba->x) + (pa.y * cy->ba->y) + (pa.z * cy->ba->z);
+	x = sqrt((pow((pa.x * cy->baba) - (cy->ba->x * paba), 2.0) +\
+	pow((pa.y * cy->baba) - (cy->ba->y * paba), 2.0) + pow((pa.z * cy->baba) -\
+	(cy->ba->z * paba), 2.0))) - cy->radius * cy->baba;
+	y = fabs(paba-(cy->baba*0.5))-(cy->baba*0.5);
+	if ((x < 0.0) && (y < 0.0))
 	{
-		if (x2 > y2)
-			d = -y2;
+		if ((x*x) > (y*y*cy->baba))
+			return (-1 * sqrt(fabs(-y*y*cy->baba))/cy->baba);
 		else
-			d = -x2;
+			return (-1 * sqrt(fabs(-x*x))/cy->baba);
 	}
-	else
-	{
-		if (x>0.0)
-			d = x2;
-		if (y>0.0)
-			d += y2;
-	}
-	if (d < 0.0)
-		return (-1 * sqrt(fabs(d))/baba);
-	return (sqrt(fabs(d))/baba);
+	if ((x > 0.0) && (y > 0.0))
+		return (sqrt(fabs(x*x + y*y*cy->baba))/cy->baba);
+	if (x > 0.0)
+		return (sqrt(fabs(x*x))/cy->baba);
+	return (sqrt(fabs(y*y*cy->baba))/cy->baba);
 }
 
 double	min_sdf(t_coord p, t_program *program)
@@ -109,7 +70,7 @@ double	min_sdf(t_coord p, t_program *program)
 	while (++i < program->n_geometries)
 	{
 		if (program->shapes[i].type == 3)
-			dist = distance_cylinder(p, \
+			dist = distance_cylinder(p,\
 			(t_cylinder *)program->shapes[i].content);
 		else if (program->shapes[i].type == 4)
 			dist = distance_plane(p, (t_plane *)program->shapes[i].content);

@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/19 17:42:47 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:41:46 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ typedef struct s_llist
 	double		last_dist;
 	bool		skip;
 }t_llist;
-
-typedef struct s_bvh_node {
-    t_coord min; // Bounding box min corner
-    t_coord max; // Bounding box max corner
-    struct s_bvh_node *left; // Left child node
-    struct s_bvh_node *right; // Right child node
-    t_llist *geometry; // Pointer to geometry if this is a leaf node, NULL otherwise
-} t_bvh_node;
 
 typedef struct s_viewpane
 {
@@ -96,13 +88,12 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_coord		*vector;
+	t_coord		*base;
 	t_coord		*ba;
-	t_coord		*bb;
-	t_coord		*ba_aux;
 	double		diameter;
 	double		radius;
 	double		height;
-	double	baba;
+	double		baba;
 	short int	*rgb;
 }t_cylinder;
 
