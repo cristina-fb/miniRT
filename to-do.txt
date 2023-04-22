@@ -1,0 +1,6 @@
+* Ponerle el color negro a los píxeles que no tienen intersección.   X
+* Pasarle empty.rt da segfault ->(no lo estaba dando)      X
+* Investigar: tenemos efecto espejo? El de jvacaris renderiza en la dirección contraria
+* Solar_system.rt no se renderizan correctamente el sistema de anillos de Saturno
+* Algo mas falla en los cilindros, la escena de android.rt no hace los cilindros de las antenas correctamente, quizás 
+* Color_spheres.rt, la función de las sombras lo empeora, pero hay un cáculo en el plano un poco extraño, sale el plano recortado

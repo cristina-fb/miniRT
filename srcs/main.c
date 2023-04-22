@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/20 12:07:55 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:05:08 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	raymarching(t_program *program)
 	double	total;
 	t_coord	point;
 	t_llist	obj;
-
 	i = -1;
 	while (++i < HEIGHT)
 	{
@@ -78,6 +77,8 @@ void	raymarching(t_program *program)
 			}
 			if ((fabs(min) < MIN_DIST) && !f)
 				program->camera->vp->arr[i][j].color = pcolor(program, &point, &obj);
+			else
+				program->camera->vp->arr[i][j].color = 255;
 			f = 0;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:14:08 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/26 15:16:35 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:07:20 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ char	**open_read(char *file_name, char **err_message)
 	if (fd < 0)
 		*err_message = ft_strdup(ERR_C);
 	else
+	{
 		file = read_file(fd);
+		if (!file)
+			*err_message = ft_strdup(ERR_D);
+	}
 	close(fd);
 	return (file);
 }
