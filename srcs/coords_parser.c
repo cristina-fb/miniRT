@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coords_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:18:36 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/03/01 19:29:38 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:57:00 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_coord	*orientation_vector(char *str_cords)
 			coord = NULL;
 		}
 	}
+	*coord = v_unit(*coord);
 	return (coord);
 }
