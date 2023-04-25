@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_cleaners.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:53 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/09 14:38:03 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:01:44 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,14 @@ void	viewpane_cleaner(t_viewpane *viewpane)
 	if (!viewpane)
 		return ;
 	if (viewpane->init)
-	{
 		free(viewpane->init);
-		viewpane->init = NULL;
-	}
+	viewpane->init = NULL;
 	if (viewpane->up)
-	{
 		free(viewpane->up);
-		viewpane->up = NULL;
-	}
+	viewpane->up = NULL;
 	if (viewpane->right)
-	{
 		free(viewpane->right);
-		viewpane->right = NULL;
-	}
+	viewpane->right = NULL;
 	if (viewpane->arr)
 	{
 		viewpane_arr_cleaner(viewpane);

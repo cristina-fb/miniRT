@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/20 10:55:57 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:34:27 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,22 @@ bool	filename_format(char *file_name)
 	return (false);
 }
 
+void print_default_instructions(void)
+{
+	printf("Please make sure the map has the established format.\n");
+	printf("Elements defined by an uppercase must only be declared once\n");
+	printf("Ambient light: [identifier -> A] ");
+	printf("[ambient lighting ratio in range -> [0.0,1.0] ] \n");
+	printf("[]");
+}
+
 void	print_error(char *message)
 {
 	printf("ERROR\n");
 	if (message)
 		printf("%s\n", message);
 	else
-		printf("ME FALTA crear el mensaje por defecto"); //TODO
+		print_default_instructions();
 }
 
 void	print_program_data(t_program program)

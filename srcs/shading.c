@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/19 16:17:18 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:56:32 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ double	pcolor(t_program *p, t_coord *point, t_llist *obj)
             light[1] += ratio * p->light->rgb[1];
             light[2] += ratio * p->light->rgb[2];
         }
-		/*light[0] += ratio * p->light->rgb[0];
-		light[1] += ratio * p->light->rgb[1];
-		light[2] += ratio * p->light->rgb[2];*/
 		color[0] = (light[0] / 255) * object_rgb(obj)[0];
 		color[1] = (light[1] / 255) * object_rgb(obj)[1];
 		color[2] = (light[2] / 255) * object_rgb(obj)[2];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/24 17:28:17 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:00:33 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int	main(int argc, char **argv)
 		free(err_message);
 		return (0);
 	}
-	//print_program_data(program);
 	raymarching(&program);
 	open_window(program, start);
+	free_program_data(&program, true);
 	return (0);
 }
