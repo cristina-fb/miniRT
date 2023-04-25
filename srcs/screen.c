@@ -105,7 +105,5 @@ bool	pixels_array(t_camera *cam)
 			exit(1);
 		}
 	}
-	//printf("rayo central pepep= x=%f y =%f  z= %f\n", cam->vp->arr[360][540].ray->x, cam->vp->arr[360][540].ray->y, cam->vp->arr[360][540].ray->z);
-	//exit(1);
-	return (err);
+	return (err == false);
 }

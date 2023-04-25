@@ -55,9 +55,12 @@ bool	parse_camera(t_program *program)
 	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err) * M_PI / 180;
 	program->camera->vp = ft_calloc(1, sizeof(t_viewpane));
 	if (!program->camera->center || !program->camera->dir || err
-		|| is_not_fov(program->camera->fov) || init_vp(program->camera))
+		|| is_not_fov(program->camera->fov))
+	{
 		camera_cleaner(program->camera);
-	return (err == false);
+		return (false);
+	}
+	return (init_vp(program->camera));
 }
 
 bool	parse_ambient_ligth(t_program *program)

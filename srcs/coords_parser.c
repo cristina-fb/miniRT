@@ -61,6 +61,7 @@ t_coord	*orientation_vector(char *str_cords)
 			coord = NULL;
 		}
 	}
-	*coord = v_unit(*coord);
+	if (coord)
+		*coord = v_unit(*coord);
 	return (coord);
 }
