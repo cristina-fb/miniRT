@@ -52,7 +52,7 @@ bool	parse_camera(t_program *program)
 		return (false);
 	program->camera->center = get_coords(program->attr_buf[1]);
 	program->camera->dir = orientation_vector(program->attr_buf[2]);
-	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err) * M_PI / 180;
+	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
 	program->camera->vp = ft_calloc(1, sizeof(t_viewpane));
 	if (!program->camera->center || !program->camera->dir || err
 		|| is_not_fov(program->camera->fov))
@@ -60,6 +60,7 @@ bool	parse_camera(t_program *program)
 		camera_cleaner(program->camera);
 		return (false);
 	}
+	program->camera->fov *= M_PI / 180;
 	return (init_vp(program->camera));
 }
 
