@@ -70,3 +70,6 @@ void	free_program_data(t_program *program, bool clean_content)
 	array_geometries_clear(program->shapes, program->n_geometries);
 	program->shapes = NULL;
 }
+
+
+

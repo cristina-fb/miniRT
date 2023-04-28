@@ -60,6 +60,8 @@ bool	parse_camera(t_program *program)
 		camera_cleaner(program->camera);
 		return (false);
 	}
+	if (program->camera->fov == 180.0)
+		program->camera->fov = 179.999;
 	program->camera->fov *= M_PI / 180;
 	return (init_vp(program->camera));
 }

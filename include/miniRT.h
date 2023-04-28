@@ -31,8 +31,8 @@
 # define N_TYPES 6
 
 /*                     Resolution                         */
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 
 /*               Number of data for element                */
 # define N_DATA_A 3

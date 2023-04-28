@@ -79,6 +79,8 @@ t_llist	*lst_to_array(t_list *lst, size_t size)
 	{
 		array[i].content = lst->content;
 		array[i].type = lst->type;
+		array[i].last_dist = 0.0;
+		array[i].skip = 0;
 		lst = lst->next;
 		i++;
 	}

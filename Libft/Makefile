@@ -15,7 +15,7 @@ NAME 		= libft.a
 CC 			= gcc
 CFLAGS 		= -Wall -Werror -Wextra
 
-SRC_DIR 	= srcs/
+SRC_DIR 	= src/
 SRC_NAMES 	=  ft_atoi.c \
 				get_next_line.c \
 				ft_bzero.c \
@@ -67,7 +67,7 @@ SRC_NAMES 	=  ft_atoi.c \
 				ft_lstsize.c
 
 SRCS 		= $(addprefix $(SRC_DIR), $(SRC_NAMES))
-OBJ_DIR 	= objs/
+OBJ_DIR 	= obj/
 OBJ_NAMES 	= $(SRC_NAMES:.c=.o)
 OBJS 		= $(addprefix $(OBJ_DIR), $(OBJ_NAMES))
 
