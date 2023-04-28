@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/20 15:55:17 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:29:40 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define N_DATA_P 4
 # define N_DATA_CY 6
 
-# define MAX_STEPS 1000
-# define MAX_DIST 1000.
+# define MAX_STEPS 100000
+# define MAX_DIST 100000.
 # define MIN_DIST 0.01
 
 /* ------------------- FUNCTIONS -------------------------- */
