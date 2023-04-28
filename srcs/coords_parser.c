@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:18:36 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/24 16:57:00 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:58:30 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	save_coords(t_coord *coord, char **floats_buf, bool *err)
 {
 	coord->x = ft_mod_atof(floats_buf[0], err);
-	coord->z = ft_mod_atof(floats_buf[1], err);
-	coord->y = ft_mod_atof(floats_buf[2], err);
+	coord->y = ft_mod_atof(floats_buf[1], err);
+	coord->z = ft_mod_atof(floats_buf[2], err);
 }
 
 t_coord	*get_coords(char *str_coords)
