@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/24 16:57:57 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:25:29 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ bool	parse_light(t_program *program)
 	return (err == false);
 }
 
+double	convert_fov_to_radians(double fov)
+{
+	if (fov == 180.0)
+		fov = 179.999;
+	fov *= M_PI / 180;
+	return (fov);
+}
+
 bool	parse_camera(t_program *program)
 {
 	bool		err;
@@ -60,9 +68,7 @@ bool	parse_camera(t_program *program)
 		camera_cleaner(program->camera);
 		return (false);
 	}
-	if (program->camera->fov == 180.0)
-		program->camera->fov = 179.999;
-	program->camera->fov *= M_PI / 180;
+	program->camera->fov = convert_fov_to_radians(program->camera->fov);
 	return (init_vp(program->camera));
 }
 

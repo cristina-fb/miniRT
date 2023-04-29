@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:45:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/03/01 19:09:37 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:01:30 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	fill_vp(t_camera *cam, t_coord *vp_center, t_coord *up)
 	aux = v_sub(*vp_center, v_mul(*cam->vp->right, cam->vp->width / 2.0f));
 	aux = v_sub(aux, v_mul(*cam->vp->up, cam->vp->height / 2.0f));
 	aux = v_add(aux, v_mul(*cam->vp->right, cam->vp->pixel_width / 2.0f));
-	*cam->vp->init = v_add(aux, v_mul(*cam->vp->up, cam->vp->pixel_height / 2.0f));
+	*cam->vp->init = v_add(aux, \
+					v_mul(*cam->vp->up, cam->vp->pixel_height / 2.0f));
 }
 
 bool	init_vp(t_camera *cam)
@@ -51,8 +52,7 @@ bool	init_vp(t_camera *cam)
 	cam->vp->width = 2.00 * tanf((double)cam->fov / 2.00);
 	cam->vp->height = (double)cam->vp->width / ((double)WIDTH / (double)HEIGHT);
 	cam->vp->pixel_width = (double)cam->vp->width / (double)WIDTH;
-    cam->vp->pixel_height = (double)cam->vp->height / (double)HEIGHT;
-	printf("%f, %f, %f, %f\n",cam->vp->width,cam->vp->height, cam->vp->pixel_width, cam->vp->pixel_height);
+	cam->vp->pixel_height = (double)cam->vp->height / (double)HEIGHT;
 	vp_center = v_add(*(cam->center), *(cam->dir));
 	fill_vp(cam, &vp_center, &up);
 	return (pixels_array(cam));
@@ -77,33 +77,52 @@ static void	fill_pixels_array(t_camera *cam, int i, int j, bool *err)
 	cam->vp->arr[HEIGHT - i - 1][j] = (t_pixel){ray, 0};
 }
 
-bool	pixels_array(t_camera *cam)
+static bool	create_pixel_array(t_camera *cam)
 {
-	int		i;
-	int		j;
-	int		indx;
-	bool	err;
+	int	i;
+	int	indx;
 
-	err = false;
-	i = -1;
-	cam->vp->arr = (t_pixel**)malloc(HEIGHT * sizeof(t_pixel*));
+	cam->vp->arr = (t_pixel **)malloc(HEIGHT * sizeof(t_pixel *));
 	if (!cam->vp->arr)
 		return (false);
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		indx = HEIGHT - i - 1;
+		cam->vp->arr[indx] = (t_pixel *)malloc(WIDTH * sizeof(t_pixel));
+		if (!cam->vp->arr[indx])
+			return (false);
+	}
+	return (true);
+}
+
+static void	fill_pixel_array(t_camera *cam, bool *err)
+{
+	int	i;
+	int	j;
+
+	i = -1;
 	while (++i < HEIGHT)
 	{
 		j = -1;
-		indx = HEIGHT - i - 1;
-		cam->vp->arr[indx] = (t_pixel*)malloc(WIDTH * sizeof(t_pixel));
-		if (cam->vp->arr[indx])
-		{
-			while (++j < WIDTH)
-				fill_pixels_array(cam, i, j, &err);
-		}
-		else
-		{
-			err = true;
-			exit(1);
-		}
+		while (++j < WIDTH)
+			fill_pixels_array(cam, i, j, err);
+	}
+}
+
+bool	pixels_array(t_camera *cam)
+{
+	bool	err;
+
+	err = false;
+	if (!create_pixel_array(cam))
+	{
+		err = true;
+		exit(1);
+	}
+	else
+	{
+		fill_pixel_array(cam, &err);
 	}
 	return (err == false);
 }

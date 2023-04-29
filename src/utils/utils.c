@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/25 19:34:27 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:44:49 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	filename_format(char *file_name)
 	return (false);
 }
 
-void print_default_instructions(void)
+void	print_default_instructions(void)
 {
 	printf("Please make sure the map has the established format.\n");
 	printf("Elements defined by an uppercase must only be declared once\n");

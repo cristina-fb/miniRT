@@ -13,3 +13,7 @@
 
 cosas random:
 * dirección cámara 0,0,0 no peta, en realidad es como no definirle dirección no¿?
+
+* Falta ordenar Makefile
+* Falta dividir las funciones raymarching y min_sdf, está complicada la cosa ... =),
+hay que hablarlo con chatgpt 

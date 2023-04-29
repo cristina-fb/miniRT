@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/25 19:00:33 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:20:02 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ void	raymarching(t_program *program)
 	int		i;
 	int		j;
 	int		n;
-	int 	f = 0;
+	int		f;
 	double	min;
 	double	total;
 	t_coord	point;
 	t_llist	obj;
+
 	i = -1;
+	f = 0;
 	while (++i < HEIGHT)
 	{
 		j = -1;
@@ -86,7 +88,7 @@ void	raymarching(t_program *program)
 
 int	main(int argc, char **argv)
 {
-	clock_t start;
+	clock_t	start;
     start = clock();
 	t_program	program;
 	char		**file;
