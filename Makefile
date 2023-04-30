@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
+#    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/04/20 12:27:56 by crisfern         ###   ########.fr        #
+#    Updated: 2023/04/30 19:23:32 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ $(NAME): $(OBJ)
 	@echo "HOLLALSLSLSLSL"
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_DIR)$(LIBFT) $(EXTRALIBS) -o $(NAME)
 
-# OBJECTS creation
+# OBJECTS CREATION
 $(OBJ_DIR)%.o: $(SRC_DIR)$(CLEANER_DIR)%.c $(HEADERS_PATHS)
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(HEADERS) -c $< -o $@
 

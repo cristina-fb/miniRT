@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/29 15:18:43 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:56:59 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		**open_read(char *file_name, char **err_message);
 /*                       RGB                                */
 short int	*get_rgb(char *attr_buf, bool *err);
 short int	*object_rgb(t_llist *obj);
-int         get_int_color(short int *rgb);
+int			get_int_color(short int *rgb);
 
 /*                  GEOMETRIES PARSER                       */
 bool		parse_sphere(t_program *program);
@@ -96,11 +96,11 @@ void		ambient_light_cleaner(t_ambient *ambient);
 void		viewpane_cleaner(t_viewpane *viewpane);
 
 /*                       DISTANCE					        */
-double      distance_cylinder(t_coord p, t_cylinder *cylinder);
-double      distance_sphere(t_coord p, t_sphere *sphere);
+double		distance_cylinder(t_coord p, t_cylinder *cylinder);
+double		distance_sphere(t_coord p, t_sphere *sphere);
 double		distance_plane(t_coord point, t_plane *plane);
-double	    min_sdf(t_coord p, t_program *program);
-double      min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int *f);
+double		min_sdf(t_coord p, t_program *program);
+double		min_sdf_loop(t_coord p, t_program *program, t_min_sdf_data *data);
 
 /*                   VECTOR OPERATIONS					    */
 t_coord		v_add(t_coord a, t_coord b);
@@ -121,7 +121,7 @@ int			horizontal_resolution(void);
 int			open_window(t_program prog, clock_t start);
 
 /*                        SHADING					        */
-double      pcolor(t_program *p, t_coord *point, t_llist *obj);
-t_coord	    get_normal(t_program *p, t_coord *point);
+double		pcolor(t_program *p, t_coord *point, t_llist *obj);
+t_coord		get_normal(t_program *p, t_coord *point);
 
 #endif

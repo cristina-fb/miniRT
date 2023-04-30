@@ -7,13 +7,11 @@
 * El programa debe salir al presionar ESC				X
 * DA SEGFAULT si las coordenadas de los vectores son > +-1    X
 * Comprobar normalización de vectores en el parseo X
+* inicializar last_dist y skip de t_llist X 
+* Falta dividir las funciones raymarching y min_sdf, está complicada la cosa ... =) X
+
+
 * Hacer mensaje por defecto para los errores de sintaxis o límites de vectores en el .rt (las instrucciones valdría)
-* tener en cuenta lo del submódulo ya que este no se clona por si solo (lo ideal creo que sería dejarlo puesto en el makefile)
-* inicializar last_dist y skip de t_llist X
-
-cosas random:
 * dirección cámara 0,0,0 no peta, en realidad es como no definirle dirección no¿?
-
+* tener en cuenta lo del submódulo ya que este no se clona por si solo (lo ideal creo que sería dejarlo puesto en el makefile)
 * Falta ordenar Makefile
-* Falta dividir las funciones raymarching y min_sdf, está complicada la cosa ... =),
-hay que hablarlo con chatgpt 

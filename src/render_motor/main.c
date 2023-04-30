@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/29 18:20:02 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:52:35 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,35 +48,35 @@ char	**basic_parser(int argc, char **argv, char **err_message)
 	return (file);
 }
 
-int raymarching_inner_loop(t_program *program, int i, int j, int *f)
+int	raymarching_loop(t_program *program, int i, int j, t_min_sdf_data *data)
 {
 	int		n;
 	double	min;
 	double	total;
 	t_coord	point;
-	t_llist	obj;
 
 	n = 0;
 	total = 0;
 	point = *program->camera->center;
 	while ((total < MAX_DIST) && (n++ < MAX_STEPS))
 	{
-		min = min_sdf_loop(point, program, &obj, f);
-		if ((fabs(min) < MIN_DIST) || *f == 1)
-			break;
+		data->f_first = n - 1;
+		min = min_sdf_loop(point, program, data);
+		if ((fabs(min) < MIN_DIST) || data->f == 1)
+			break ;
 		total += min;
 		point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
 	}
-	if ((fabs(min) < MIN_DIST) && !(*f))
-		return (pcolor(program, &point, &obj));
+	if ((fabs(min) < MIN_DIST) && !data->f)
+		return (pcolor(program, &point, &data->obj));
 	return (255);
 }
 
 void	raymarching(t_program *program)
 {
-	int		i;
-	int		j;
-	int		f;
+	t_min_sdf_data	data;
+	int				i;
+	int				j;
 
 	i = -1;
 	while (++i < HEIGHT)
@@ -84,49 +84,12 @@ void	raymarching(t_program *program)
 		j = -1;
 		while (++j < WIDTH)
 		{
-			f = 0;
-			program->camera->vp->arr[i][j].color = raymarching_inner_loop(program, i, j, &f);
+			data.f = 0;
+			program->camera->vp->arr[i][j].color = raymarching_loop(program, \
+			i, j, &data);
 		}
 	}
 }
-
-/*void	raymarching(t_program *program)
-{
-	int		i;
-	int		j;
-	int		n;
-	int		f;
-	double	min;
-	double	total;
-	t_coord	point;
-	t_llist	obj;
-
-	i = -1;
-	f = 0;
-	while (++i < HEIGHT)
-	{
-		j = -1;
-		while (++j < WIDTH)
-		{
-			n = 0;
-			total = 0;
-			point = *program->camera->center;
-			while ((total < MAX_DIST) && (n++ < MAX_STEPS))
-			{
-				min = min_sdf_loop(point, program, &obj, n - 1, &f);
-				if ((fabs(min) < MIN_DIST) || f == 1)
-					break ;
-				total += min;
-				point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
-			}
-			if ((fabs(min) < MIN_DIST) && !f)
-				program->camera->vp->arr[i][j].color = pcolor(program, &point, &obj);
-			else
-				program->camera->vp->arr[i][j].color = 255;
-			f = 0;
-		}
-	}
-}*/
 
 int	main(int argc, char **argv)
 {

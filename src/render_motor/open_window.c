@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:02:17 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/29 18:13:12 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:54:12 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int	open_window(t_program prog, clock_t start)
 	{
 		j = -1;
 		while (++j < WIDTH)
-		{
 			mlx_put_pixel(img, j, i, prog.camera->vp->arr[i][j].color);
-		}
 	}
 	end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;

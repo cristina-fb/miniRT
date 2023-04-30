@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/21 17:41:46 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:58:30 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,21 @@ typedef struct s_llist
 	bool		skip;
 }t_llist;
 
+typedef struct s_min_sdf_data
+{
+	t_llist	obj;
+	int		f_first;
+	int		f;
+}t_min_sdf_data;
+
 typedef struct s_viewpane
 {
 	t_coord	*init;
 	t_coord	*up;
 	t_coord	*right;
 	t_pixel	**arr;
-	double pixel_width;
-	double pixel_height;
+	double	pixel_width;
+	double	pixel_height;
 	double	width;
 	double	height;
 }t_viewpane;
@@ -106,8 +113,8 @@ typedef struct s_program
 	t_llist		*shapes;
 	size_t		n_geometries;
 	char		**attr_buf;
-	int			s_width;//screen_width
-	int			s_height;//screen_height
+	int			s_width;
+	int			s_height;
 }t_program;
 
 #endif

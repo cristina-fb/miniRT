@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/29 18:38:21 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:27:50 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,15 @@ static double	get_dist(t_coord p, t_llist obj)
 	return (distance_sphere(p, (t_sphere *)obj.content));
 }
 
-/*double	min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int f_first, int *f)
+void	skipper(t_program *program, t_min_sdf_data *data, double dist, int i)
+{
+	if (!data->f_first)
+		program->shapes[i].skip = false;
+	else if (dist > program->shapes[i].last_dist)
+		program->shapes[i].skip = true;
+}
+
+double	min_sdf_loop(t_coord p, t_program *program, t_min_sdf_data *data)
 {
 	double	dist;
 	double	min;
@@ -106,53 +114,19 @@ static double	get_dist(t_coord p, t_llist obj)
 	min = 0;
 	while (++i < program->n_geometries)
 	{
-		if (!f_first || !program->shapes[i].skip)
+		if (!data->f_first || !program->shapes[i].skip)
 		{
 			dist = get_dist(p, program->shapes[i]);
-			if(!f_first)
-				program->shapes[i].skip = false;
-			else if (dist > program->shapes[i].last_dist)
-				program->shapes[i].skip = true;
+			skipper(program, data, dist, i);
 			program->shapes[i].last_dist = dist;
 			if ((j == 0) || (fabs(dist) < fabs(min)))
 			{
 				min = dist;
-				*obj = program->shapes[i];
+				data->obj = program->shapes[i];
 			}
 			j++;
 		}
 	}
-	if (j == 0)
-		*f = 1;
-	return (min);
-}*/
-
-double	min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int *f)
-{
-	double	dist;
-	double	min;
-	size_t	i;
-
-	i = -1;
-	min = 0;
-	while (++i < program->n_geometries)
-	{
-		if (*f == 0 || !program->shapes[i].skip)
-		{
-			dist = get_dist(p, program->shapes[i]);
-			if(*f == 0)
-				program->shapes[i].skip = false;
-			else if (dist > program->shapes[i].last_dist)
-				program->shapes[i].skip = true;
-			program->shapes[i].last_dist = dist;
-			if ((i == 0) || (fabs(dist) < fabs(min)))
-			{
-				min = dist;
-				*obj = program->shapes[i];
-			}
-		}
-	}
-	if (i == 0)
-		*f = 1;
+	data->f = !j;
 	return (min);
 }
