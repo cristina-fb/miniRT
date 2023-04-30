@@ -100,7 +100,7 @@ double      distance_cylinder(t_coord p, t_cylinder *cylinder);
 double      distance_sphere(t_coord p, t_sphere *sphere);
 double		distance_plane(t_coord point, t_plane *plane);
 double	    min_sdf(t_coord p, t_program *program);
-double	    min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int f_first, int *f);
+double      min_sdf_loop(t_coord p, t_program *program, t_llist *obj, int *f);
 
 /*                   VECTOR OPERATIONS					    */
 t_coord		v_add(t_coord a, t_coord b);

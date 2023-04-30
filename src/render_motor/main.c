@@ -48,7 +48,49 @@ char	**basic_parser(int argc, char **argv, char **err_message)
 	return (file);
 }
 
+int raymarching_inner_loop(t_program *program, int i, int j, int *f)
+{
+	int		n;
+	double	min;
+	double	total;
+	t_coord	point;
+	t_llist	obj;
+
+	n = 0;
+	total = 0;
+	point = *program->camera->center;
+	while ((total < MAX_DIST) && (n++ < MAX_STEPS))
+	{
+		min = min_sdf_loop(point, program, &obj, f);
+		if ((fabs(min) < MIN_DIST) || *f == 1)
+			break;
+		total += min;
+		point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
+	}
+	if ((fabs(min) < MIN_DIST) && !(*f))
+		return (pcolor(program, &point, &obj));
+	return (255);
+}
+
 void	raymarching(t_program *program)
+{
+	int		i;
+	int		j;
+	int		f;
+
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		j = -1;
+		while (++j < WIDTH)
+		{
+			f = 0;
+			program->camera->vp->arr[i][j].color = raymarching_inner_loop(program, i, j, &f);
+		}
+	}
+}
+
+/*void	raymarching(t_program *program)
 {
 	int		i;
 	int		j;
@@ -84,7 +126,7 @@ void	raymarching(t_program *program)
 			f = 0;
 		}
 	}
-}
+}*/
 
 int	main(int argc, char **argv)
 {
