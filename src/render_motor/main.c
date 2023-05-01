@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/30 18:52:35 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:59:05 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void	raymarching(t_program *program)
 
 int	main(int argc, char **argv)
 {
-	clock_t	start;
-    start = clock();
 	t_program	program;
 	char		**file;
 	bool		err;
@@ -105,6 +103,7 @@ int	main(int argc, char **argv)
 	file = basic_parser(argc, argv, &err_message);
 	err = err_message;
 	program = process_data(file, &err);
+	ft_free_matrix(file);
 	if (err || !program.camera || !program.light || !program.ambient)
 	{
 		print_error(err_message);
@@ -112,7 +111,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	raymarching(&program);
-	open_window(program, start);
+	open_window(program);
 	free_program_data(&program, true);
 	return (0);
 }

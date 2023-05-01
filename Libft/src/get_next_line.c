@@ -6,17 +6,17 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:08:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/12/10 17:18:25 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:57:35 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t ft_mod_strlen(const char *str)
+static size_t	ft_mod_strlen(const char *str)
 {
 	if (!str)
 		return (0);
-	return(ft_strlen(str));
+	return (ft_strlen(str));
 }
 
 static int	ft_return(ssize_t n_bytes, char **save, char **line)
@@ -57,7 +57,7 @@ int	get_next_line(int fd, char **line)
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	n_bytes = read(fd, buff, BUFFER_SIZE);
-	while (n_bytes > 0 )
+	while (n_bytes > 0)
 	{
 		buff[n_bytes] = '\0';
 		if (!save[fd])

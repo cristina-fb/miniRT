@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:02:17 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/30 18:54:12 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:06:58 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	ft_hook(void *param)
 		mlx_close_window(mlx);
 }
 
-int	open_window(t_program prog, clock_t start)
+int	open_window(t_program prog)
 {
-	clock_t		end;
-	double		cpu_time_used;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	int			i;
@@ -43,10 +41,6 @@ int	open_window(t_program prog, clock_t start)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		ft_error();
-	printf("%d, %d\n", WIDTH, HEIGHT);
-	end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("El tiempo de ejecución de la porción de código fue de %f segundos.\n", cpu_time_used);
 	i = -1;
 	while (++i < HEIGHT)
 	{
@@ -54,9 +48,6 @@ int	open_window(t_program prog, clock_t start)
 		while (++j < WIDTH)
 			mlx_put_pixel(img, j, i, prog.camera->vp->arr[i][j].color);
 	}
-	end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("El tiempo de ejecución de la porción de código fue de %f segundos.\n", cpu_time_used);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

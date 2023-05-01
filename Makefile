@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/04/30 19:23:32 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/05/01 19:04:12 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ RENDER_FILES = distance.c\
 				rgb.c\
 				screen.c\
 				shading.c\
+				sdf.c\
 				vector_operations.c\
 				vector_operations1.c
 
@@ -79,7 +80,7 @@ EXTRALIBS	:= $(LIBMLX_DIR)/build/libmlx42.a -ldl\
 				-lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 
 # Flags #
-CFLAGS = -Wall -Wextra -Werror -g3 -fno-stack-protector -fomit-frame-pointer -Ofast
+CFLAGS = -Wall -Wextra -Werror -fno-stack-protector -fomit-frame-pointer -Ofast
 CC = gcc
 
 all: obj install_cmake check_glfw make-libft libmlx $(NAME) 
@@ -89,7 +90,6 @@ libmlx:
 	@cmake $(LIBMLX_DIR) -B $(LIBMLX_DIR)/build && make -C $(LIBMLX_DIR)/build -j4
 
 $(NAME): $(OBJ)
-	@echo "HOLLALSLSLSLSL"
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_DIR)$(LIBFT) $(EXTRALIBS) -o $(NAME)
 
 # OBJECTS CREATION

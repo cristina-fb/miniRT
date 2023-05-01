@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 17:45:39 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/11/01 10:44:57 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:53:36 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdbool.h>
+# include <stdio.h>
+# include <limits.h>
+# include <stdbool.h>
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 100
+#  define BUFFER_SIZE 100
 # endif
 
 typedef struct s_list
@@ -75,8 +75,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
-int	get_next_line(int fd, char **line);
-size_t  ft_matrix_len(char **matrix);
-void    ft_free_matrix(char **matrix);
-int	ft_word_count(char const *str, char c);
+int		get_next_line(int fd, char **line);
+size_t	ft_matrix_len(char **matrix);
+void	ft_free_matrix(char **matrix);
+int		ft_word_count(char const *str, char c);
 #endif

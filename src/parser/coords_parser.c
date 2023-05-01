@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   coords_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:18:36 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/27 15:58:30 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:40:17 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-/* returns a t_coord pointer to t_coord struct*/
 void	save_coords(t_coord *coord, char **floats_buf, bool *err)
 {
 	coord->x = ft_mod_atof(floats_buf[0], err);
@@ -20,6 +19,7 @@ void	save_coords(t_coord *coord, char **floats_buf, bool *err)
 	coord->z = ft_mod_atof(floats_buf[2], err);
 }
 
+/* returns a t_coord pointer to t_coord struct*/
 t_coord	*get_coords(char *str_coords)
 {
 	char	**floats_buf;

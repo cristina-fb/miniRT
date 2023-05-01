@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 12:57:07 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:23:22 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,6 @@ void	print_error(char *message)
 	else
 		print_default_instructions();
 }
-
-void	print_program_data(t_program program)
-{
-	printf("------------------CAMERA---------------\n");
-	printf("Center: x -> %f , y -> %f , z -> %f\n", program.camera->center->x, program.camera->center->y, program.camera->center->z);
-	printf("Orientation: x -> %f, y -> %f, z -> %f\n", program.camera->dir->x, program.camera->dir->y, program.camera->dir->z);
-	printf("fov: %f \n", program.camera->fov);
-	printf("------------------LIGHT----------------\n");
-	printf("Pointer: x -> %f , y -> %f , z -> %f\n", program.light->point->x, program.light->point->y, program.light->point->z);
-	printf("Ratio: %f \n", program.light->ratio);
-	printf("rgb: %d  %d  %d\n", program.light->rgb[0], program.light->rgb[1], program.light->rgb[2]);
-	printf("-----------------AMBIENT---------------\n");
-	printf("rgb: %d  %d  %d\n", program.ambient->rgb[0], program.ambient->rgb[1], program.ambient->rgb[2]);
-	printf("ratio: %f \n", program.ambient->ratio);
-	printf("-----------------GEOMETRIES--------------\n");
-	for (size_t i = 0; i < program.n_geometries ; i++)
-	{
-		printf("type : %d\n", program.shapes[i].type);
-		//printf("COLOR %d\n", get_int_color(((t_sphere *)program.shapes[i].content)->rgb));
-	}
-}
-
 
 t_llist	*lst_to_array(t_list *lst, size_t size)
 {

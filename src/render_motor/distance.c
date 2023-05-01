@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/30 19:27:50 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:59:24 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,74 +59,4 @@ double	distance_cylinder(t_coord p, t_cylinder *cy)
 	if (x > 0.0)
 		return (sqrt(fabs(x * x)) / cy->baba);
 	return (sqrt(fabs(y * y * cy->baba)) / cy->baba);
-}
-
-double	min_sdf(t_coord p, t_program *program)
-{
-	double	dist;
-	double	min;
-	size_t	i;
-
-	i = -1;
-	min = 0;
-	while (++i < program->n_geometries)
-	{
-		if (program->shapes[i].type == 3)
-			dist = distance_cylinder(p, \
-			(t_cylinder *)program->shapes[i].content);
-		else if (program->shapes[i].type == 4)
-			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
-		else if (program->shapes[i].type == 5)
-			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
-		if ((i == 0) || (fabs(dist) < fabs(min)))
-			min = dist;
-	}
-	return (min);
-}
-
-static double	get_dist(t_coord p, t_llist obj)
-{
-	if (obj.type == 3)
-		return (distance_cylinder(p, \
-		(t_cylinder *)obj.content));
-	else if (obj.type == 4)
-		return (distance_plane(p, (t_plane *)obj.content));
-	return (distance_sphere(p, (t_sphere *)obj.content));
-}
-
-void	skipper(t_program *program, t_min_sdf_data *data, double dist, int i)
-{
-	if (!data->f_first)
-		program->shapes[i].skip = false;
-	else if (dist > program->shapes[i].last_dist)
-		program->shapes[i].skip = true;
-}
-
-double	min_sdf_loop(t_coord p, t_program *program, t_min_sdf_data *data)
-{
-	double	dist;
-	double	min;
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	j = 0;
-	min = 0;
-	while (++i < program->n_geometries)
-	{
-		if (!data->f_first || !program->shapes[i].skip)
-		{
-			dist = get_dist(p, program->shapes[i]);
-			skipper(program, data, dist, i);
-			program->shapes[i].last_dist = dist;
-			if ((j == 0) || (fabs(dist) < fabs(min)))
-			{
-				min = dist;
-				data->obj = program->shapes[i];
-			}
-			j++;
-		}
-	}
-	data->f = !j;
-	return (min);
 }

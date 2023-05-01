@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:53 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/25 18:01:44 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:52:40 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	camera_cleaner(t_camera *camera)
 	camera->center = NULL;
 	free(camera->dir);
 	camera->dir = NULL;
+	viewpane_cleaner(camera->vp);
 	free(camera->vp);
 	camera->vp = NULL;
 }
@@ -84,4 +85,7 @@ void	light_cleaner(t_light *light)
 		return ;
 	free(light->point);
 	light->point = NULL;
+	if (light->rgb)
+		free(light->rgb);
+	light->rgb = 0;
 }

@@ -6,13 +6,13 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:23:18 by jalvarad          #+#    #+#             */
-/*   Updated: 2022/09/25 11:27:54 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:55:10 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool ft_isspace(int c)
+bool	ft_isspace(int c)
 {
-    return ((c >= 9 && c <= 13) || c == ' ');
+	return ((c >= 9 && c <= 13) || c == ' ');
 }

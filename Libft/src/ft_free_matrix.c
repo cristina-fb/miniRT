@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:08:34 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/01 12:45:13 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:50:34 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	ft_free_matrix(char **matrix)
 	if (!matrix)
 		return ;
 	while (matrix[i])
+	{
+		free(matrix[i]);
+		matrix[i] = NULL;
 		i++;
+	}
 	free(matrix);
 }

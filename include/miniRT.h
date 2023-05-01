@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/04/30 18:56:59 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:02:40 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,8 @@ t_coord		v_unit(t_coord v);
 
 /*                        SCREEN					        */
 bool		init_vp(t_camera *cam);
-bool		pixels_array(t_camera *cam);
 int			horizontal_resolution(void);
-int			open_window(t_program prog, clock_t start);
+int			open_window(t_program prog);
 
 /*                        SHADING					        */
 double		pcolor(t_program *p, t_coord *point, t_llist *obj);

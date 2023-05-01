@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:06:03 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/29 11:49:08 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:58:17 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	free_program_data(t_program *program, bool clean_content)
 	ft_modlstclear(program->geometries, clean_content);
 	program->geometries = NULL;
 	array_geometries_clear(program->shapes, program->n_geometries);
+	free(program->shapes);
 	program->shapes = NULL;
 }
