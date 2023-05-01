@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_attr_parser.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/24 16:39:07 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:27:38 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_program	get_attributes(char **all_file, bool *error)
 		element = is_rt_element(program.attr_buf);
 		if (element >= 0)
 			*error = !function[element](&program);
+		else
+			*error = true;
 		ft_free_matrix(program.attr_buf);
 	}
 	if (*error)

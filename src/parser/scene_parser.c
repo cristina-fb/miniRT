@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/29 13:25:29 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:12:36 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ double	convert_fov_to_radians(double fov)
 	return (fov);
 }
 
+t_coord *check_dir(t_coord *dir)
+{
+	if (!dir)
+		return (dir);
+	if (dir->x == 0.0 && dir->y == 0.0 && dir->z != 0.0)
+		dir->y = 0.00001;
+	return (dir);
+}
+
 bool	parse_camera(t_program *program)
 {
 	bool		err;
@@ -59,7 +68,7 @@ bool	parse_camera(t_program *program)
 		!str_is_float(program->attr_buf[3]))
 		return (false);
 	program->camera->center = get_coords(program->attr_buf[1]);
-	program->camera->dir = orientation_vector(program->attr_buf[2]);
+	program->camera->dir = check_dir(orientation_vector(program->attr_buf[2]));
 	program->camera->fov = ft_mod_atof(program->attr_buf[3], &err);
 	program->camera->vp = ft_calloc(1, sizeof(t_viewpane));
 	if (!program->camera->center || !program->camera->dir || err

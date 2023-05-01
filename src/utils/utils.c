@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/29 18:44:49 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:57:07 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,25 @@ void	print_default_instructions(void)
 {
 	printf("Please make sure the map has the established format.\n");
 	printf("Elements defined by an uppercase must only be declared once\n");
-	printf("Ambient light: [identifier -> A] ");
-	printf("[ambient lighting ratio in range -> [0.0,1.0] ] \n");
-	printf("[]");
+	printf("Ambient lightning:\n");
+	printf("	%s \n	%s\n	%s\n", AMB_IDX, AMB_RATIO, RGB_MSG);
+	printf("Camera:\n");
+	printf("	%s\n 	%s\n	%s %s\n	%s\n", CM_IDX, CM_VP, \
+			ORIENTATION, OR_RG, FOV);
+	printf("Light:\n");
+	printf("	%s\n 	%s\n	%s\n	%s\n", \
+			L_IDX, L_LP, L_BRIGHT, RGB_MSG);
+	printf("sphere:\n");
+	printf("	%s\n	%s\n	%s\n	%s\n", \
+			SP_IDX, SP_CENTER, SP_DIAMETER, RGB_MSG);
+	printf("plane:\n");
+	printf("	%s\n	%s %s\n	%s\n", PL_IDX, ORIENTATION, OR_RG, RGB_MSG);
+	printf("cylinder:\n");
+	printf("	%s\n	%s\n	%s %s\n", \
+			CY_IDX, CY_COORDS, ORIENTATION, OR_RG);
+	printf("	%s\n	%s\n", CY_DIAMETER, CY_HEIGHT);
+	printf("For an example, please, ");
+	printf("go to a file in the \"example_files\" folder\n");
 }
 
 void	print_error(char *message)
