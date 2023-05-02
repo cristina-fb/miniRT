@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:00:31 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 18:43:17 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:30:03 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ bool	parse_light(t_program *program)
 	program->light->ratio = ft_mod_atof(program->attr_buf[2], &err);
 	program->light->rgb = get_rgb(program->attr_buf[3], &err);
 	if (err || not_in_ambient_ratio(program->light->ratio))
+	{
 		light_cleaner(program->light);
+		err = true;
+	}
 	return (err == false);
 }
 
@@ -97,6 +100,9 @@ bool	parse_ambient_ligth(t_program *program)
 	program->ambient->ratio = ft_mod_atof(program->attr_buf[1], &err);
 	program->ambient->rgb = get_rgb(program->attr_buf[2], &err);
 	if (err || not_in_ambient_ratio(program->ambient->ratio))
+	{
 		ambient_light_cleaner(program->ambient);
+		err = true;
+	}
 	return (err == false);
 }
