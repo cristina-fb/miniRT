@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/02 16:12:14 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:14:55 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ double	pcolor(t_program *p, t_coord *point, t_llist *obj)
 	double		ratio;
 	short int	color[3];
 
+	if (p->camera->fov == 0)
+		return (255);
 	init_light(p, light);
 	if (obj)
 	{
