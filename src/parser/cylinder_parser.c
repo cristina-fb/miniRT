@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:30:06 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/24 16:58:08 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:10:23 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static bool	get_cylinder_data(t_cylinder *cy, t_program *program)
 	cy->rgb = get_rgb(program->attr_buf[5], &err);
 	cy->base = get_coords(program->attr_buf[1]);
 	cy->ba = ft_calloc(1, sizeof(t_coord));
-	if (!cy->ba || !cy->base || !cy->vector || err || !cy->rgb)
+	if (!cy->ba || !cy->base || !cy->vector || err || \
+		!cy->rgb || cy->diameter < 0.00 || cy->height < 0.00)
 	{
 		cylinder_cleaner(cy);
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:03:30 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/02/25 15:18:37 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:10:47 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 static short int	*save_rgb(char **rgb_buf, bool *err)
 {
-	short int	*rgb;
+	float		rgb[3];
+	short int	*ret;
 	short int	i;
 
-	rgb = ft_calloc(3, sizeof(short int));
+	ret = ft_calloc(3, sizeof(short int));
 	i = -1;
-	if (!rgb)
+	if (!ret)
 	{
 		*err = true;
 		return (NULL);
@@ -30,8 +31,11 @@ static short int	*save_rgb(char **rgb_buf, bool *err)
 	rgb[1] = ft_mod_atof(rgb_buf[1], err);
 	rgb[2] = ft_mod_atof(rgb_buf[2], err);
 	while (++i < 3 && !*err)
-		*err = (rgb[i] < 0 || rgb[i] > 255);
-	return (rgb);
+		*err = (rgb[i] < 0.0 || rgb[i] > 255.0);
+	ret[0] = rgb[0];
+	ret[1] = rgb[1];
+	ret[2] = rgb[2];
+	return (ret);
 }
 
 short int	*get_rgb(char *attr_buf, bool *err)
