@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 14:59:51 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 15:08:00 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:24:50 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ double	min_sdf(t_coord p, t_program *program)
 			dist = distance_plane(p, (t_plane *)program->shapes[i].content);
 		else if (program->shapes[i].type == 5)
 			dist = distance_sphere(p, (t_sphere *)program->shapes[i].content);
+		else if (program->shapes[i].type == 6)
+			dist = sdTorus(p, (t_torus *)program->shapes[i].content);
 		if ((i == 0) || (fabs(dist) < fabs(min)))
 			min = dist;
 	}
@@ -42,7 +44,9 @@ static double	get_dist(t_coord p, t_llist obj)
 		(t_cylinder *)obj.content));
 	else if (obj.type == 4)
 		return (distance_plane(p, (t_plane *)obj.content));
-	return (distance_sphere(p, (t_sphere *)obj.content));
+	else if (obj.type == 5)
+		return (distance_sphere(p, (t_sphere *)obj.content));
+	return (sdTorus(p, (t_torus *)obj.content));
 }
 
 static void	skipper(t_program *prog, t_min_sdf_data *data, double dist, int i)

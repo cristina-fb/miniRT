@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/05/01 19:04:12 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/05/02 16:17:32 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ PARSER_FILES = coords_parser.c\
 				plane_parser.c\
 				scene_parser.c\
 				sphere_parser.c\
+				torus_parser.c\
 				utils_attr_parser.c
 
 RENDER_FILES = distance.c\

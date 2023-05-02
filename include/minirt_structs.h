@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/30 18:58:30 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:11:26 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,15 @@ typedef struct s_cylinder
 	double		baba;
 	short int	*rgb;
 }t_cylinder;
+
+typedef struct s_torus
+{
+	double	t_x;
+	double	t_y;
+	short int *rgb;
+	t_coord		*center;
+	t_coord		*orientation;
+}t_torus;
 
 typedef struct s_program
 {

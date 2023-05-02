@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/01 19:02:40 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:25:53 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define CYLINDER 3
 # define PLANE 4
 # define SPHERE 5
-# define N_TYPES 6
+# define TORUS 6
+# define N_TYPES 7
 
 /*                     Resolution                         */
 # define WIDTH 1920
@@ -123,4 +124,6 @@ int			open_window(t_program prog);
 double		pcolor(t_program *p, t_coord *point, t_llist *obj);
 t_coord		get_normal(t_program *p, t_coord *point);
 
+bool	parse_torus(t_program *program);
+double sdTorus( t_coord p, t_torus *torus);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 18:45:28 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:00:38 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static short int	is_rt_element(char **attr_buf)
 		return (PLANE);
 	else if (!ft_strncmp(attr_buf[0], "sp", str_len) && m_len == N_DATA_SP)
 		return (SPHERE);
+	else if (!ft_strncmp(attr_buf[0], "t", str_len) && m_len == 6)
+		return (TORUS);
 	return (-1);
 }
 
@@ -65,6 +67,7 @@ t_program	get_attributes(char **all_file, bool *error)
 	function[CYLINDER] = parse_cylinder;
 	function[PLANE] = parse_plane;
 	function[SPHERE] = parse_sphere;
+	function[TORUS] = parse_torus;
 	i = -1;
 	while (all_file[++i] && !*error)
 	{

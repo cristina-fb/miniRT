@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:03:30 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/02 14:10:47 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:33:38 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ short int	*object_rgb(t_llist *obj)
 		return (((t_plane *)obj->content)->rgb);
 	else if (obj->type == 5)
 		return (((t_sphere *)obj->content)->rgb);
+	else if (obj->type == 6)
+		return (((t_torus *)obj->content)->rgb);
 	return (0);
 }
 
