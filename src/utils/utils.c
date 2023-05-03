@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 15:23:22 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:59:45 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ t_llist	*lst_to_array(t_list *lst, size_t size)
 		i++;
 	}
 	return (array);
+}
+
+void	parsers_charge(t_action function[N_TYPES])
+{
+	function[AMBIENT_LIGTH] = parse_ambient_ligth;
+	function[CAMERA] = parse_camera;
+	function[LIGHT] = parse_light;
+	function[CYLINDER] = parse_cylinder;
+	function[PLANE] = parse_plane;
+	function[SPHERE] = parse_sphere;
+	function[TORUS] = parse_torus;
 }

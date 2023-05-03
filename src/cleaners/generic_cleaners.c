@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:06:03 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 18:58:17 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:12:38 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_modlstclear(t_list *lst, bool clean_content)
 				sphere_cleaner(lst->content);
 			else if (lst->type == PLANE)
 				plane_cleaner(lst->content);
+			else if (lst->type == TORUS)
+				torus_cleaner(lst->content);
 		}
 		lst = lst->next;
 		free(aux);
@@ -47,6 +49,8 @@ void	array_geometries_clear(t_llist *shapes, size_t len)
 			sphere_cleaner(shapes[i].content);
 		else if (shapes[i].type == PLANE)
 			plane_cleaner(shapes[i].content);
+		else if (shapes[i].type == TORUS)
+			torus_cleaner(shapes[i].content);
 		i++;
 	}	
 }

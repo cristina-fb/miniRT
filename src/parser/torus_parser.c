@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   torus_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/03 17:51:13 by jalvarad          #+#    #+#             */
+/*   Updated: 2023/05/03 17:53:52 by jalvarad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 static bool	get_torus_data(t_torus *torus, t_program *program)
@@ -9,10 +21,10 @@ static bool	get_torus_data(t_torus *torus, t_program *program)
 	torus->t_y = ft_mod_atof(program->attr_buf[2], &err);
 	torus->rgb = get_rgb(program->attr_buf[3], &err);
 	torus->center = get_coords(program->attr_buf[4]);
-	torus->orientation = get_coords(program->attr_buf[5]);
+	torus->orientation = orientation_vector(program->attr_buf[5]);
 	if (err || !torus->rgb || torus->t_x < 0.0 || torus->t_y < 0.0)
 	{
-		////sphere_cleaner(sphere);   faalt hacer función de liberar
+		torus_cleaner(torus);
 		return (false);
 	}
 	return (true);
@@ -20,15 +32,20 @@ static bool	get_torus_data(t_torus *torus, t_program *program)
 
 static bool	torus_basic_parse(t_program *program)
 {
-	return (!str_is_float(program->attr_buf[1]) || \
+	if (!str_is_float(program->attr_buf[1]) || \
 		!str_is_float(program->attr_buf[2]) || \
-		ft_word_count(program->attr_buf[3], ',') != 3 || ft_word_count(program->attr_buf[4], ',') != 3 || ft_word_count(program->attr_buf[5], ',') != 3);
+		ft_word_count(program->attr_buf[3], ',') != 3)
+		return (true);
+	if (ft_word_count(program->attr_buf[4], ',') != 3 || \
+		ft_word_count(program->attr_buf[5], ',') != 3)
+		return (true);
+	return (false);
 }
 
 bool	parse_torus(t_program *program)
 {
 	t_torus	*torus;
-	t_list		*new;
+	t_list	*new;
 
 	if (torus_basic_parse(program))
 		return (false);

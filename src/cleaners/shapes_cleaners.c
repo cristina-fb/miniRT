@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes_cleaners.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:23:12 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/04/21 11:37:21 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:50:46 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ void	cylinder_cleaner(t_cylinder *cylinder)
 	free(cylinder->base);
 	free(cylinder->rgb);
 	free(cylinder);
+}
+
+void	torus_cleaner(t_torus *torus)
+{
+	if (!torus)
+		return ;
+	free(torus->rgb);
+	free(torus->center);
+	free(torus->orientation);
+	free(torus);
 }

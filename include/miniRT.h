@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/02 17:25:53 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:15:21 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define MAX_DIST 100000.
 # define MIN_DIST 0.01
 
+typedef bool	(*t_action)(t_program *);
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
 char		**open_read(char *file_name, char **err_message);
@@ -124,6 +125,8 @@ int			open_window(t_program prog);
 double		pcolor(t_program *p, t_coord *point, t_llist *obj);
 t_coord		get_normal(t_program *p, t_coord *point);
 
-bool	parse_torus(t_program *program);
-double sdTorus( t_coord p, t_torus *torus);
+bool		parse_torus(t_program *program);
+double		sdTorus( t_coord p, t_torus *torus);
+void		torus_cleaner(t_torus *torus);
+void		parsers_charge(t_action function[N_TYPES]);
 #endif

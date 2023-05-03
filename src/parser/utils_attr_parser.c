@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/02 18:00:38 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:06:29 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,11 @@ t_program	get_attributes(char **all_file, bool *error)
 	t_program		program;
 	unsigned int	i;
 	short int		element;
+	t_action		function[N_TYPES];
 
 	program = (t_program){NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0};
-	bool (*function[N_TYPES])(t_program *);
-	function[AMBIENT_LIGTH] = parse_ambient_ligth;
-	function[CAMERA] = parse_camera;
-	function[LIGHT] = parse_light;
-	function[CYLINDER] = parse_cylinder;
-	function[PLANE] = parse_plane;
-	function[SPHERE] = parse_sphere;
-	function[TORUS] = parse_torus;
 	i = -1;
+	parsers_charge(function);
 	while (all_file[++i] && !*error)
 	{
 		program.attr_buf = ft_split(all_file[i], ' ');

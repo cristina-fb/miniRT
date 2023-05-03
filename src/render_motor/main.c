@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 18:59:05 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:14:32 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	raymarching_loop(t_program *program, int i, int j, t_min_sdf_data *data)
 		total += min;
 		point = v_add(point, v_mul(*program->camera->vp->arr[i][j].ray, min));
 	}
-	if ((fabs(min) < MIN_DIST) && !data->f)
+	if ((fabs(min) < MIN_DIST) && !data->f && program->camera->fov != 0.0)
 		return (pcolor(program, &point, &data->obj));
 	return (255);
 }
