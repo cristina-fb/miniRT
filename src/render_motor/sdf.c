@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 14:59:51 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/02 17:24:50 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:14:12 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ double	min_sdf_loop(t_coord p, t_program *program, t_min_sdf_data *data)
 		if (!data->f_first || !program->shapes[i].skip)
 		{
 			dist = get_dist(p, program->shapes[i]);
-			skipper(program, data, dist, i);
+			if (program->shapes[i].type != 6)
+				skipper(program, data, dist, i);
 			program->shapes[i].last_dist = dist;
 			if ((j == 0) || (fabs(dist) < fabs(min)))
 			{

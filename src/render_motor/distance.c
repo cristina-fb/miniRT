@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/02 17:16:06 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:25:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_coord rotate_euler(t_coord p, t_coord euler_angles)
 double sdTorus(t_coord p, t_torus *torus)
 {
     // Traslada el punto al espacio del objeto (centrado en el origen)
-    p = v_sub(p, *torus->center);
+	p = v_sub(p, *torus->center);
 
     // Aplica la rotación de orientación
     p = rotate_euler(p, *torus->orientation);
@@ -66,6 +66,22 @@ double sdTorus(t_coord p, t_torus *torus)
 	q_length = sqrt( (q_x*q_x) + (p.y*q_y));
   return (q_length - torus->t_y);
 }*/
+
+/*double sdTorus(t_coord p, t_torus *torus)
+{
+	double	h;
+	double	x;
+	t_coord	pr;
+
+	h = (torus->center->x - p.x) * torus->orientation->x;
+	h += (torus->center->y - p.y) * torus->orientation->y;
+	h += (torus->center->z - p.z) * torus->orientation->z;
+	pr = v_sub(p, v_mul(*torus->orientation, h));
+	x = v_module(v_sub(pr, *torus->center)) - torus->t_x;
+	printf("DIST %f POINT: %f %f %f\n", sqrt((x * x) + (h * h)) - torus->t_y, p.x, p.y, p.z);
+	return (sqrt((x * x) + (h * h)) - torus->t_y);
+}*/
+
 double	distance_sphere(t_coord p, t_sphere *sphere)
 {
 	double	dist;
