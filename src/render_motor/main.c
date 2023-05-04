@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 19:14:32 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:42:29 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	raymarching(t_program *program)
 			program->camera->vp->arr[i][j].color = raymarching_loop(program, \
 			i, j, &data);
 		}
+		printf("%d\n", i);
 	}
 }
 

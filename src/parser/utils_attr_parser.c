@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_attr_parser.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:25:32 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 19:06:29 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:20:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static short int	is_rt_element(char **attr_buf)
 		return (PLANE);
 	else if (!ft_strncmp(attr_buf[0], "sp", str_len) && m_len == N_DATA_SP)
 		return (SPHERE);
-	else if (!ft_strncmp(attr_buf[0], "t", str_len) && m_len == 6)
+	else if (!ft_strncmp(attr_buf[0], "t", str_len) && m_len == N_DATA_T)
 		return (TORUS);
 	return (-1);
 }
