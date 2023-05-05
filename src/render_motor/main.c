@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:45:59 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/04 14:42:29 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:28:12 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	raymarching(t_program *program)
 			program->camera->vp->arr[i][j].color = raymarching_loop(program, \
 			i, j, &data);
 		}
-		printf("%d\n", i);
 	}
 }
 

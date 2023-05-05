@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:57:56 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/03 17:46:06 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:39:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	is_in_shadow(t_program *p, t_coord *point, t_coord *light_dir)
 	{
 		ray_point = v_add(*point, v_mul(*light_dir, t));
 		min_dist = min_sdf(ray_point, p);
-		if (min_dist < 0.0001)
+		if (min_dist < MIN_DIST)
 			return (true);
 		t += min_dist;
 	}
@@ -81,6 +81,7 @@ double	pcolor(t_program *p, t_coord *point, t_llist *obj)
 		ratio = dot_product(normal, dir);
 		if (ratio < 0.0)
 			ratio = 0.0;
+		*point=v_add(*point, v_mul(normal, 2 * MIN_DIST));
 		if (!is_in_shadow(p, point, &dir))
 		{
 			light[0] += ratio * p->light->ratio * p->light->rgb[0];

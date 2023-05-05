@@ -6,13 +6,13 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/04 18:31:07 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:57:01 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_coord rotate_euler(t_coord p, t_coord euler_angles)
+/*t_coord rotate_euler(t_coord p, t_coord euler_angles)
 {
     double cos_x = cos(euler_angles.x);
     double sin_x = sin(euler_angles.x);
@@ -37,18 +37,22 @@ t_coord rotate_euler(t_coord p, t_coord euler_angles)
     p.z = q.z;
 
     return p;
-}
+}*/
 
 double sdTorus(t_coord p, t_torus *torus)
 {
 	double	h;
 	double	pc;
 	double	x;
-	if (torus->distortion)
-		p.x = p.x + 2 * sin(2*p.z) * sin(p.z) + 0.05 * sin(8*p.y);
 	h = (torus->center->x - p.x) * torus->orientation->x;
 	h += (torus->center->y - p.y) * torus->orientation->y;
 	h += (torus->center->z - p.z) * torus->orientation->z;
+	if (torus->distortion)
+	{
+		if (h < 0)
+			p.z += (h/3)*sin(0.5/h*p.z);
+		p.x += sin(0.5*p.x)*cos(0.5*p.y);
+	}
 	h = fabs(h);
 	pc = v_module(v_sub(p, *torus->center));
 	x = sqrt(pow(pc, 2.0) - pow(h, 2.0)) - torus->t_x;
