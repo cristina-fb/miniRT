@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/04 18:20:49 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:44:56 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define MIN_DIST 0.01
 
 typedef bool	(*t_action)(t_program *);
+typedef void	(*t_cleaner)(void *);
+typedef double	(*t_distance)(t_coord, void *);
 /* ------------------- FUNCTIONS -------------------------- */
 /*                      READER                              */
 char		**open_read(char *file_name, char **err_message);
@@ -89,9 +91,9 @@ void		free_program_data(t_program *program, bool clean_content);
 void		ft_modlstclear(t_list *lst, bool clean_content);
 void		array_geometries_clear(t_llist *shapes, size_t len);
 
-void		cylinder_cleaner(t_cylinder *cylinder);
-void		sphere_cleaner(t_sphere *sphere);
-void		plane_cleaner(t_plane *plane);
+void		cylinder_cleaner(void *cy);
+void		sphere_cleaner(void *sp);
+void		plane_cleaner(void *pl);
 
 void		light_cleaner(t_light *light);
 void		camera_cleaner(t_camera *camera);
@@ -127,7 +129,8 @@ double		pcolor(t_program *p, t_coord *point, t_llist *obj);
 t_coord		get_normal(t_program *p, t_coord *point);
 
 bool		parse_torus(t_program *program);
-double		sdTorus( t_coord p, t_torus *torus);
-void		torus_cleaner(t_torus *torus);
+double		distance_torus( t_coord p, t_torus *torus);
+void		torus_cleaner(void *t);
 void		parsers_charge(t_action function[N_TYPES]);
+void		cleaners_charge(t_cleaner cleaners[N_TYPES - 3]);
 #endif

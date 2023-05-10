@@ -6,14 +6,17 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:23:12 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 17:50:46 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:13:34 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	sphere_cleaner(t_sphere *sphere)
+void	sphere_cleaner(void *sp)
 {
+	t_sphere	*sphere;
+
+	sphere = (t_sphere *) sp;
 	if (!sphere)
 		return ;
 	free(sphere->center);
@@ -21,8 +24,11 @@ void	sphere_cleaner(t_sphere *sphere)
 	free(sphere);
 }
 
-void	plane_cleaner(t_plane *plane)
+void	plane_cleaner(void *pl)
 {
+	t_plane	*plane;
+
+	plane = (t_plane *) pl;
 	if (!plane)
 		return ;
 	free(plane->point);
@@ -31,8 +37,11 @@ void	plane_cleaner(t_plane *plane)
 	free(plane);
 }
 
-void	cylinder_cleaner(t_cylinder *cylinder)
+void	cylinder_cleaner(void *cy)
 {
+	t_cylinder	*cylinder;
+
+	cylinder = (t_cylinder *) cy;
 	if (!cylinder)
 		return ;
 	free(cylinder->vector);
@@ -42,8 +51,11 @@ void	cylinder_cleaner(t_cylinder *cylinder)
 	free(cylinder);
 }
 
-void	torus_cleaner(t_torus *torus)
+void	torus_cleaner(void *t)
 {
+	t_torus	*torus;
+
+	torus = (t_torus *) t;
 	if (!torus)
 		return ;
 	free(torus->rgb);

@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:06:03 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 17:12:38 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:12:06 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,15 @@
 // Pass boolean on true delete content of every node
 void	ft_modlstclear(t_list *lst, bool clean_content)
 {
-	t_list	*aux;
+	t_cleaner	cleaner[N_TYPES - 3];
+	t_list		*aux;
 
+	cleaners_charge(cleaner);
 	while (lst)
 	{
 		aux = lst;
 		if (clean_content)
-		{
-			if (lst->type == CYLINDER)
-				cylinder_cleaner(lst->content);
-			else if (lst->type == SPHERE)
-				sphere_cleaner(lst->content);
-			else if (lst->type == PLANE)
-				plane_cleaner(lst->content);
-			else if (lst->type == TORUS)
-				torus_cleaner(lst->content);
-		}
+			cleaner[lst->type - 3](lst->content);
 		lst = lst->next;
 		free(aux);
 	}
@@ -38,19 +31,14 @@ void	ft_modlstclear(t_list *lst, bool clean_content)
 
 void	array_geometries_clear(t_llist *shapes, size_t len)
 {
-	size_t	i;
+	t_cleaner	cleaner[N_TYPES - 3];
+	size_t		i;
 
 	i = 0;
+	cleaners_charge(cleaner);
 	while (i < len)
 	{
-		if (shapes[i].type == CYLINDER)
-			cylinder_cleaner(shapes[i].content);
-		else if (shapes[i].type == SPHERE)
-			sphere_cleaner(shapes[i].content);
-		else if (shapes[i].type == PLANE)
-			plane_cleaner(shapes[i].content);
-		else if (shapes[i].type == TORUS)
-			torus_cleaner(shapes[i].content);
+		cleaner[shapes[i].type - 3](shapes[i].content);
 		i++;
 	}	
 }

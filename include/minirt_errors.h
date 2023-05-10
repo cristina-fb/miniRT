@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:22:40 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/01 12:50:52 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:43:27 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@
 # define CY_COORDS "x,y,z coordinates"
 # define CY_DIAMETER "the cylinder diameter"
 # define CY_HEIGHT "the cylinder height"
+
+// Torus
+# define T_IDX "[identifier -> t]"
+# define T_BIG_RAD "Big radius"
+# define T_LITTLE_RAD "Little radius"
+# define T_DEFORMATION "Flag for deformation [1 = true] [2 = false]"
+# define T_COORDS "x,y,z coordinates"
+
 #endif

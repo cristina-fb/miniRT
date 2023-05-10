@@ -3,55 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:34 by crisfern          #+#    #+#             */
-/*   Updated: 2023/05/05 16:57:01 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:45:56 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-/*t_coord rotate_euler(t_coord p, t_coord euler_angles)
-{
-    double cos_x = cos(euler_angles.x);
-    double sin_x = sin(euler_angles.x);
-    double cos_y = cos(euler_angles.y);
-    double sin_y = sin(euler_angles.y);
-    double cos_z = cos(euler_angles.z);
-    double sin_z = sin(euler_angles.z);
-
-    t_coord q;
-
-    // Rotación en torno al eje X
-    q.y = p.y * cos_x - p.z * sin_x;
-    q.z = p.y * sin_x + p.z * cos_x;
-
-    // Rotación en torno al eje Y
-    q.x = p.x * cos_y + q.z * sin_y;
-    q.z = -p.x * sin_y + q.z * cos_y;
-
-    // Rotación en torno al eje Z
-    p.x = q.x * cos_z - q.y * sin_z;
-    p.y = q.x * sin_z + q.y * cos_z;
-    p.z = q.z;
-
-    return p;
-}*/
-
-double sdTorus(t_coord p, t_torus *torus)
+double	distance_torus(t_coord p, t_torus *torus)
 {
 	double	h;
 	double	pc;
 	double	x;
+
 	h = (torus->center->x - p.x) * torus->orientation->x;
 	h += (torus->center->y - p.y) * torus->orientation->y;
 	h += (torus->center->z - p.z) * torus->orientation->z;
 	if (torus->distortion)
 	{
 		if (h < 0)
-			p.z += (h/3)*sin(0.5/h*p.z);
-		p.x += sin(0.5*p.x)*cos(0.5*p.y);
+			p.z += (h / 3) * sin(0.5 / h * p.z);
+		p.x += sin(0.5 * p.x) * cos(0.5 * p.y);
 	}
 	h = fabs(h);
 	pc = v_module(v_sub(p, *torus->center));

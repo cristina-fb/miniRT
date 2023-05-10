@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 17:05:06 by jalvarad          #+#    #+#              #
-#    Updated: 2023/05/02 16:17:32 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/05/08 13:44:26 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ RENDER_FILES = distance.c\
 UTILS_FILES = ft_mod_atof.c\
 				num_str_format.c\
 				reader.c\
-				utils.c
+				utils.c\
+				functions_chargers.c\
 
 CLEANER_DIR = cleaners/
 PARSER_DIR = parser/
@@ -132,5 +133,7 @@ fclean: clean
 	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@rm -rf $(NAME)
 re: fclean all
+
+bonus: all
 
 .PHONY: all re m clean fclean bonus

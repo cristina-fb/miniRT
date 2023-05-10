@@ -6,7 +6,7 @@
 /*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:33:10 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 18:59:45 by jalvarad         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:46:56 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	print_default_instructions(void)
 	printf("	%s\n	%s\n", CY_DIAMETER, CY_HEIGHT);
 	printf("For an example, please, ");
 	printf("go to a file in the \"example_files\" folder\n");
+	printf("torus:\n");
+	printf("	%s\n	%s\n	%s\n	%s\n	%s\n	%s\n	%s %s\n", \
+			T_IDX, T_BIG_RAD, T_LITTLE_RAD, T_DEFORMATION, RGB_MSG, T_COORDS, \
+			ORIENTATION, OR_RG);
 }
 
 void	print_error(char *message)
@@ -79,15 +83,4 @@ t_llist	*lst_to_array(t_list *lst, size_t size)
 		i++;
 	}
 	return (array);
-}
-
-void	parsers_charge(t_action function[N_TYPES])
-{
-	function[AMBIENT_LIGTH] = parse_ambient_ligth;
-	function[CAMERA] = parse_camera;
-	function[LIGHT] = parse_light;
-	function[CYLINDER] = parse_cylinder;
-	function[PLANE] = parse_plane;
-	function[SPHERE] = parse_sphere;
-	function[TORUS] = parse_torus;
 }

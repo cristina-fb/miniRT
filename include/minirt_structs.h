@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:57:13 by jalvarad          #+#    #+#             */
-/*   Updated: 2023/05/04 18:13:43 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/05/07 10:47:04 by jalvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ typedef struct s_torus
 	t_coord		*center;
 	t_coord		*orientation;
 }t_torus;
+
+typedef struct s_light_ratios
+{
+	double	ratio;
+	double	shadow_ratio;
+	double	prev_shadow_r;
+}t_light_ratios;
 
 typedef struct s_program
 {
